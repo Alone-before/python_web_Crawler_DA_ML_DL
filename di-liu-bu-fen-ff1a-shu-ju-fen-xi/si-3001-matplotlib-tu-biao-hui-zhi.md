@@ -84,9 +84,25 @@ buf.getvalue()[:20] # 显示图像内容的前20个字节
 b'\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x02@'
 ```
 
+matplotlib.pyplot模块虽然用法简单，但不适合在交大的应用程序中使用。
+
+```py
+import matplotlib.pyplot as plt
+```
+
+当前的图表可以使用plt.gcf\(\)获得--------get current figure
+
+当前的子图可以使用plt.gca\(\)获得--------get current Axes
+
+plt.plot\(\)实际上会通过plt.gca\(\)获取当前的Axes对象ax,然后再调用ax.plot\(\)方法实现
+
+真正的绘图。
+
+在ipython中可以输入plt.plot??的命令查看
+
+由于matplotlib实际上是一套面向对象的绘图库，所以可以配置其属性。
+
 ## 1-2、 面向对象方式绘图
-
-
 
 
 
