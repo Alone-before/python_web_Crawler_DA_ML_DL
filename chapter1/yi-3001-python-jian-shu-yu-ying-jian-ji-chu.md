@@ -103,7 +103,7 @@ python不能像汇编语言那样直接去操作底层的硬件，尤其是那�
 网络框架：Django、TurboGears、Pylons、异步网络编程框架Twisted、flask、Webpy、Bottle  
 内容管理系统：Plone、Mezzanine  
 应用服务器：Zope  
-python网站：社交分享类：Reddit；文件分享类：Dropbox；图书唱片电影等资料数据库网站：豆瓣；MediaWiki的机器人程序：Python Wikipedia Robot Framework；Wiki程序：MoinMoinWiki；图片社交分享网站：Pinterest；幻灯片存储显示分享网站：SlidShare；其他各种网站：知乎、果壳网、美团、快盘、扇贝网、糗事百科、Wopus问答等。
+python网站：社交分享类：Reddit；文件分享类：Dropbox；图书唱片电影等资料数据库网站：&lt;u&gt;豆瓣&lt;/u&gt;；MediaWiki的机器人程序：Python Wikipedia Robot Framework；Wiki程序：MoinMoinWiki；图片社交分享网站：Pinterest；幻灯片存储显示分享网站：SlidShare；其他各种网站：知乎、果壳网、美团、快盘、扇贝网、糗事百科、Wopus问答等。
 
 # 1.2 python的软件知识
 
