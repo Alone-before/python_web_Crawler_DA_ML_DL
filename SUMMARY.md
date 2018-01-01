@@ -10,7 +10,7 @@
   * 一、数据分析基础
   * 二、numpy数组处理
   * 三、Pandas数据分析
-  * 四、matplotlib图表绘制
+  * [四、matplotlib图表绘制](di-liu-bu-fen-ff1a-shu-ju-fen-xi/si-3001-matplotlib-tu-biao-hui-zhi.md)
   * 五、网络爬虫基础
   * 六、网络爬虫进阶
 * 第七部分：机器学习
