@@ -145,6 +145,10 @@ python游戏库：PySoy、Pyglet、Python-Ogre、Panda3D、Blender3D、GGZ Gamin
 
 YouTube、Google、Yahoo!、NASA都在内部⼤量地使⽤Python
 
+### 3、我们能用python干什么
+
+相比于其他语言，我们个人一般可以利用python进行小型的3D效果实现、网络下载器的实现；还有网络爬虫抓取数据、数据计算和数据分析等。
+
 # 1.2 python的软件知识
 
 本节分三部分进行说明：python语言自身的软件版本、开发中经常用到的IDE和程序员需要用到的一些小工具基础。
