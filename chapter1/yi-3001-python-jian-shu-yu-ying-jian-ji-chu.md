@@ -100,10 +100,46 @@ python不能像汇编语言那样直接去操作底层的硬件，尤其是那�
 
 ##### ①、网络和以太网开发
 
-网络框架：Django、TurboGears、Pylons、异步网络编程框架Twisted、flask、Webpy、Bottle  
-内容管理系统：Plone、Mezzanine  
-应用服务器：Zope  
-python网站：社交分享类：Reddit；文件分享类：Dropbox；图书唱片电影等资料数据库网站：&lt;u&gt;豆瓣&lt;/u&gt;；MediaWiki的机器人程序：Python Wikipedia Robot Framework；Wiki程序：MoinMoinWiki；图片社交分享网站：Pinterest；幻灯片存储显示分享网站：SlidShare；其他各种网站：知乎、果壳网、美团、快盘、扇贝网、糗事百科、Wopus问答等。
+**网络框架**：Django、TurboGears、Pylons、异步网络编程框架Twisted、flask、Webpy、Bottle  
+**内容管理系统**：Plone、Mezzanine  
+**应用服务器**：Zope  
+**python网站**：社交分享类：Reddit；文件分享类：Dropbox；图书唱片电影等资料数据库网站：_**豆瓣**_；MediaWiki的机器人程序：Python Wikipedia Robot Framework；Wiki程序：MoinMoinWiki；图片社交分享网站：Pinterest；幻灯片存储显示分享网站：SlidShare；其他各种网站：_**知乎、果壳网、美团、快盘、扇贝网、糗事百科**_、Wopus问答等。  
+**其他**：编写CGI脚本；支持HTML和XML的处理；邮件处理：Mailman；RSS处理；支持很多网络协议。
+
+##### ②、数据库访问
+
+**自定义和ODBC数据库接口**：MySQL、Oracle、MS SQL Server、PostgreSQL、SybODBC等。  
+**标准数据库接口**：  
+**对象数据库接口**：ZODB、Durus
+
+##### ③、图形桌面
+
+内置Tk的GUI库、wxWidgets、GTK+、通过pygt或pyside支持QT、通过win32支持MFC、Delphi、wxPython、AnyGui等。
+
+##### ④、科学计算
+
+Bioinformatics、Physics、NumPy、SciPy、Matplotlib、Pandas等。
+
+##### ⑤、教育教学
+
+Education Special Interest Group、pyBiblio、Software Carpentry Course等
+
+##### ⑥、软件开发
+
+**编译控制**：SCons  
+**自动化连续编译和测试**： Buildbot、Apache Gump  
+**缺陷追踪和项目管理**：Roundup、Trac
+
+##### ⑦、游戏和3D图形处理
+
+**游戏框架**：PyGame、PyKytra等  
+**3D渲染库**：FreeCAD、Minilight  
+**3D软件**：以C与Python开发的开源3D绘图软件：Blender、Cinema 4D  
+python游戏库：PySoy、Pyglet、Python-Ogre、Panda3D、Blender3D、GGZ Gaming Zone等  
+**python游戏**：EVE、SolarWolf、Mount&Blade等  
+**python在线游戏服务器**：Evennia、GrailMUD等。
+
+
 
 # 1.2 python的软件知识
 
