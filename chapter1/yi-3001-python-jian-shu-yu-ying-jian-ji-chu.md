@@ -98,6 +98,8 @@ python不能像汇编语言那样直接去操作底层的硬件，尤其是那�
 
 #### python的主流应用领域：
 
+目前主要应用于web应用开发、操作系统管理和服务器运维的自动化脚本、科学计算、桌面软件、服务器网络软件、游戏以及构思实现和产品早期原型迭代等。
+
 ##### ①、网络和以太网开发
 
 **网络框架**：Django、TurboGears、Pylons、异步网络编程框架Twisted、flask、Webpy、Bottle  
@@ -139,7 +141,9 @@ python游戏库：PySoy、Pyglet、Python-Ogre、Panda3D、Blender3D、GGZ Gamin
 **python游戏**：EVE、SolarWolf、Mount&Blade等  
 **python在线游戏服务器**：Evennia、GrailMUD等。
 
+##### ⑧、构思实现、产品早期原型和迭代
 
+YouTube、Google、Yahoo!、NASA都在内部⼤量地使⽤Python
 
 # 1.2 python的软件知识
 
