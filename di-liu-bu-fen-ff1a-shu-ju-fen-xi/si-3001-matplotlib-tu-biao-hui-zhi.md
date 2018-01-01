@@ -8,6 +8,22 @@ matplotlib是python最著名的绘图库，它提供了一整套和matlab相似�
 
 # 1、快速入门
 
+若您是新手，请从本节开始，若是老手，则直接跳到下一节进行学习分析。为了快速的获取程序显示出的效果，本节使用ipython notebook\(Jupty\)进行代码演示.
+
+在jupty中执行matplotlib时，为了显示，需要将以下命令写入：
+
+```py
+%matplotlib inline
+```
+
+使用inline模式可以使jupty中绘制的图表自动关闭。
+
+为了在多个jupty单元格内操作同一幅图表，需要运行以下命令：
+
+```py
+%config InlineBackend.close_figures = False
+```
+
 ## 1-1、使用pyplot模块绘图
 
 matplotlib的pyplot模块提供了类似matlab一样的绘图函数API，方便我们快速绘制二维图表。先看个简单例子。
@@ -67,6 +83,8 @@ buf.getvalue()[:20] # 显示图像内容的前20个字节
 ```
 b'\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x02@'
 ```
+
+## 1-2、 面向对象方式绘图
 
 
 
