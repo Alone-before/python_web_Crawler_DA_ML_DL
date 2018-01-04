@@ -24,7 +24,7 @@
   * 四、JavaScript与jQuery
   * 五、移动端框架和库
   * 六、前端自动化和前端性能优化
-* 第五部分：web全栈开发
+* [第五部分：web全栈开发](di-wu-bu-fen-ff1a-web-quan-zhan-kai-fa.md)
   * 一、Git项目代码管理和项目开发流程
   * 二、Diango框架开发
   * 三、Nginx配置和uWSGI部署
