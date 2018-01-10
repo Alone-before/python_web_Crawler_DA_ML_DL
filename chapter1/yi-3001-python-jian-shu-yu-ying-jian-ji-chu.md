@@ -233,43 +233,39 @@ gitbook-editor客户端可以实现离线编辑书籍、联网同步和发布了
 
 Python 的学习过程少不了 IDE 或者代码编辑器，或者集成的开发编辑器（IDE）。这些Python 开发工具帮助开发者加快使用 Python 开发的速度，提高效率。高效的代码编辑器或者 IDE 应该会提供插件，工具等能帮助开发者高效开发的特性.比如Vim，Eclipse with PyDev，Sublime Text，PyCharm，PyScripter等。本文只介绍我们经常用到且肯定会用到（项目开发、数据分析、脚本编辑）的软件。
 
-**PyCharm**     http://www.jetbrains.com/pycharm/
+**PyCharm**     [http://www.jetbrains.com/pycharm/](http://www.jetbrains.com/pycharm/)
 
 PyCharm是一种Python IDE，带有一整套可以帮助用户在使用Python语言开发时提高其效率的工具，比如调试、语法高亮、Project管理、代码跳转、智能提示、自动完成、单元测试、版本控制。此外，该IDE提供了一些高级功能，以用于支持Django框架下的专业Web开发。同时支持Google App Engine，更酷的是，PyCharm支持IronPython。**一般大型项目开发采用此软件。**
 
 ![](/assets/pycharm.png)
 
-**Spyder **   https://pypi.python.org/pypi/spyder
+**Spyder **   [https://pypi.python.org/pypi/spyder](https://pypi.python.org/pypi/spyder)
 
 Spyder是Python\(x,y\)的作者为它开发的一个简单的集成开发环境。和其他的Python开发环境相比，它最大的优点就是**模仿MATLAB的“工作空间”的功能，可以很方便地观察和修改数组的值。**Spyder的界面由许多窗格构成，用户可以根据自己的喜好调整它们的位置和大小。当多个窗格出现在一个区域时，将使用标签页的形式显示。例如在图1中，可以看到“Editor”、“Object inspector”、“Variable explorer”、“File explorer”、“Console”、“History log”以及两个显示图像的窗格。在View菜单中可以设置是否显示这些窗格。
 
 ![](/assets/spyder.png)
 
-**ipython **     http://ipython.org/
+**ipython **     [http://ipython.org/](http://ipython.org/)
 
 IPython 是一个 python 的交互式 shell，**比默认的python shell好用得多，支持变量自动补全，自动缩进**，支持 bash shell 命令，内置了许多很有用的功能和函数。IPython 是基于BSD 开源的。IPython 为交互式计算提供了一个丰富的架构，包含：强大的交互式 shell Jupyter 内核交互式的数据可视化工具灵活、可嵌入的解释器易于使用，高性能的并行计算工具。**安装必选项。**
 
 ![](/assets/ipython.png)
 
-**jupty notebook**      http://jupyter.org/
+**jupty notebook**      [http://jupyter.org/](http://jupyter.org/)
 
 Jupyter Notebook 一个交互式笔记本，支持运行 40 多种编程语言。本质是一个 Web应用程序，便于**创建和共享文学化程序文档**，支持实时代码，数学方程，可视化和 markdown。 用途包括：**数据清理和转换，数值模拟，统计建模，机器学习等等**。与 IPython终端 共享同一个内核。
 
 ![](/assets/jupyternotebook.png)
 
-**anaconda\(必选项\)      **https://www.anaconda.com/download/
+**anaconda\(必选项\)      **[https://www.anaconda.com/download/](https://www.anaconda.com/download/)
 
 原生的python为了实现更丰富的科学计算功能，还需要安装大量的第三方扩展库，非常繁琐。因此便出现了Anaconde。这是一个常用的科学计算发型版。它包含了**众多流行的科学、数学、工程和数据分析的python包**；完全开源和免费；全平台支持，python版本自由切换。装了它，**几乎做数据分析、机器学习，不再需要装太多的第三方扩展包了。上文中的ipython、jupyter、ipython等均会被默认安装。**
 
 ![](/assets/anaconda.png)
 
-**Sublime Text     **https://www.sublimetext.com/
+**Sublime Text     **[https://www.sublimetext.com/](https://www.sublimetext.com/)
 
 Sublime Text 是一个**代码编辑器**，也是HTML和散文先进的**文本编辑器**。Sublime Text是由程序员Jon Skinner于2008年1月份所开发出来，它最初被设计为一个具有丰富扩展功能的Vim。Sublime Text具有漂亮的用户界面和强大的功能，例如代码缩略图，Python的插件，代码段等。还可自定义键绑定，菜单和工具栏。Sublime Text 的主要功能包括：拼写检查，书签，完整的 Python API ， Goto 功能，即时项目切换，多选择，多窗口等等。Sublime Text 是一个跨平台的编辑器，同时支持Windows、Linux、Mac OS X等操作系统。Sublime Text 支持多种编程语言的语法高亮、拥有优秀的代码自动完成功能，还拥有代码片段（Snippet）的功能，可以将常用的代码片段保存起来，在需要时随时调用。支持 VIM 模式，可以使用Vim模式下的多数命令。支持宏，简单地说就是把操作录制下来或者自己编写命令，然后播放刚才录制的操作或者命令。![](/assets/sublimetext.png)
-
-
-
-
 
 # 1.3python的硬件知识
 
