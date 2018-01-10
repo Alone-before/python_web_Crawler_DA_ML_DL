@@ -178,45 +178,74 @@ YouTube、Google、Yahoo!、NASA都在内部⼤量地使⽤Python
 
 ## 1.2.2 学习常用辅助软件
 
-本节主要列举辅助我们学习和查询资料的工具，大基础才会成就大深度。python语言被称为胶水语言，连接着众多模块，因此少不了即时查询文档的API软件。要向学号一门语言，英语肯定要接触。学习免不了整理思维，思维导图也是必须的。常用的代码管理软件对我们也非常有帮助。在后期web开发、数据爬取时，需要分析网页内容，好的浏览器才会事半功倍。
+本节主要列举辅助我们学习和查询资料的工具，它们对我们平时学习有非常大的帮助，**大基础才会成就大深度**。python语言被称为胶水语言，连接着众多模块，因此少不了即时**查询文档的API软件**。要向学好一门语言，**英语翻译**肯定要接触。学习免不了整理思维，**思维导图**也是必须的。常用的**代码管理软件**对我们也非常有帮助。在后期web开发、数据爬取时，需要分析网页内容，好的**浏览器\(chrome和火狐\)**才会事半功倍。
 
 ### 常用API查询软件
 
-mac：Dash  https://kapeli.com/dash
+**mac：Dash**  [https://kapeli.com/dash](https://kapeli.com/dash)
 
 Dash是一个API文档浏览器（API Documentation Browser），以及代码片段管理工具（Code Snippet Manager）。你没看错，它就只有这两个功能，但确实是程序员（至少对笔者\(非程序员\)来说）最为关心的特性。左侧边栏是各种编程语言以及框架（取决于我们下载安装了多少文档集合）的导航大纲，点击某个节点，右边的内容区域就是文档的详细信息啦，非常直观。也可以在左上方的搜索框内通过输入关键字，查找相关的API文档，非常类似全文检索的实现方式，Dash的响应速度非常快！关键是可以同时查询不同的语言、框架内容，实在是太方便了。实际上它还可以做代码管理，这里不再介绍。![](/assets/Dash.png)
 
-Windows & linux： Zeal
+**Windows & linux： Zeal**       https://zealdocs.org/
 
-
+Zeal 是一个简单的离线 API 文档浏览器，仿照Dash写成，能在 Linux 和 Windows 上使用。在你的工作空间的任何地方中，使用`Alt + 空格`（也可以自定义）快捷键去进行快速的文档搜索。一次搜索多个文档集，不需要网络连接。Zeal 是开源的！遵循 GPL 版权协议，所有能用在 Dash 上的文档也可以用在 Zeal 中。![](/assets/Zeal.png)
 
 ### 翻译软件
 
-mac：词典
+**mac：词典**
 
-windows：谷歌翻译
+![](/assets/maccidian.png)
+
+**windows：谷歌翻译**
+
+![](/assets/googe_transplate.png)
 
 ### 思维导图
 
-XMind
+**XMind   **http://www.xmindchina.net/
 
-MindNote
+XMind中的思维导图结构包含一个中心根主题，和围绕中心主题辐射的众多主要分支。除了思维导图结构，XMind还提供组织结构图、树状图、逻辑图等，这些图表在各种情况下都扮演着很重要的角色。比如，组织结构图可以清楚地显示公司/部门/团队的结构，逻辑图在分类原因的时候非常有用，更重要的是，**所有这些图表都可以在一个导图中使用**！每一个分支，甚至每一个主题，都能拥有最合适的结构。可用性非常之大。![](/assets/xmind.png)
+
+**MindNote**     https://mindnode.com/
+
+思考人生必须要有思维导图软件配合。**MindNode**是 Mac 上思维导图软件，免费版功能界面极简，支持全键盘操作，界面响应迅猛，满足基础要求。**非常适合用来复习知识。**![](/assets/mindnote.png)
 
 ### git
 
-github
+**github    ** https://github.com/
 
-gitbook
+gitHub是一个面向开源及私有软件项目的托管平台，因为只支持git 作为唯一的版本库格式进行托管，故名gitHub。gitHub于2008年4月10日正式上线，除了git代码仓库托管及基本的 Web管理界面以外，还提供了订阅、讨论组、文本渲染、在线文件编辑器、协作图谱（报表）、代码片段分享（Gist）等功能。目前，其注册用户已经超过350万，托管版本数量也是非常之多，其中不乏知名开源项目Ruby on Rails、jQuery、python等。GitHub for Windows 是一个 Metro 风格应用程序，集成了自包含版本的 Git，bash 命令行 shell，PowerShell 的 posh-git 扩展。GitHub 为 Windows 用户提供了一个基本的图形前端去处理大部分常用版本控制任务，可以创建版本库，向本地版本库递交补丁，在本地和远程版本库之间同步。mac桌面版GitHub Desktop如下所示。![](/assets/github.png)
 
-### 浏览器
+**gitbook       **https://www.gitbook.com
 
-Chrome
+GitBook 是一个基于 Node.js 的命令行工具，可使用Github/Git 和Markdown来制作精美的电子书，GitBook 并非关于Git的教程。GitBook支持输出多种文档格式：  
+·静态站点：GitBook默认输出该种格式，生成的静态站点可直接托管搭载Github Pages服务上；  
+·PDF：需要安装gitbook-pdf依赖；  
+·eBook：需要安装ebook-convert；  
+· 单HTML网页：支持将内容输出为单页的HTML，不过一般用在将电子书格式转换为PDF或eBook的中间过程；  
+·JSON：一般用于电子书的调试或元数据提取。  
+使用GitBook制作电子书，必备两个文件：README.md和SUMMARY.md。  
+gitbook-editor客户端可以实现离线编辑书籍、联网同步和发布了，而且也可以导出pdf、mobi格式。
 
-火狐
+![](/assets/gitbook.png)
 
 
 
 ## 1.2.3 python常用开发IDE
+
+Python 的学习过程少不了 IDE 或者代码编辑器，或者集成的开发编辑器（IDE）。这些Python 开发工具帮助开发者加快使用 Python 开发的速度，提高效率。高效的代码编辑器或者 IDE 应该会提供插件，工具等能帮助开发者高效开发的特性.比如Vim，Eclipse with PyDev，Sublime Text，PyCharm，PyScripter等。本文只介绍我们经常用到且肯定会用到（项目开发、数据分析、脚本编辑）的软件。
+
+PyCharm
+
+Spyder
+
+ipython
+
+jupty notebook
+
+anaconda
+
+Sublime Text
 
 # 1.3python的硬件知识
 
