@@ -172,7 +172,7 @@ YouTube、Google、Yahoo!、NASA都在内部⼤量地使⽤Python
 ——python2在for循环中赋值的全局参数不会释放，python3会释放恢复其原先的值  
 ——python2中无序类型可以比较，python3中不可以  
 ——python2中list等在python3 为可迭代对象，存储为视图类型，更节省内存  
-更多的可以查看此链接    _**http://www.jb51.net/article/57956.htm**
+更多详细的可以查看此链接    _[http://www.jb51.net/article/57956.htm](http://www.jb51.net/article/57956.htm)
 
 ## 1.2.2 学习常用辅助软件
 
