@@ -151,7 +151,32 @@ YouTube、Google、Yahoo!、NASA都在内部⼤量地使⽤Python
 
 # 1.2 python的软件知识
 
-本节分三部分进行说明：python语言自身的软件版本、开发中经常用到的IDE和程序员需要用到的一些小工具基础。
+本节分三部分进行说明：python语言自身的软件版本、开发中经常用到的IDE和程序员需要用到的一些小工具基础。对于软件的安装等，本书不介绍，一个程序员应当有获得操作方法的能力。
+
+## 1.2.1 python版本
+
+目前主流的python分为两大版本：python2和python3。python2.0是在2000年发布，当时导入了内存回收机制，构成了目前python语言的框架。python2.4在2004年与比较流行的WEB框架Django一起诞生。python2.7是2010年发布，一直维护到2020年。而python3.0是2008年发布，目前已经更新到3.6.4，明年会出3.7 。python3是少有的打破兼容的语言版本。但是目前python2.7的最新版本已经和python3.4+的版本兼容了很多了，许多代码可以轻松共用。由于python2发布时，还没有包括unicode等诞生，所以在python3诞生时，鬼叔等本着不庞杂，不重复的原则，重构了python，并将其发布。目前社区基本都已迁移到python3，建议大家直接使用python3进行学习，好模块多多哦。所以初学者不建议用很老的资料（python2编写的）取学习。在学习完python基础后，了解了几个大概的两个版本区别，可以尝试分析python2编写的程序。官方为此也出了2to3的转换工具，可以转换部分代码。下文列出两个版本几个常见区别，供大家以后查阅。
+
+**python2和python3的主要区别：**
+
+——print语法：python2不带括号，python3带括号  
+——python2中的long型数据切换到python3的int型数据  
+——python3不支持cmp\(\)  
+——python2分input和raw_input，python3只有input  
+——python2中bytes和str可以混用，无bytes一说，python3不可以，有unicode，分bytes和bytearrays。  
+——python2 整除结果为整数，python3为浮点数  
+——python2有xrange和range，python3为range  
+——python2触发异常的语句可以带括号也可以不带，python3统一不带括号  
+——python2异常处理可以用逗号起别名，python3改为as  
+——python2可以使用next\(\)和.next\(\)，python3只有next\(\)  
+——python2在for循环中赋值的全局参数不会释放，python3会释放恢复其原先的值  
+——python2中无序类型可以比较，python3中不可以  
+——python2中list等在python3 为可迭代对象，存储为视图类型，更节省内存  
+更多的可以查看此链接    _**http://www.jb51.net/article/57956.htm**
+
+## 1.2.2 学习常用辅助软件
+
+## 1.2.3 python常用开发IDE
 
 # 1.3python的硬件知识
 
