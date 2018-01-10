@@ -1,0 +1,2 @@
+这是twisted基础学习的代码，由外而内的学习twisted
+所谓由外而内是指通过实例来熟悉twisted。
