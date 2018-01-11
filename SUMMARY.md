@@ -14,6 +14,10 @@
   * [一、python高级知识](di-er-bu-fen-ff1a-python-gao-ji-yu-wang-luo-bian-cheng/yi-3001-wang-luo-tong-xin-bian-cheng-ji-chu.md)
   * [二、网络编程基础](di-er-bu-fen-ff1a-python-gao-ji-yu-wang-luo-bian-cheng/er-3001-zheng-ze-biao-da-shi.md)
   * [三、数据库MySQL知识](di-er-bu-fen-ff1a-python-gao-ji-yu-wang-luo-bian-cheng/san-3001-shu-ju-jie-gou-yu-suan-fa.md)
+    * 3.1 MySQL基础
+    * 3.2 MySQL查询
+    * [3.3 MySQL与python交互基础](di-er-bu-fen-ff1a-python-gao-ji-yu-wang-luo-bian-cheng/san-3001-shu-ju-jie-gou-yu-suan-fa/mysqlyu-python-jiao-hu-ji-chu.md)
+    * 3.4 MySQL高级了解
   * 四、python实现web服务器
 * [第三部分：数据库开发](di-san-bu-fen-ff1a-shu-ju-ku-kai-fa.md)
   * 一、MySQL
