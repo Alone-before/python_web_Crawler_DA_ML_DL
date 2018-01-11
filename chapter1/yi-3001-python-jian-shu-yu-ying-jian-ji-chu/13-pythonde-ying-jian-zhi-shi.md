@@ -74,7 +74,49 @@ pcDuino的硬件性能指标远超树莓派，性能稳定，做工精良。pcDu
 
 本节主要介绍了笔者学习和工作中经常查阅的一些书籍，此处声明本书也大量借鉴了这些书籍的讲解，通过分类列出，供大家按需查询。
 
-
+| **基础学习** |
+| :---: |
+| 《21天学通python》 |
+| 《python硬件编程实战》 |
+| 《python学习手册》第四版 |
+| 《python标准库》 |
+| 《python袖珍指南》第五版 |
+| 《用python重写了C语言经典100例》 |
+| 《编写高质量代码——改善python程序的91个建议》 |
+| 《python Cookbook》第三版英文 |
+| **高级学习** |
+| 《python核心编程》第三版 |
+| 《正则表达式必知必会》 |
+| 《python web开发学习实录》 |
+| 《数据结构与算法 python语言描述》 |
+| 《python自动化运维技术与最佳实践》 |
+| 《深入python3》 |
+| 《python编程实战——运用设计模式、并发和程序库创建高质量程序》 |
+| 《Diango Web开发指南》 |
+| 《the Diango book 2.0》 |
+| 《Flask web开发：基于python的web应用开发实战》 |
+| 《shell脚本学习指南》 |
+| **数据分析** |
+| 《利用python进行数据分析》 |
+| 《python科学计算》第三版 |
+| 《python数据分析基础》 |
+| 《常用数据挖掘算法总结及python实现》 |
+| 《贝叶斯思维：统计建模的python学习法》 |
+| 《python数据可视化编程实战》 |
+| 《python金融大数据分析》 |
+| 《量化投资以python'为工具》 |
+| **爬虫** |
+| 《python网络爬虫实战》 |
+| 《Beautifulsoup4官方英文文档》 |
+| 《用python写网络爬虫》 |
+| 《learning scrappy》 |
+| 机器学习 |
+| 《使用python分析社交网络数据》 |
+| 《deeplearnbook0.5》 |
+| 《机器学习》马志华 |
+| 《Tensorflow实战Google深度学习框架》 |
+| 《headfirst-tensorflow》 |
+| 《Hands-On Machine Learning with Scikit-Learn&TensorFlow》 |
 
 
 
