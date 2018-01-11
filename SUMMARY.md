@@ -6,7 +6,7 @@
     * [1.1 python简介](chapter1/yi-3001-python-jian-shu-yu-ying-jian-ji-chu/1.md)
     * [1.2 python的软件知识](chapter1/yi-3001-python-jian-shu-yu-ying-jian-ji-chu/12-pythonde-ruan-jian-zhi-shi.md)
     * [1.3 python的硬件知识](chapter1/yi-3001-python-jian-shu-yu-ying-jian-ji-chu/13-pythonde-ying-jian-zhi-shi.md)
-  * 二、python语言数据类型
+  * [二、python语言数据类型](chapter1/er-3001-python-yu-yan-shu-ju-lei-xing.md)
   * 三、python面向对象
   * 四、python文件操作基础
   * [五、实战：飞机大战](chapter1/si-3001-shi-zhan-ff1a-fei-ji-da-zhan.md)
