@@ -59,7 +59,16 @@ Raspberry Pi\(中文名为“树莓派”,简写为RPi，\(或者RasPi / RPI\)�
 
 #### pcDuino
 
+pcDuino是一种高性能，高性价比的迷你PC的平台，能够运行PC操作系统，如Ubuntu和Android的ICS等。它可以通过内置HDMI接口输出视频到电视或显示器屏幕。
 
+pcDuino专门针对开源社区快速增长的需求，即希望有一个平台可以运行完整的PC操作系统，容易使用的工具链和兼容流行的Arduino开放的生态系统，如Arduino shield和开源项目等。
+
+pcDuino的硬件性能指标远超树莓派，性能稳定，做工精良。pcDuino迷你计算机的CPU采用1GHz ARM Cortex A8内核，DRAM为1GB，板载存储达到2GB Flash, 完全兼容Arduino接口。另外，pcDuino 可以从NAND或者从mini-SD卡\(TF卡\)启动，在NAND Flash内有出厂预装了ubuntu系统，拿到手即可使用。
+
+**可在pcDuino上用python实现一些应用，比如**  
+在pcDuino上通过网页的形式控制LED灯的开关：即实现一个**web服务器，**并实现各种彩灯闪烁的效果等。  
+在pcDuino上运行simpleCV实现图像处理时，可以使用python库函数simpleCV来实现**图像处理**，包括摄像头采集数据与处理，可以比肩Photoshop了。  
+在pcDuino上用python语言实现远程无线**视频监控**等等。
 
 ## 1.3.3 python学习使用的一些书籍
 
