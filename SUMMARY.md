@@ -42,6 +42,7 @@
   * 三、Pandas数据分析
   * [四、matplotlib图表绘制](di-liu-bu-fen-ff1a-shu-ju-fen-xi/si-3001-matplotlib-tu-biao-hui-zhi.md)
     * [4.1 快速基础入门](di-liu-bu-fen-ff1a-shu-ju-fen-xi/si-3001-matplotlib-tu-biao-hui-zhi/41-kuai-su-ji-chu-ru-men.md)
+    * [4.2 面向程序员的matplotlib](di-liu-bu-fen-ff1a-shu-ju-fen-xi/si-3001-matplotlib-tu-biao-hui-zhi/42-mian-xiang-cheng-xu-yuan-de-matplotlib.md)
   * 五、网络爬虫基础
   * 六、网络爬虫进阶
   * 七、大数据基础与现状概述
