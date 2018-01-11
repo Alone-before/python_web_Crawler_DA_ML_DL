@@ -30,6 +30,18 @@
 
 2005年冬季Arduino诞生，作为一款便携灵活、方便上手的开源电子原型平台，能够通过各种各样的传感器来感知环境并做一些操作。我们熟知的ARM芯片便是它的杰作。
 
+### 常见的两种与python有关的开源硬件
+
+#### Arduino
+
+Arduino是一款便捷灵活、方便上手的开源电子原型平台。包含硬件（各种型号的Arduino板）和软件（Arduino IDE\)。由一个欧洲开发团队于2005年冬季开发。其成员包括Massimo Banzi、David Cuartielles、Tom Igoe、Gianluca Martino、David Mellis和Nicholas Zambetti等。
+
+它构建于开放原始码simple I/O介面版，并且具有使用类似Java、C语言的Processing/Wiring开发环境。主要包含两个主要的部分：硬件部分是可以用来做电路连接的Arduino电路板；另外一个则是Arduino IDE，你的计算机中的程序开发环境。你只要在IDE中编写程序代码，将程序上传到Arduino电路板后，程序便会告诉Arduino电路板要做些什么了。
+
+Arduino能通过各种各样的传感器来感知环境，通过控制灯光、马达和其他的装置来反馈、影响环境。板子上的微控制器可以通过Arduino的编程语言来编写程序，编译成二进制文件，烧录进微控制器。对Arduino的编程是通过 Arduino编程语言 \(基于 Wiring\)和Arduino开发环境\(基于 Processing\)来实现的。基于Arduino的项目，可以只包含Arduino，也可以包含Arduino和其他一些在PC上运行的软件，他们之间进行通信 \(比如 Flash, Processing, MaxMSP\)来实现。
+
+趣话：`Massimo Banzi之前是意大利Ivrea一家高科技设计学校的老师。他的学生们经常抱怨找不到便宜好用的微控制器。 2005年冬天， Massimo Banzi跟David Cuartielles讨论了这个问题。 David Cuartielles是一个西班牙籍晶片工程师，当时在这所学校做访问学者。两人决定设计自己的电路板，并引入了Banzi的学生David Mellis为电路板设计编程语言。两天以后，David Mellis就写出了程式码。又过了三天，电路板就完工了。Massimo Banzi喜欢去一家名叫di Re Arduino的酒吧，该酒吧是以1000年前意大利国王Arduin的名字命名的。为了纪念这个地方，他将这块电路板命名为Arduino。`
+
 ## 1.3.3 python学习使用的一些书籍
 
 
