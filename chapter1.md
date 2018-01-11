@@ -1,3 +1,4 @@
-# First Chapter
+# 第一部分
 
-GitBook allows you to organize your book into chapters, each chapter is stored in a separate file like this one.
+就像主题题目一样，本部分讲述了常用的软件、python的基本常识、python基本的语法和规则；最后通过一个“飞机大战”实例结合第三方扩展包python一起实现一个小游戏，达到一个python程序初步使用的目的。
+
