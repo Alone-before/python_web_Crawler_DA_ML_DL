@@ -110,13 +110,16 @@ pcDuino的硬件性能指标远超树莓派，性能稳定，做工精良。pcDu
 | 《Beautifulsoup4官方英文文档》 |
 | 《用python写网络爬虫》 |
 | 《learning scrappy》 |
-| 机器学习 |
+| **机器学习** |
 | 《使用python分析社交网络数据》 |
 | 《deeplearnbook0.5》 |
 | 《机器学习》马志华 |
 | 《Tensorflow实战Google深度学习框架》 |
 | 《headfirst-tensorflow》 |
 | 《Hands-On Machine Learning with Scikit-Learn&TensorFlow》 |
+| 《Fundamentals of Deep Learning》 |
+| 《机器学习系统设计 python2014》 |
+| 《深度学习》Ian |
 
 
 
