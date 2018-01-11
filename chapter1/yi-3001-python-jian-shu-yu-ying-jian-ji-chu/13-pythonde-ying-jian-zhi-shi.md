@@ -104,7 +104,7 @@ pcDuino的硬件性能指标远超树莓派，性能稳定，做工精良。pcDu
 | 《贝叶斯思维：统计建模的python学习法》 |
 | 《python数据可视化编程实战》 |
 | 《python金融大数据分析》 |
-| 《量化投资以python'为工具》 |
+| 《量化投资以python为工具》 |
 | **爬虫** |
 | 《python网络爬虫实战》 |
 | 《Beautifulsoup4官方英文文档》 |
