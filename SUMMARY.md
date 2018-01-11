@@ -5,15 +5,15 @@
   * [一、python软硬件基础](chapter1/yi-3001-python-jian-shu-yu-ying-jian-ji-chu.md)
     * [1.1 python简介](chapter1/yi-3001-python-jian-shu-yu-ying-jian-ji-chu/1.md)
     * [1.2 python的软件知识](chapter1/yi-3001-python-jian-shu-yu-ying-jian-ji-chu/12-pythonde-ruan-jian-zhi-shi.md)
-    * 1.3 python的硬件知识
+    * [1.3 python的硬件知识](chapter1/yi-3001-python-jian-shu-yu-ying-jian-ji-chu/13-pythonde-ying-jian-zhi-shi.md)
   * 二、python语言数据类型
   * 三、python面向对象
   * 四、python文件操作基础
   * [五、实战：飞机大战](chapter1/si-3001-shi-zhan-ff1a-fei-ji-da-zhan.md)
 * [第二部分：python高级与网络编程](di-er-bu-fen-ff1a-python-gao-ji-yu-wang-luo-bian-cheng.md)
-  * 一、网络通信
-  * 二、正则表达式
-  * 三、数据结构与算法
+  * [一、python高级知识](di-er-bu-fen-ff1a-python-gao-ji-yu-wang-luo-bian-cheng/yi-3001-wang-luo-tong-xin-bian-cheng-ji-chu.md)
+  * [二、网络编程基础](di-er-bu-fen-ff1a-python-gao-ji-yu-wang-luo-bian-cheng/er-3001-zheng-ze-biao-da-shi.md)
+  * [三、数据库MySQL知识](di-er-bu-fen-ff1a-python-gao-ji-yu-wang-luo-bian-cheng/san-3001-shu-ju-jie-gou-yu-suan-fa.md)
   * 四、python实现web服务器
 * [第三部分：数据库开发](di-san-bu-fen-ff1a-shu-ju-ku-kai-fa.md)
   * 一、MySQL
@@ -41,6 +41,7 @@
   * 二、numpy数组处理
   * 三、Pandas数据分析
   * [四、matplotlib图表绘制](di-liu-bu-fen-ff1a-shu-ju-fen-xi/si-3001-matplotlib-tu-biao-hui-zhi.md)
+    * [4.1 快速基础入门](di-liu-bu-fen-ff1a-shu-ju-fen-xi/si-3001-matplotlib-tu-biao-hui-zhi/41-kuai-su-ji-chu-ru-men.md)
   * 五、网络爬虫基础
   * 六、网络爬虫进阶
   * 七、大数据基础与现状概述
