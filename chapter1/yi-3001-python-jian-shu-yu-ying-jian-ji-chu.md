@@ -161,9 +161,9 @@ YouTube、Google、Yahoo!、NASA都在内部⼤量地使⽤Python
 
 **python2和python3的主要区别：**
 
-——print语法：python2不带括号，python3带括号  
+_——print语法：python2不带括号，python3带括号  
 ——python2中的long型数据切换到python3的int型数据  
-——python3不支持cmp\(\)  
+——python3不支持cmp\(\)_  
 ——python2分input和raw_input，python3只有input  
 ——python2中bytes和str可以混用，无bytes一说，python3不可以，有unicode，分bytes和bytearrays。  
 ——python2 整除结果为整数，python3为浮点数  
