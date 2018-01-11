@@ -3,6 +3,7 @@
 * [前言](README.md)
 * [第一部分：python基础](chapter1.md)
   * [一、python软硬件基础](chapter1/yi-3001-python-jian-shu-yu-ying-jian-ji-chu.md)
+    * [1](chapter1/yi-3001-python-jian-shu-yu-ying-jian-ji-chu/1.md)
   * 二、python语言数据类型
   * 三、python面向对象
   * 四、python文件操作基础

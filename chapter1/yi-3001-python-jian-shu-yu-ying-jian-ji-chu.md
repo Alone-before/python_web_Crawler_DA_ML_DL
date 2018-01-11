@@ -171,7 +171,7 @@ YouTube、Google、Yahoo!、NASA都在内部⼤量地使⽤Python
 ——python2触发异常的语句可以带括号也可以不带，python3统一不带括号  
 ——python2异常处理可以用逗号起别名，python3改为as  
 ——python2可以使用next\(\)和.next\(\)，python3只有next\(\)  
-——python2在for循环中赋值的全局参数不会释放，python3会释放恢复其原先的值  
+——python2在列表解析中赋值的全局参数不会释放，python3会释放恢复其原先的值  
 ——python2中无序类型可以比较，python3中不可以  
 ——python2中list等在python3 为可迭代对象，存储为视图类型，更节省内存  
 更多详细的可以查看此链接    _[http://www.jb51.net/article/57956.htm](http://www.jb51.net/article/57956.htm)
@@ -268,8 +268,6 @@ Jupyter Notebook 一个交互式笔记本，支持运行 40 多种编程语言�
 Sublime Text 是一个**代码编辑器**，也是HTML和散文先进的**文本编辑器**。Sublime Text是由程序员Jon Skinner于2008年1月份所开发出来，它最初被设计为一个具有丰富扩展功能的Vim。Sublime Text具有漂亮的用户界面和强大的功能，例如代码缩略图，Python的插件，代码段等。还可自定义键绑定，菜单和工具栏。Sublime Text 的主要功能包括：拼写检查，书签，完整的 Python API ， Goto 功能，即时项目切换，多选择，多窗口等等。Sublime Text 是一个跨平台的编辑器，同时支持Windows、Linux、Mac OS X等操作系统。Sublime Text 支持多种编程语言的语法高亮、拥有优秀的代码自动完成功能，还拥有代码片段（Snippet）的功能，可以将常用的代码片段保存起来，在需要时随时调用。支持 VIM 模式，可以使用Vim模式下的多数命令。支持宏，简单地说就是把操作录制下来或者自己编写命令，然后播放刚才录制的操作或者命令。![](/assets/sublimetext.png)
 
 # 1.3python的硬件知识
-
-
 
 
 
