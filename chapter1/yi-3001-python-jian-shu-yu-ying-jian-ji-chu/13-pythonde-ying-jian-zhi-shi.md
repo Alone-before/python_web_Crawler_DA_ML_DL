@@ -119,7 +119,7 @@ pcDuino的硬件性能指标远超树莓派，性能稳定，做工精良。pcDu
 | 《Hands-On Machine Learning with Scikit-Learn&TensorFlow》 |
 | 《Fundamentals of Deep Learning》 |
 | 《机器学习系统设计 python2014》 |
-| 《深度学习》Ian |
+| 《深度学习》（\(Ian Goodfellow\) |
 
 
 
