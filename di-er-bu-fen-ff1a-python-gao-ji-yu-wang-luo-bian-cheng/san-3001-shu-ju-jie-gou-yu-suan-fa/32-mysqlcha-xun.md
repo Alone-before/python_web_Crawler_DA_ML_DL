@@ -881,6 +881,20 @@ select round(avg(price), 2) as "平均价" from goods where cate_name="台式机
 
 ### 4. 分组
 
+生活中经常需要分组统计众多的商品名目，MySQL采用group by来进行分组查询。
+
+group by
+
+group by + group\_concat\(name\)
+
+group by + 集合函数
+
+group by + having 
+
+group by + with rollup
+
+
+
 ### 5.部分行查询
 
 ### 6. 连接查询
