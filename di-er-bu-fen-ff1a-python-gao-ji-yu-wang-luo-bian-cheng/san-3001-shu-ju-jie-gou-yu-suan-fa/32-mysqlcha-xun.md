@@ -780,9 +780,17 @@ insert into goods values(0,'商务双肩背包','笔记本配件','索尼','99',
 
 商品表的信息为：
 
-
+![](/assets/goods_information.png)
 
 ### 2. 排序查询
+
+生活中经常会遇到将商品的价格进行排序，数据也一样。在行业分析数据库中，经常要将竞争对手的产品统计起来并和自己的产品一起排序。
+
+MySQL中使用order by来进行排序查询。
+
+```
+select * from 表名 order by 列1 asc|desc [,列2 asc|desc,...]
+```
 
 ### 3. 集合\(统计\)函数
 
