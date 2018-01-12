@@ -989,6 +989,40 @@ select id,name,price as s from goods having s&gt;2000 ;
 
 在之前的例子里我们使用了goods表和goods\_cates表来表明仓库中的商品信息和商品种类。假如我们现在需要来做一个产品层级分类：一级分类为商品种类，二级分类为商品名；商品信息仅仅展示id和名字。那么按照之前那样，我们建立两张表goods\_1和goods\_cates\_1，每张表表头均是id、 name、 cate\_name 。由于商品种类为一级分类，所以我们记其cate\_name=null。
 
+```
+create table goods_1(  
+    id smallint primary key auto_increment,  
+    name varchar(20) not null,  
+    cate_name varchar(20)
+);  
+
+create table goods_cates_1(  
+    id smallint primary key auto_increment,  
+    name varchar(20) not null,  
+    cate_name varchar(20) 
+);  
+
+insert into goods_1 values(1,'r510vc 15.6英寸笔记本','笔记本');
+insert into goods_1 values(0,'y400n 14.0英寸笔记本电脑','笔记本');
+insert into goods_1 values(0,'x550cc 15.6英寸笔记本','笔记本');
+insert into goods_1 values(0,'x240 超极本','超级本');
+insert into goods_1 values(0,'u330p 13.3英寸超极本','超级本');
+insert into goods_1 values(0,'vp13226scb 触控超极本','超级本');
+
+insert into goods_cates_1 values(1, '笔记本', null);
+insert into goods_cates_1 values(0, '超极本', null);
+```
+
+两张表信息如下：
+
+![](/assets/mysql_joinself.png)
+
+1
+
+
+
+
+
 
 
 ### 8. 子查询
