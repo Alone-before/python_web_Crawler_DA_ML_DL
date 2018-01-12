@@ -2,26 +2,27 @@
   "requires": true,
   "lockfileVersion": 1,
   "dependencies": {
+    "gitbook-plugin-emphasize": "^1.1.0",
     "gitbook-plugin-katex": {
-      "version": "1.1.4",
-      "resolved": "http://registry.npm.taobao.org/gitbook-plugin-katex/download/gitbook-plugin-katex-1.1.4.tgz",
       "integrity": "sha1-nTI++t0mw0CFJsXCJ+vbTBEg2aw=",
       "requires": {
         "katex": "0.7.1"
-      }
+      },
+      "resolved": "http://registry.npm.taobao.org/gitbook-plugin-katex/download/gitbook-plugin-katex-1.1.4.tgz",
+      "version": "1.1.4"
     },
     "katex": {
-      "version": "0.7.1",
-      "resolved": "http://registry.npm.taobao.org/katex/download/katex-0.7.1.tgz",
       "integrity": "sha1-BrtSmO+tBeHnIoA1uo4VkfMGG48=",
       "requires": {
         "match-at": "0.1.1"
-      }
+      },
+      "resolved": "http://registry.npm.taobao.org/katex/download/katex-0.7.1.tgz",
+      "version": "0.7.1"
     },
     "match-at": {
-      "version": "0.1.1",
+      "integrity": "sha1-JdBA0pF3dwTV5lVru3kjDsLeBUA=",
       "resolved": "http://registry.npm.taobao.org/match-at/download/match-at-0.1.1.tgz",
-      "integrity": "sha1-JdBA0pF3dwTV5lVru3kjDsLeBUA="
+      "version": "0.1.1"
     }
   }
 }
