@@ -861,6 +861,24 @@ select sum(price) from goods where cate_name="台式机";
 
 * **平均值**
 
+avg\(列\)表示求此列的平均值
+
+示例1：显示目前在库台式机类商品平均价格
+
+```
+select avg(price) from goods where cate_name="台式机";
+```
+
+![](/assets/mysql_avg.png)
+
+
+
+示例2：显示目前在库台式机类商品平均价格，格式为小数点后两位
+
+
+
+
+
 ### 4. 分组与分页查询
 
 ### 5. 连接查询
