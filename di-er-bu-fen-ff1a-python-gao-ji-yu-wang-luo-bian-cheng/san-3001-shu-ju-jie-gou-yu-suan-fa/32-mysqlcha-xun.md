@@ -933,6 +933,12 @@ select round(avg(price), 2) as "平均价" from goods where cate_name="台式机
 
 ### 5.部分行查询
 
+![](/assets/mysql_limit.png)
+
+如上图，我们的goods表仅仅21行数据却已经不能全部显示了。因此我们常常需要去显示部分行数据。MySQL里用limit来实现此功能。
+
+
+
 ### 6. 连接查询
 
 ### 7. 自关联查询
