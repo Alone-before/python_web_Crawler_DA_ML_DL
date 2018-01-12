@@ -1070,9 +1070,9 @@ from goods_cates_2 gc2 left join goods_cates_2 gc1 on gc2.cate_id=gc1.id;
 
 * **where型子查询**
 
-`select A from B where (查询语句);`
+**把内层查询结果当作外层查询的比较条件**
 
-把内层查询结果当作外层查询的比较条件
+`select A from B where (查询语句);`
 
 示例：显示商品表内的一组商品名称和商品种类数据，这些数据满足以下条件：商品种类的id号在商品种类表中小于2
 
@@ -1081,7 +1081,28 @@ from goods_cates_2 gc2 left join goods_cates_2 gc1 on gc2.cate_id=gc1.id;
 ![](/assets/mysql_wheresele.png)
 
 * **from型子查询**
+
+**把内层的查询结果供外层再次查询**
+
+`select A from (查询语句) as D where C;`
+
+示例： 显示一组数据中商品种类为笔记本的数据，这批数据来自于id小于5的商品表数据集合。
+
+`select name, cate_name from (select * from goods where id < 5) as t where t.cate_name = "笔记本";`
+
+![](/assets/mysqlfrom1.png)
+
 * **exists型子查询**
+
+**把外层查询获得的行数据逐条传递到内层查询中被调用的地方，若内层查询非空则保留该条行数据，若内层查询为空则舍弃该条行数据。**
+
+`select A from B where exists(查询语句)；`
+
+示例： 从goods\_cates表中显示种类姓名，但是这些种类姓名必须满足一个条件，就是在goods表中存在此种类的商品。
+
+`select name from goods_cates where exists(select * from goods where goods.cate_name = goods_cates.name);`
+
+![](/assets/mysqlexists.png)
 
 ### 9. 小结
 
