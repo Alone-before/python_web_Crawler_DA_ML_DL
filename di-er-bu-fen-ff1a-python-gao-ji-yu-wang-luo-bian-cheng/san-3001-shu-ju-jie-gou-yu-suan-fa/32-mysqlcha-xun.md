@@ -1106,5 +1106,21 @@ from goods_cates_2 gc2 left join goods_cates_2 gc1 on gc2.cate_id=gc1.id;
 
 ### 9. 小结
 
+查询的综合完整语句：
 
+SELECT select\_expr \[,select\_expr,...\] \[      
+
+      FROM tb\_name
+
+      \[WHERE 条件判断\]
+
+      \[GROUP BY {col\_name \| postion} \[ASC \| DESC\], ...\] 
+
+      \[HAVING WHERE 条件判断\]
+
+      \[ORDER BY {col\_name\|expr\|postion} \[ASC \| DESC\], ...\]
+
+      \[ LIMIT {\[offset,\]rowcount \| row\_count OFFSET offset}\]
+
+\]
 
