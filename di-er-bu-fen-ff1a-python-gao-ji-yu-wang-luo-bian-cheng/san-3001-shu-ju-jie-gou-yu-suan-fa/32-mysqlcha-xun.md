@@ -949,6 +949,8 @@ select round(avg(price), 2) as "平均价" from goods where cate_name="台式机
 
 ### 6. 连接查询
 
+
+
 ### 7. 自关联查询
 
 ### 8. 子查询
