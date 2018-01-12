@@ -2,7 +2,7 @@
 
 ## 3.3.1 实例数据库创建——京东商品数据库
 
-此处我们创建三个表：goods代表商品，goods\_cates代表商品种类_，_goods\_brands代表品牌 。
+此处我们创建三个表：goods代表商品，goods\_cates代表商品种类\_，\_goods\_brands代表品牌 。
 
 ![](/assets/mysqljingdong.png)
 
@@ -68,7 +68,11 @@ load data local infile '/path/goods.txt' into table goods;
 
 ## 3.3.2 交互操作逻辑
 
+![](/assets/mysqlpython1.png)
+
 ## 3.3.3 pymysql语句
 
+1. 命令介绍
 
+2. 实例操作
 
