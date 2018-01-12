@@ -603,6 +603,8 @@ mysql> select distinct name from goods_cates;
 +---------------------+
 ```
 
+
+
 ### 1. 条件查询
 
 细心的朋友会发现我们上一节删除数据行时已经实用过where关键词，没错，它就是用来条件查询的一个重要关键词。一般使用where子句来筛选获取其后语句为True的数据行。其查询的语句格式为：
@@ -631,7 +633,7 @@ where后面支持多种运算符，进行条件的处理
 大于等于: >=
 小于: <
 小于等于: <=
-不等于: != 
+不等于: !=
 ```
 
 示例：查询id大于7的商品种类
@@ -746,6 +748,78 @@ select * from goods_cates where id between 1 and 5;
 ```
 判空is null
 注意：null与''是不同的
+```
+
+
+
+
+
+为了方便后续操作演示，除了上一节的表之外，我们新增商品表goods,并向其插入数据。
+
+```
+create table goods(
+    id int unsigned primary key auto_increment not null,
+    name varchar(40) default '',
+    price decimal(5,2),
+    cate_id int unsigned,
+    brand_id int unsigned,
+    is_show bit default 1,
+    is_saleoff bit default 0,
+);
+```
+
+```
+insert into goods values(0,'r510vc 15.6英寸笔记本','笔记本','华硕','3399',default,default); 
+insert into goods values(0,'y400n 14.0英寸笔记本电脑','笔记本','联想','4999',default,default);
+insert into goods values(0,'g150th 15.6英寸游戏本','游戏本','雷神','8499',default,default); 
+insert into goods values(0,'x550cc 15.6英寸笔记本','笔记本','华硕','2799',default,default); 
+insert into goods values(0,'x240 超极本','超级本','联想','4880',default,default); 
+insert into goods values(0,'u330p 13.3英寸超极本','超级本','联想','4299',default,default); 
+insert into goods values(0,'svp13226scb 触控超极本','超级本','索尼','7999',default,default); 
+insert into goods values(0,'ipad mini 7.9英寸平板电脑','平板电脑','苹果','1998',default,default);
+insert into goods values(0,'ipad air 9.7英寸平板电脑','平板电脑','苹果','3388',default,default); 
+insert into goods values(0,'ipad mini 配备 retina 显示屏','平板电脑','苹果','2788',default,default); 
+insert into goods values(0,'ideacentre c340 20英寸一体电脑 ','台式机','联想','3499',default,default); 
+insert into goods values(0,'vostro 3800-r1206 台式电脑','台式机','戴尔','2899',default,default); 
+insert into goods values(0,'imac me086ch/a 21.5英寸一体电脑','台式机','苹果','9188',default,default); 
+insert into goods values(0,'at7-7414lp 台式电脑 linux ）','台式机','宏碁','3699',default,default); 
+insert into goods values(0,'z220sff f4f06pa工作站','服务器/工作站','惠普','4288',default,default); 
+insert into goods values(0,'poweredge ii服务器','服务器/工作站','戴尔','5388',default,default); 
+insert into goods values(0,'mac pro专业级台式电脑','服务器/工作站','苹果','28888',default,default); 
+insert into goods values(0,'hmz-t3w 头戴显示设备','笔记本配件','索尼','6999',default,default); 
+insert into goods values(0,'商务双肩背包','笔记本配件','索尼','99',default,default); 
+insert into goods values(0,'x3250 m4机架式服务器','服务器/工作站','ibm','6888',default,default); 
+insert into goods values(0,'商务双肩背包','笔记本配件','索尼','99',default,default);
+```
+
+商品表的信息为：
+
+```
++----+---------------------------------------+---------------------+------------+-----------+---------+------------+
+| id | name                                  | cate_name           | brand_name | price     | is_show | is_saleoff |
++----+---------------------------------------+---------------------+------------+-----------+---------+------------+
+|  1 | r510vc 15.6英寸笔记本                 | 笔记本              | 华硕       |  3399.000 |        |            |
+|  2 | y400n 14.0英寸笔记本电脑              | 笔记本              | 联想       |  4999.000 |        |            |
+|  3 | g150th 15.6英寸游戏本                 | 游戏本              | 雷神       |  8499.000 |        |            |
+|  4 | x550cc 15.6英寸笔记本                 | 笔记本              | 华硕       |  2799.000 |        |            |
+|  5 | x240 超极本                           | 超级本              | 联想       |  4880.000 |        |            |
+|  6 | u330p 13.3英寸超极本                  | 超级本              | 联想       |  4299.000 |        |            |
+|  7 | svp13226scb 触控超极本                | 超级本              | 索尼       |  7999.000 |        |            |
+|  8 | ipad mini 7.9英寸平板电脑             | 平板电脑            | 苹果       |  1998.000 |        |            |
+|  9 | ipad air 9.7英寸平板电脑              | 平板电脑            | 苹果       |  3388.000 |        |            |
+| 10 | ipad mini 配备 retina 显示屏          | 平板电脑            | 苹果       |  2788.000 |        |            |
+| 11 | ideacentre c340 20英寸一体电脑        | 台式机              | 联想       |  3499.000 |        |            |
+| 12 | vostro 3800-r1206 台式电脑            | 台式机              | 戴尔       |  2899.000 |        |            |
+| 13 | imac me086ch/a 21.5英寸一体电脑       | 台式机              | 苹果       |  9188.000 |        |            |
+| 14 | at7-7414lp 台式电脑 linux ）          | 台式机              | 宏碁       |  3699.000 |        |            |
+| 15 | z220sff f4f06pa工作站                 | 服务器/工作站       | 惠普       |  4288.000 |        |            |
+| 16 | poweredge ii服务器                    | 服务器/工作站       | 戴尔       |  5388.000 |        |            |
+| 17 | mac pro专业级台式电脑                 | 服务器/工作站       | 苹果       | 28888.000 |        |            |
+| 18 | hmz-t3w 头戴显示设备                  | 笔记本配件          | 索尼       |  6999.000 |        |            |
+| 19 | 商务双肩背包                          | 笔记本配件          | 索尼       |    99.000 |        |            |
+| 20 | x3250 m4机架式服务器                  | 服务器/工作站       | ibm        |  6888.000 |        |            |
+| 21 | 商务双肩背包                          | 笔记本配件          | 索尼       |    99.000 |        |            |
++----+---------------------------------------+---------------------+------------+-----------+---------+------------+
 ```
 
 ### 2. 排序查询
