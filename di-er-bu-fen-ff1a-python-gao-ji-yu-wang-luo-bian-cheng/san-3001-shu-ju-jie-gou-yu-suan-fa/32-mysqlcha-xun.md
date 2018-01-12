@@ -1017,7 +1017,7 @@ insert into goods_cates_1 values(0, '超极本', null);
 
 ![](/assets/mysql_joinself.png)
 
-goods\_1表仅能看到产品的上一级分类，并不能看见最终分类，最终分类信息在goods\_cates\_1表里。现在我们需要显示每一个产品完整的两层层级信息，怎么做呢？用上一节的连接命令将两张表信息连接起来：
+goods\_1表仅能看到产品的上一级分类，并不能看见最终分类，最终分类信息在goods\_cates\_1表里。现在我们需要显示每一个产品完整的两层层级信息，怎么做呢？用上一节的连接命令将两张表信息连接起来就可以啦：
 
 ```
 select goods_cates_1.cate_name,goods_1.cate_name,goods_1.name
@@ -1026,9 +1026,9 @@ from goods_1 left join goods_cates_1 on goods_1.cate_name = goods_cates_1.name;
 
 ![](/assets/mysql_joinself2.png)
 
-1
+假如产品分类层级有10层，我们又需要建立剩下的八张表。通过观察发现，这两张表的结构基本相同，那么以上功能能否用一张表实现呢？答案是肯定的。
 
-
+我们现在来创建一张表goods\_cates\_2用于产品层级信息存储，它的字段有：编号——id、名字——name、所属种类id——cate\_id。其中默认顶级分类的所属种类为null。
 
 ### 8. 子查询
 
