@@ -1030,6 +1030,38 @@ from goods_1 left join goods_cates_1 on goods_1.cate_name = goods_cates_1.name;
 
 我们现在来创建一张表goods\_cates\_2用于产品层级信息存储，它的字段有：编号——id、名字——name、所属种类id——cate\_id。其中默认顶级分类的所属种类为null。
 
+```
+create table goods_cates_2(  
+    id smallint primary key auto_increment,  
+    name varchar(20) not null,  
+    cate_id smallint
+); 
+
+insert into goods_cates_2 values(1, '笔记本', null);
+insert into goods_cates_2 values(2, '超极本', null);
+insert into goods_cates_2 values(0,'r510vc 15.6英寸笔记本',1);
+insert into goods_cates_2 values(0,'y400n 14.0英寸笔记本电脑',1);
+insert into goods_cates_2 values(0,'x550cc 15.6英寸笔记本',1);
+insert into goods_cates_2 values(0,'x240 超极本',2);
+insert into goods_cates_2 values(0,'u330p 13.3英寸超极本',2);
+insert into goods_cates_2 values(0,'vp13226scb 触控超极本',2);
+```
+
+![](/assets/mysql_joinself4.png)
+
+现在我们假设有两张表gc2为goods\_cates\_2代表第二级分类的信息，等价于上面两张表例子的goods\_1表，gc1为goods\_cates\_2代表第一级分类的信息，等价于上面两张表例子中的goods\_cates\_1表。使用上面例子中的方法，通过左连接来显示完整的两层层级信息。如下图所示，语句中的元素实现了一一对应。也就是说我们给goods\_cates\_2表起了两个别名gc1和gc2，让它们来连接实现完整的两层层级信息。功能和我们上面两张表的方案一样，且如果有10层分类，我们并不需要新建表。![](/assets/mysql_joinself5.png)
+
+这和本节开始时说的完全一样，对，这就是自连接。如下为操作命令示例。其中gc1 和gc2 为我们为自连接表启的别名，语法中要求select的显示列需要用别名来区分。
+
+```
+select gc1.cate_id,gc1.name,gc2.name 
+from goods_cates_2 gc2 left join goods_cates_2 gc1 on gc2.cate_id=gc1.id;
+```
+
+![](/assets/mysql_joinself6.png)
+
+
+
 ### 8. 子查询
 
 ### 9. 小结
