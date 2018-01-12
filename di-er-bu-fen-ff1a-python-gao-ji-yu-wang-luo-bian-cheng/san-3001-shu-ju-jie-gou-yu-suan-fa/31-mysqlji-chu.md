@@ -31,11 +31,16 @@ MySQL是一个关系型数据库管理系统，由瑞典MySQL AB公司开发，�
 * Mysql是可以定制的，采用了GPL协议，你可以修改源码来开发自己的Mysql系统
 
 * 在线DDL更改功能
+
 * 复制全局事务标识
 * 复制无崩溃从机
 * 复制多线程从机
 
 **MySQL默认配置和我们学习时中：host：localhost；port：3306**
+
+**在学习过程中，英文好的朋友可以直接学习官方文档，讲的更通俗易懂。**
+
+![](/assets/mysql_document.png)
 
 ## 3.1.2 MySQL 终端启动、图形化操作工具Navicat
 
@@ -76,11 +81,15 @@ PATH=“$PATH”:/usr/local/mysql/bin
 mysql -u root -p
 ```
 
+##### ![](/assets/mac.png)
+
 ##### linux：
 
 ```
 shell> mysql -h host -u user -p
 ```
+
+![](/assets/linux_mysql.png)
 
 #### 2、结束连接的命令：
 
@@ -88,21 +97,17 @@ shell> mysql -h host -u user -p
 | :--- | :--- |
 
 
-插入连接命令图片
-
 ### 图形化操作工具Navicat
 
 为了更好的理解后续学习时用SQL操作后的数据库数据影响，我们在此推荐除了mysql官方的workbench以外的图形化操作工具Navicat。图形化的操作在学习之初能更好的帮我们理解数据库的结构和逻辑。
 
-Navicat是一套快速、可靠并价格相当便宜的数据库管理工具，专为简化数据库的管理及降低系统管理成本而设。它的设计符合数据库管理员、开发人员及中小企业的需要。Navicat是以直觉化的图形用户界面而建的，让你可以以安全并且简单的方式创建、组织、访问并共用信息。Navicat适用于三种平台 - Microsoft Windows、Mac OS X 及Linux。它可以让用户连接到任何本机或远程服务器、提供一些实用的数据库工具如数据模型、数据传输、数据同步、结构同步、导入、导出、备份、还原、报表创建工具及计划以协助管理数据。
+Navicat是一套快速、可靠并价格相当便宜的数据库管理工具，专为简化数据库的管理及降低系统管理成本而设。它的设计符合数据库管理员、开发人员及中小企业的需要。Navicat是以直觉化的图形用户界面而建的，让你可以以安全并且简单的方式创建、组织、访问并共用信息。Navicat适用于三种平台 - Microsoft Windows、Mac OS X 及Linux。它可以让用户连接到任何本机或远程服务器、提供一些实用的数据库工具如数据模型、数据传输、数据同步、结构同步、导入、导出、备份、还原、报表创建工具及计划以协助管理数据。如下图为其截面图和说明。
 
-插入界面图
+![](/assets/Navicat_page.png)
 
 连接数据库操作：点击左上方的connection并选择MySQL，然后在弹出的New connection-SQL窗口填写服务器地址、账号信息和编码信息后即可连接到数据库服务器。
 
-连接截面图
-
-### 
+![](/assets/navicate_connection.png)
 
 ## 3.1.3 MySQL 基础SQL操作语句
 
