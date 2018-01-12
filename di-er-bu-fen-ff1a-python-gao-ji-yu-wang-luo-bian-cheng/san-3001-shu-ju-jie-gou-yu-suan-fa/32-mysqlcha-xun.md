@@ -895,7 +895,13 @@ select round(avg(price), 2) as "平均价" from goods where cate_name="台式机
 
 * **group by + group\_concat\(name\)**
 
+将分组后的name字段信息按照分组结果打印出来
 
+示例：按照产品种类来分组显示商品名称
+
+`select cate_name, group_concat(name) from goods group by cate_name;`
+
+![](/assets/mysql_groupby2.png)
 
 * **group by + 集合函数**
 * **group by + having**
