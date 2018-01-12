@@ -6,3 +6,9 @@
 
 
 
+$$
+
+\int\_{-\infty}^\infty g\(x\) dx
+
+$$
+
