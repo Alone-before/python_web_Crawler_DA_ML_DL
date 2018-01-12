@@ -921,6 +921,12 @@ select round(avg(price), 2) as "平均价" from goods where cate_name="台式机
 
 ![](/assets/mysql_groupby4.png)
 
+**having与where类似，可以筛选数据，where后的表达式怎么写，having后就怎么写  
+where针对表中的列发挥作用，查询数据  
+having对查询结果中的列发挥作用，筛选数据  
+select id,name,price as s from goods having s&gt;2000 ;  
+这里不能用where因为s是查询结果，而where只能对表中的字段名筛选**
+
 * **group by + with rollup**
 
 在最后新增一行，来记录当前列记录的总和
@@ -948,8 +954,6 @@ select round(avg(price), 2) as "平均价" from goods where cate_name="台式机
 ![](/assets/mysql_limit1.png)
 
 ### 6. 连接查询
-
-
 
 ### 7. 自关联查询
 
