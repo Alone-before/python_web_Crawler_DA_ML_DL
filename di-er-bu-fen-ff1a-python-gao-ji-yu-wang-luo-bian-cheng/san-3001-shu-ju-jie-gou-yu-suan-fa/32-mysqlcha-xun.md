@@ -983,9 +983,13 @@ select id,name,price as s from goods having s&gt;2000 ;
 
 ![](/assets/mysql_innerjoin.png)
 
-
-
 ### 7. 自关联查询
+
+**自连接查询其实等同于连接查询，需要两张表，只不过它的左表（父表）和右表（子表）都是自己。请记住这个。**
+
+在之前的例子里我们使用了goods表和goods\_cates表来表明仓库中的商品信息和商品种类。假如我们现在需要来做一个产品层级分类：一级分类为商品种类，二级分类为商品名；商品信息仅仅展示id和名字。那么按照之前那样，我们建立两张表goods\_1和goods\_cates\_1，每张表表头均是id、 name、 cate\_name 。由于商品种类为一级分类，所以我们记其cate\_name=null。
+
+
 
 ### 8. 子查询
 
