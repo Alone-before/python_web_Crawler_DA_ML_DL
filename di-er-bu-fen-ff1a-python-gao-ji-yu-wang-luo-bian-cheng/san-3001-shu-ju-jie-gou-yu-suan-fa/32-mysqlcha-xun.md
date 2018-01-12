@@ -847,9 +847,18 @@ select min(id) from goods where cate_name="台式机";
 
 ![](/assets/mysql_min.png)
 
-
-
 * **总和**
+
+sum\(列\)表示求此列的和
+
+示例：显示目前在库台式机类商品总价
+
+```
+select sum(price) from goods where cate_name="台式机";
+```
+
+![](/assets/mysql_sum.png)
+
 * **平均值**
 
 ### 4. 分组与分页查询
