@@ -874,20 +874,22 @@ select avg(price) from goods where cate_name="台式机";
 示例2：显示目前在库台式机类商品平均价格，格式为小数点后两位
 
 ```
-select round(avg(price), 2) as "平均价"from goods where cate_name="台式机";
+select round(avg(price), 2) as "平均价" from goods where cate_name="台式机";
 ```
 
 ![](/assets/mysql_xiaoshu.png)
 
-### 4. 分组与分页查询
+### 4. 分组
 
-### 5. 连接查询
+### 5.部分行查询
 
-### 6. 自关联查询
+### 6. 连接查询
 
-### 7. 子查询
+### 7. 自关联查询
 
-### 8. 小结
+### 8. 子查询
+
+### 9. 小结
 
 
 
