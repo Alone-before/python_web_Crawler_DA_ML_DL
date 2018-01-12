@@ -830,12 +830,25 @@ max\(列\)表示求此列的最大值
 示例：显示笔记本类商品中最大的id号
 
 ```
-select max(id) from goods where name="笔记本";
+select max(id) from goods where cate_name="笔记本";
 ```
 
 ![](/assets/mysql_max.png)
 
 * **最小**
+
+min\(列\)表示求此列的最小值
+
+示例：显示台式机类商品中最小的id号
+
+```
+select min(id) from goods where cate_name="台式机";
+```
+
+![](/assets/mysql_min.png)
+
+
+
 * **总和**
 * **平均值**
 
