@@ -792,6 +792,21 @@ MySQL中使用order by来进行排序查询。
 select * from 表名 order by 列1 asc|desc [,列2 asc|desc,...]
 ```
 
+##### 说明 {#说明}
+
+* 将行数据按照列1进行排序，如果某些行列1的值相同时，则按照列2排序，以此类推
+* 默认按照列值从小到大排列（asc）
+* asc从小到大排列，即升序
+* desc从大到小排序，即降序
+
+示例： 将所有在库商品安装价格从小到大来排序显示
+
+```
+select * from goods order by price;
+```
+
+![](/assets/order_by.png)
+
 ### 3. 集合\(统计\)函数
 
 ### 4. 分组与分页查询
