@@ -904,8 +904,32 @@ select round(avg(price), 2) as "平均价" from goods where cate_name="台式机
 ![](/assets/mysql_groupby2.png)
 
 * **group by + 集合函数**
+
+示例：按照产品种类来分组，并显示各自的在库商品数量
+
+`select cate_name, count(*) from goods group by cate_name;`
+
+![](/assets/mysql_groupby3.png)
+
 * **group by + having**
+
+分组之后的条件查询
+
+示例：按照产品按照产品种类来分组，并显示各自的在库商品数量大于3的商品id，
+
+`select cate_name, group_concat(id) from goods group by cate_name having count(*) > 3;`
+
+![](/assets/mysql_groupby4.png)
+
 * **group by + with rollup**
+
+在最后新增一行，来记录当前列记录的总和
+
+示例：按照产品按照产品种类来分组，并显示各自的在库商品数量大于3的商品id，且在最后一行列出所有商品id
+
+`select cate_name, group_concat(id) from goods group by cate_name with rollup having count(*) > 3;`
+
+![](/assets/mysql_groupby5.png)
 
 ### 5.部分行查询
 
