@@ -971,9 +971,17 @@ select id,name,price as s from goods having s&gt;2000 ;
 
 * **右连接 right join**
 
- a left join b 等价于 b right join a    推荐使用左连接代替右连接。
+  a left join b 等价于 b right join a    推荐使用左连接代替右连接。
 
+* **内连接 inner join**
 
+查询结果是左右连接的交集，即左右连接的结果去除null项后的集。
+
+示例：
+
+`select * from goods inner join goods_cates on goods.cate_name= goods_cates.name;`
+
+![](/assets/mysql_innerjoin.png)
 
 
 
