@@ -20,7 +20,7 @@
     * [3.4 MySQL高级了解](di-er-bu-fen-ff1a-python-gao-ji-yu-wang-luo-bian-cheng/san-3001-shu-ju-jie-gou-yu-suan-fa/34-mysqlgao-ji-le-jie.md)
   * 四、python实现web服务器
 * [第三部分：数据库开发](di-san-bu-fen-ff1a-shu-ju-ku-kai-fa.md)
-  * 一、MySQL
+  * [一、MySQL](di-san-bu-fen-ff1a-shu-ju-ku-kai-fa/yi-3001-mysql.md)
   * 二、MongoDB开发
   * 三、Redis开发
   * 四、数据库调优和部署
