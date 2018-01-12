@@ -29,7 +29,10 @@ mysql> show databases;
 * **创建数据库 **create database 数据库名 \[其他选项\];
 
 ```MySQL
-create database jing_dong charset=utf8;
+create database jing_dong;
+
+
+-- create database jing_dong charset=utf8;
 -- charset是指数据库所用的编码集
 ```
 
@@ -147,6 +150,7 @@ mysql> show tables;
 
 ```
 desc 表名;
+
 例：
 desc goods_cates;
 ```
@@ -238,7 +242,8 @@ alter table goods_cates change abbreviation 简称 varchar(3);
 
 ```
 alter table 表名 drop 列名;
-例： 突然项目通知，我们的客户所需要的商品的名称一般都很容易记着，根本不需要简称，那我们需要删除它。
+
+例： 突然项目通知，我们的客户所需要的商品的名称一般都很容易记着，根本不需要简称，我们需要删除它。
 alter table goods_cates drop 简称;
 ```
 
@@ -253,15 +258,50 @@ alter table goods_cates drop 简称;
 +-------+------------------+------+-----+---------+----------------+
 ```
 
+* **查看创建表的语句**
 
+```
+show create table 表名;
 
+例：假如我们刚进入一个新环境拿到一个新账号需要操作，一般我们可以先看一下表的一些信息。
+show create table goods_cates;
+```
 
+可以看到goods\_cates表的数据引擎为InnoDB，字符集为latin1 ；主键时字头id等等。
 
+注：**一般建议在创建数据库时指定字符集类型，比如utf8 。 create database jing\_dong charset=utf8;**
 
+    +-------------+-------------------------------------------
+    | Table       | Create Table                                                                                                                                                          
+    +-------------+------------------------------------------
+    | goods_cates | CREATE TABLE `goods_cates` (
+      `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+      `name` varchar(40) NOT NULL,
+      PRIMARY KEY (`id`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=latin1 |
+    +-------------+------------------------------------------
 
+* 删除表
 
+```
+drop table 表名;
+
+例：非常抱歉，项目通知设计中取消掉这一表。
+drop table goods_cates;
+```
+
+通过查看表语句`show tables; `发现jing\_dong数据库没有这个表了，由于我们只创建了这一个表，所以提示为空。
+
+```
+mysql> show tables;
+Empty set (0.00 sec)
+```
+
+好了，我们可以重新删除掉jing\_dong数据库，从一开始就定义数据库字符集为utf8来不断演练以上两节的操作了。
 
 ### 3. 数据增删改查
+
+
 
 ### 4. 数据备份与恢复命令
 
