@@ -955,6 +955,28 @@ select id,name,price as s from goods having s&gt;2000 ;
 
 ### 6. 连接查询
 
+本小节数据已之前采用goods表和下面那个只有一行数据的goods\_cates表来进行演示说明。
+
+![](/assets/mysql_join.png)
+
+* **左连接  left join**
+
+以左表为准，去右表找数据，如果没有匹配的数据，则以null补空位，所以输出结果数&gt;=左表原数据数
+
+示例：
+
+`select * from goods left join goods_cates on goods.cate_name= goods_cates.name;`
+
+![](/assets/mysql_leftjoin.png)
+
+* **右连接 right join**
+
+ a left join b 等价于 b right join a    推荐使用左连接代替右连接。
+
+
+
+
+
 ### 7. 自关联查询
 
 ### 8. 子查询
