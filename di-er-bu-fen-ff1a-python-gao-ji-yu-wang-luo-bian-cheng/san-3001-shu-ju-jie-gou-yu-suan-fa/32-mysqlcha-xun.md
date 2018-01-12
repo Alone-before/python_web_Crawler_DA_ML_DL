@@ -451,6 +451,31 @@ mysql> select * from goods_cates;
 
 ### 4. 数据备份与恢复命令
 
+和平常生活一样，我们都喜欢备份和恢复，所以在基本操作最后一小节里列出备份和恢复命令。
+
+* **备份**
+
+运行mysqldump命令
+
+```
+示例：
+mysqldump –uroot –p 数据库名 > python.sql;
+
+# 按提示输入mysql的密码
+```
+
+* **恢复**
+
+连接mysql，创建新的数据库
+
+退出连接，执行如下命令：
+
+```
+mysql -uroot –p 新数据库名 < python.sql
+
+# 根据提示输入mysql密码
+```
+
 ## 3.2.2 MySQL查询
 
 ### 1. 条件查询
