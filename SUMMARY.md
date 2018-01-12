@@ -15,7 +15,7 @@
   * [二、网络编程基础](di-er-bu-fen-ff1a-python-gao-ji-yu-wang-luo-bian-cheng/er-3001-zheng-ze-biao-da-shi.md)
   * [三、数据库MySQL知识](di-er-bu-fen-ff1a-python-gao-ji-yu-wang-luo-bian-cheng/san-3001-shu-ju-jie-gou-yu-suan-fa.md)
     * [3.1 MySQL基础](di-er-bu-fen-ff1a-python-gao-ji-yu-wang-luo-bian-cheng/san-3001-shu-ju-jie-gou-yu-suan-fa/31-mysqlji-chu.md)
-    * [3.2 MySQL查询](di-er-bu-fen-ff1a-python-gao-ji-yu-wang-luo-bian-cheng/san-3001-shu-ju-jie-gou-yu-suan-fa/32-mysqlcha-xun.md)
+    * [3.2 MySQL语句](di-er-bu-fen-ff1a-python-gao-ji-yu-wang-luo-bian-cheng/san-3001-shu-ju-jie-gou-yu-suan-fa/32-mysqlcha-xun.md)
     * [3.3 MySQL与python交互基础](di-er-bu-fen-ff1a-python-gao-ji-yu-wang-luo-bian-cheng/san-3001-shu-ju-jie-gou-yu-suan-fa/mysqlyu-python-jiao-hu-ji-chu.md)
     * [3.4 MySQL高级了解](di-er-bu-fen-ff1a-python-gao-ji-yu-wang-luo-bian-cheng/san-3001-shu-ju-jie-gou-yu-suan-fa/34-mysqlgao-ji-le-jie.md)
   * 四、python实现web服务器
