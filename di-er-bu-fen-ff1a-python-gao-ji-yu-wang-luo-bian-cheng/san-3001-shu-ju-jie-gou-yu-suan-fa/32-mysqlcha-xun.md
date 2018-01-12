@@ -1017,11 +1017,16 @@ insert into goods_cates_1 values(0, '超极本', null);
 
 ![](/assets/mysql_joinself.png)
 
+goods\_1表仅能看到产品的上一级分类，并不能看见最终分类，最终分类信息在goods\_cates\_1表里。现在我们需要显示每一个产品完整的两层层级信息，怎么做呢？用上一节的连接命令将两张表信息连接起来：
+
+```
+select goods_cates_1.cate_name,goods_1.cate_name,goods_1.name
+from goods_1 left join goods_cates_1 on goods_1.cate_name = goods_cates_1.name;
+```
+
+![](/assets/mysql_joinself2.png)
+
 1
-
-
-
-
 
 
 
