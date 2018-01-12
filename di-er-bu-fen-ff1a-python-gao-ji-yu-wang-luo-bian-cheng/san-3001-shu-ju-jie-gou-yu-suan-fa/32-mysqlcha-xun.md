@@ -1060,9 +1060,28 @@ from goods_cates_2 gc2 left join goods_cates_2 gc1 on gc2.cate_id=gc1.id;
 
 ![](/assets/mysql_joinself6.png)
 
-
-
 ### 8. 子查询
+
+之前我们所看到的所有查询语句均是单一命令的原始查询，并没有基于某一个查询结果的二次查询语句。所以这一小节我们引入子查询这一概念，来做基于某一个查询结果的二次查询操作。
+
+我们知道查询基本语句为：`select A from B where C;`
+
+对应的子查询语句分别为
+
+* **where型子查询**
+
+`select A from B where (查询语句);`
+
+把内层查询结果当作外层查询的比较条件
+
+示例：显示商品表内的一组商品名称和商品种类数据，这些数据满足以下条件：商品种类的id号在商品种类表中小于2
+
+`select name, cate_name from goods where cate_name in (select name from goods_cates where id < 3);`
+
+![](/assets/mysql_wheresele.png)
+
+* **from型子查询**
+* **exists型子查询**
 
 ### 9. 小结
 
