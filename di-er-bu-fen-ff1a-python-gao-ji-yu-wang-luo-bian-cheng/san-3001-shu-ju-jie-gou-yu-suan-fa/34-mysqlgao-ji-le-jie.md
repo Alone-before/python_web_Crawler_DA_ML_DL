@@ -27,10 +27,10 @@
 ```
 select goods.id, goods.name, goods_cates.name, goods_brands.name
 from goods
-	left join goods_cates on (goods.cate_id = goods_cates.id)
-	left join goods_brands on (goods.brand_id = goods_brands.id)
+    left join goods_cates on (goods.cate_id = goods_cates.id)
+    left join goods_brands on (goods.brand_id = goods_brands.id)
 where
-	goods.name = "x240 超极本";
+    goods.name = "x240 超极本";
 ```
 
 ![](/assets/mysql_view1.png)
@@ -44,13 +44,13 @@ where
 -- create view 视图名称 as select语句;
 -- 一般建议之家以v_开头赋值视图名，这样方便查阅。
 create view v_good_info as select
-	goods.id, goods.name, goods_cates.name as catename, goods_brands.name as brandname
-	from goods
-	left join goods_cates on (goods.cate_id = goods_cates.id)
-	left join goods_brands on (goods.brand_id = goods_brands.id);
+    goods.id, goods.name, goods_cates.name as catename, goods_brands.name as brandname
+    from goods
+    left join goods_cates on (goods.cate_id = goods_cates.id)
+    left join goods_brands on (goods.brand_id = goods_brands.id);
 ```
 
-![](/assets/mysql_view2.png)
+![](/assets/mysql_view.png)
 
 通过show tables;语句查看数据库中的表，可以看到数据库里多了一张v\_good\_info表，这便是我们刚才创建的视图，**它仅仅是之前三张表goods、goods\_cates、goods\_brands的引用，不占用存储空间。**
 
@@ -70,7 +70,11 @@ select * from v_good_info where name = "x240 超极本";
 
 ![](/assets/mysql_view4.png)
 
-视图实例2-增删改数据操作
+#### 视图实例2-增删改数据操作
+
+
+
+
 
 ## 3.4.2 事务
 
