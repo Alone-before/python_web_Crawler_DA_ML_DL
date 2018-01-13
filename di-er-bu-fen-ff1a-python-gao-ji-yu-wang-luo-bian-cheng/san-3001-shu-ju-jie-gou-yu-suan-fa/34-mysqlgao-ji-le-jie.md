@@ -72,6 +72,37 @@ select * from v_good_info where name = "x240 超极本";
 
 #### 视图实例2-增删改数据操作
 
+大家可以看到我们之前在创建并数据库增加数据时，把“x240 超极本”中的“级”字错写为了“极”，那么我们来尝试通过update来更新修改视图实例1中的此数据。
+
+```
+update v_good_info set name="x240 超级本" where id = 5;
+```
+
+![](/assets/mysql_view5.png)
+
+好尴尬，系统报错了。这是为什么呢？因为不能在一张由多张关联表连接而成的视图上做同时修改两张表的操作。
+
+我们来分析一下，实际上视图是代替了一块语句，如果我们把之前创建v\_good\_info视图的语句嵌套进去分析的话，会发现，其实这里面有很多name和id，id=5的行不唯一且视图中的行不与我们要修改的goods.name所在表goods的行一一对应，所以不能更新。
+
+![](/assets/mysql_view6.png)那么哪些修改操作可以在视图中进行呢？  
+官方文档中这样解释：  
+for a view to be updatable, there must be a one to one relationship between the rows in the view and the rows in the underlying table.为了使视图可以更新，视图中的行与基础表中的行之间必须有一对一的关系。
+
+所以在视图进行修改操作时遇到此问题，请注意通过此方向来分析\(如果需要深入了解，建议查看官方文档中的第23.5.3节 Updatable and Insertable Views\)。接下来我们创建一个简单的视图，将goods表中的id，name，price提取作为一个视图v\_good我们修改”x240 超极本“为 ”x240 超级本“了。
+
+```
+-- 创建视图v_good
+create view v_good as select
+	goods.id, goods.name, goods.price
+	from goods;
+-- 更新数据
+update v_good set name="x240 超级本" where id = 5;
+-- 查看数据
+select * from v_good_info where id = 5;
+```
+
+![](/assets/mysql_view8.png)
+
 
 
 
