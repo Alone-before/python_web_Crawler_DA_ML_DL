@@ -2,7 +2,7 @@
 
 ## 3.3.1 实例数据库创建——京东商品数据库
 
-此处我们创建三个表：goods代表商品，goods\_cates代表商品种类\_，\_goods\_brands代表品牌 。
+此处我们创建三个表，为后面两章演练服务：goods代表商品，goods\_cates代表商品种类\_，\_goods\_brands代表品牌 。
 
 ![](/assets/mysqljingdong.png)
 
