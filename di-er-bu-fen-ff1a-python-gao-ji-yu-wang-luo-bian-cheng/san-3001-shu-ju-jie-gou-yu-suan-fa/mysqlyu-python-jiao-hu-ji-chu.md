@@ -157,7 +157,7 @@ cs1=conn.cursor()
 * rowcount只读属性，表示最近一次execute\(\)执行后受影响的行数
 * connection获得当前连接对象
 
-示例1： 查询goods表中id不大于4的数据，以fetchone方法来获取查询到的数据。
+示例1： s2python\_mysql\_fetchone.py  查询goods表中id不大于4的数据，以fetchone方法来获取查询到的数据。
 
 ```
 '''fetchone()获取单行结果并打印出来'''
@@ -190,7 +190,7 @@ if __name__ == '__main__':
 
 ![](/assets/s2mysql_python_fetchone.png)
 
-示例2： 查询goods表中id不大于4的数据，以fetchall方法来获取查询到的数据。
+示例2： s3python\_mysql\_fetchall.py  查询goods表中id不大于4的数据，以fetchall方法来获取查询到的数据。
 
 ```
 '''sql注入'''
@@ -231,7 +231,7 @@ if __name__ == '__main__':
 
 ![](/assets/s3python_mysql_fetchall.png)
 
-示例3：请用户输入商品名，并显示其具体信息。 ** \(注意SQL注入\)**
+示例3： s4python\_mysql\_safe.py   请用户输入商品名，并显示其具体信息。 ** \(注意SQL注入\)**
 
 ```
 '''sql注入'''
