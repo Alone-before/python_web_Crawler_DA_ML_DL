@@ -143,7 +143,6 @@ conn=connect(参数列表)
 
 ```
 cs1=conn.cursor()
-
 ```
 
 #### 对象的方法 {#对象的方法}
@@ -190,4 +189,99 @@ if __name__ == '__main__':
 ```
 
 ![](/assets/s2mysql_python_fetchone.png)
+
+示例2： 查询goods表中id不大于4的数据，以fetchall方法来获取查询到的数据。
+
+```
+'''sql注入'''
+import pymysql
+
+
+def main():
+    find_name = input('请输入物品名称:') # 输入想要查询的物品名称
+    # print('select * from goods where name like %{}%' .format(find_name))
+    # 创建连接
+    conn = pymysql.connect(host='localhost', port=3306,database='jing_dong', user='root', password='hitzzy',
+                           charset='utf8')
+    # 获取游标
+    cs1 = conn.cursor()
+
+    # 执行select语句，并返回受影响的行数：查询所有数据
+    # 安全模式
+
+    count = cs1.execute('select * from goods where name=%s', [find_name])
+
+    # 非安全模式
+    # 当find_name 被输入   " or 1 "    包含双引号时，会显示表中所有数据，造成数据泄露。
+    # sql = 'select * from goods WHERE name="%s"' % find_name
+    # count = cs1.execute(sql)
+
+    print('查询到%d条数据：' % count)
+    # 获取并打印查询到的数据
+    result = cs1.fetchall()
+    print(result)
+    # 关闭游标和连接
+    cs1.close()
+    conn.close()
+
+
+if __name__ == '__main__':
+    main()
+```
+
+![](/assets/s3python_mysql_fetchall.png)
+
+示例3：请用户输入商品名，并显示其具体信息。 ** \(注意SQL注入\)**
+
+```
+'''sql注入'''
+import pymysql
+
+
+def main():
+    find_name = input('请输入物品名称:') # 输入想要查询的物品名称
+    # print('select * from goods where name like %{}%' .format(find_name))
+    # 创建连接
+    conn = pymysql.connect(host='localhost', port=3306,database='jing_dong', user='root', password='hitzzy',
+                           charset='utf8')
+    # 获取游标
+    cs1 = conn.cursor()
+
+    # 执行select语句，并返回受影响的行数：查询所有数据
+    # 安全模式
+
+    count = cs1.execute('select * from goods where name=%s', [find_name])
+
+    # 非安全模式
+    # 当find_name 被输入   " or 1 or "    包含双引号时，会显示表中所有数据，造成数据泄露。
+    # sql = 'select * from goods WHERE name="%s"' % find_name
+    # count = cs1.execute(sql)
+
+    print('查询到%d条数据：' % count)
+    # 获取并打印查询到的数据
+    for i in range(count):
+        # fetchone（）执行查询语句时获取被影响的行的第一行
+        result = cs1.fetchone()  # result 为一个元组哦
+        # print(type(result))  # 可以查看result的数据类型，加深理解
+        print(result)
+    # 关闭游标和连接
+    cs1.close()
+    conn.close()
+
+
+if __name__ == '__main__':
+    main()
+```
+
+可以看到，当输入 x240 超极本，查询到此商品在库，并打印出该结果。
+
+![](/assets/s4python_mysql_safe1.png)
+
+不要着急，我们把代码中安全模式的行注释掉，将非安全模式的行取消注释，然后再次输入 x240 超极本。我们也能查询到该商品信息。也就是说，execute里可以是一个SQL语句的字符串。那为什么还需要前面语法介绍的参数赋值呢？
+
+![](/assets/s4python_mysql_safe1.png)
+
+再查询一种商品（“ or 1 or ”），再看看结果。奇怪，goods表中所有的数据都显示出来了。为什么呢？我们来分析一下。当把（“ or 1 or ”）赋值给find\_name时，sql字符串变量的值为 select \* from goods where name="“ or 1 or ”";大家看一下，where后的语句结果始终为True。所以会显示出goods表中所有数据，造成数据库数据泄露。**因此在使用execute语句时，尽量使用安全模式中的参数化赋值，以避免因疏忽造成的SQL注入并引发安全问题。**
+
+![](/assets/s4python_mysql_safe2.png)
 
