@@ -111,9 +111,83 @@ conn.close()
 
 ## 3.3.3 pymysql语句
 
-1. 命令介绍
+上一节中我们用了一个简单实例演示了python操作mysql的基本流程，本节将详细讲述里面的一些基本命令含义及其参数，并进行几个实例演练。
 
-2. 实例操作
+### Connection 对象
+
+* 用于建立与数据库的连接
+
+* 创建对象：调用connect\(\)方法
+
+```
+conn=connect(参数列表)
+```
+
+* 参数host：连接的mysql主机，如果本机是'localhost'
+* 参数port：连接的mysql主机的端口，默认是3306
+* 参数database：数据库的名称
+* 参数user：连接的用户名
+* 参数password：连接的密码
+* 参数charset：通信采用的编码方式，推荐使用utf8
+
+#### 对象的方法 {#对象的方法}
+
+* close\(\)关闭连接
+* commit\(\)提交
+* cursor\(\)返回Cursor对象，用于执行sql语句并获得结果
+
+### Cursor对象
+
+* 用于执行sql语句，使用频度最高的语句为select、insert、update、delete
+* 获取Cursor对象：调用Connection对象的cursor\(\)方法
+
+```
+cs1=conn.cursor()
+
+```
+
+#### 对象的方法 {#对象的方法}
+
+* close\(\)关闭
+* execute\(operation \[, parameters \]\)执行语句，返回受影响的行数，主要用于执行insert、update、delete语句，也可以执行create、alter、drop等语句
+* fetchone\(\)执行查询语句时，获取查询结果集的第一个行数据，返回一个元组
+* fetchall\(\)执行查询时，获取结果集的所有行，一行构成一个元组，再将这些元组装入一个元组返回
+
+#### 对象的属性 {#对象的属性}
+
+* rowcount只读属性，表示最近一次execute\(\)执行后受影响的行数
+* connection获得当前连接对象
+
+示例1： 查询goods表中id不大于4的数据，以fetchone方法来获取查询到的数据。
+
+```
+'''fetchone()获取单行结果并打印出来'''
+import pymysql
 
 
+def main():
+    # 创建连接
+    conn = pymysql.connect(host='localhost', port=3306,database='jing_dong', user='root', password='hitzzy',
+                           charset='utf8')
+    # 获取游标
+    cs1 = conn.cursor()
+    # 执行查询操作
+    count = cs1.execute('select id,name from goods where id<=4')
+    print('查询到%d条数据：' % count)
+    # 打印查询结果
+    for i in range(count):
+        # fetchone（）执行查询语句时获取被影响的行的第一行
+        result = cs1.fetchone()  # result 为一个元组哦
+        # print(type(result))  # 可以查看result的数据类型，加深理解
+        print(result)
+    # 关闭游标和连接
+    cs1.close()
+    conn.close()
+
+
+if __name__ == '__main__':
+    main()
+```
+
+![](/assets/s2mysql_python_fetchone.png)
 
