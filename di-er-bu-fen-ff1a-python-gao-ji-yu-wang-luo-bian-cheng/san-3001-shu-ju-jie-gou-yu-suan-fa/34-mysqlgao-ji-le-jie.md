@@ -177,6 +177,18 @@ SET AUTOCOMMIT=1 开启自动提交
 
 ## 3.4.4 函数
 
+MySQL数据库提供了很多函数包括：
+
+* 数学函数；
+* 字符串函数；
+* 日期和时间函数；
+* 条件判断函数；
+* 系统信息函数；
+* 加密函数；
+* 格式化函数；
+
+详见链接https://www.cnblogs.com/kissdodog/p/4168721.html,笔者已将其转化为pdf放置与源代码同目录内，为mysql\_function.pdf
+
 ## 3.4.4 索引
 
 #### 什么是索引？
@@ -258,9 +270,184 @@ show profiles;
 
 _注：索引是占用存储空间的，且建立太多的索引将会影响更新和插入的速度，因为它需要同样更新每个索引文件。对于一个经常需要更新和插入的表格，就没有必要为一个很少使用的where字句单独建立索引了，对于比较小的表，排序的开销不会很大，也没有必要建立另外的索引。_
 
-
-
 ## 3.4.5 一些账户管理知识
+
+#### 账户管理
+
+* 在生产环境下操作数据库时，绝对不可以使用root账户连接，而是创建特定的账户，授予这个账户特定的操作权限，然后连接进行操作，主要的操作就是数据的crud
+* MySQL账户体系：根据账户所具有的权限的不同，MySQL的账户可以分为以下几种
+  * 服务实例级账号：，启动了一个mysqld，即为一个数据库实例；如果某用户如root,拥有服务实例级分配的权限，那么该账号就可以删除所有的数据库、连同这些库中的表
+  * 数据库级别账号：对特定数据库执行增删改查的所有操作
+  * 数据表级别账号：对特定表执行增删改查等所有操作
+  * 字段级别的权限：对某些表的特定字段进行操作
+  * 存储程序级别的账号：对存储程序进行增删改查的操作
+* 账户的操作主要包括创建账户、删除账户、修改密码、授权权限等
+
+注意：
+
+1. 进行账户操作时，需要使用root账户登录，这个账户拥有最高的实例级权限
+2. 通常都使用数据库级操作权限
+
+#### 授予权限
+
+需要使用实例级账户登录后操作，以root为例
+
+主要操作包括：
+
+* 查看所有用户
+* 修改密码
+* 删除用户
+
+##### 1. 查看所有用户
+
+* 所有用户及权限信息存储在mysql数据库的user表中
+* 查看user表的结构
+
+```
+desc user;
+
+```
+
+* 主要字段说明：
+  * Host表示允许访问的主机
+  * User表示用户名
+  * authentication\_string表示密码，为加密后的值
+
+查看所有用户
+
+```
+select host,user,authentication_string from user ;
+```
+
+结果
+
+```
+mysql
+>
+ select host,user,authentication_string from user;
++-----------+------------------+-------------------------------------------+
+| host      | user             | authentication_string                     |
++-----------+------------------+-------------------------------------------+
+| localhost | root             | *E74858DB86EBA20BC33D0AECAE8A8108C56B17FA |
+| localhost | mysql.sys        | *THISISNOTAVALIDPASSWORDTHATCANBEUSEDHERE |
+| localhost | debian-sys-maint | *EFED9C764966EDB33BB7318E1CBD122C0DFE4827 |
++-----------+------------------+-------------------------------------------+
+3 rows in set (0.00 sec)
+
+```
+
+##### 2. 创建账户、授权
+
+* 需要使用实例级账户登录后操作，以root为例
+* 常用权限主要包括：create、alter、drop、insert、update、delete、select
+* 如果分配所有权限，可以使用all privileges
+
+###### 2.1 创建账户&授权
+
+```
+grant 权限列表 on 数据库 to '用户名'@'访问主机'identified by '密码';
+```
+
+**2.2 示例1**
+
+创建一个`laowang`的账号，密码为`123456`，只能通过本地访问, 并且只能对`jing_dong`数据库中的所有表进行`读`操作
+
+**step1：使用root登录**
+
+```
+mysql -uroot -p
+回车后写密码，然后回车
+```
+
+**step2：创建账户并授予所有权限**
+
+```
+grant 权限列表 on 数据库 to '用户名'@'访问主机' identified by '密码';
+```
+
+说明
+
+* 可以操作python数据库的所有表，方式为:
+  `jing_dong.*`
+* 访问主机通常使用 百分号% 表示此账户可以使用任何ip的主机登录访问此数据库
+* 访问主机可以设置成 localhost或具体的ip，表示只允许本机或特定主机访问
+
+* 查看用户有哪些权限
+
+```
+show grants for laowang@localhost;
+```
+
+**step3：退出root的登录**
+
+```
+quit
+```
+
+**step4：使用laowang账户登录**
+
+```
+mysql -ulaowang -p
+回车后写密码，然后回车
+```
+
+**2.3 示例2**
+
+创建一个`laoli`的账号，密码为`12345678`，可以任意电脑进行链接访问, 并且对`jing_dong`数据库中的所有表拥有所有权限
+
+```
+grant all privileges on jing_dong.* to "laoli"@"%" identified by "12345678"
+```
+
+#### 账户操作
+
+##### 1. 修改权限
+
+```
+ 删除账户
+语法1：使用root登录grant 权限名称 on 数据库 to 账户@主机 with grant option;
+```
+
+##### 2. 修改密码
+
+使用root登录，修改mysql数据库的user表
+
+* 使用password\(\)函数进行密码加密
+
+```
+update user set authentication_string=password('新密码') where user='用户名';
+例：
+update user set authentication_string=password('123') where user='laowang';
+```
+
+* 注意修改完成后需要刷新权限
+
+```
+刷新权限：flush privileges
+```
+
+##### 3.删除账户
+
+* 语法1：使用root登录
+
+```
+drop user '用户名'@'主机';
+例：
+drop user 'laowang'@'%';
+```
+
+* 语法2：使用root登录，删除mysql数据库的user表中数据
+
+```
+delete from user where user='用户名';
+例：
+delete from user where user='laowang';
+
+-- 操作结束之后需要刷新权限
+flush privileges
+```
+
+_注：推荐使用语法1删除用户, 如果使用语法1删除失败，采用语法2方式。_
 
 ## 3.4.6 数据库设计基础知识
 
