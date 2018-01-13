@@ -93,8 +93,8 @@ for a view to be updatable, there must be a one to one relationship between the 
 ```
 -- 创建视图v_good
 create view v_good as select
-	goods.id, goods.name, goods.price
-	from goods;
+    goods.id, goods.name, goods.price
+    from goods;
 -- 更新数据
 update v_good set name="x240 超级本" where id = 5;
 -- 查看数据
@@ -103,9 +103,12 @@ select * from v_good_info where id = 5;
 
 ![](/assets/mysql_view8.png)
 
+为了演示操作这一一定时期内的工作，我们创建了两个视图来进行方便的操作。现在工作完成了，我们可以删除它了。
 
-
-
+```
+drop view v_good_info;
+drop view v_good;
+```
 
 ## 3.4.2 事务
 
