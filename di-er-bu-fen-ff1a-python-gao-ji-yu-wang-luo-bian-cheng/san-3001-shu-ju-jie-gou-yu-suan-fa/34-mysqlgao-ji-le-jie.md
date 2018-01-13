@@ -208,7 +208,55 @@ SET AUTOCOMMIT=1 开启自动提交
 
 #### 索引效果示例
 
+我们在mysql终端窗口先创建一个表test\_index，并通过python向其插入10000行形如”py-%d“的数据。
 
+```
+create table test_index(title varchar(10));
+```
+
+```
+‘’‘s8python_mysql_index.py  插入10000行数据’‘’
+import pymysql
+
+def main():
+    # 创建Connection连接
+    conn = pymysql.connect(host='localhost', port=3306, database='jing_dong',
+                           user='root', password='hitzzy', charset='utf8')
+    # 获得Cursor对象
+    cursor = conn.cursor()
+    # 插入10万次数据
+    for i in range(100000):
+        cursor.execute("insert into test_index values('py-%d')" % i)
+    # 提交数据
+    conn.commit()
+
+if __name__ == "__main__":
+    main()
+```
+
+![](/assets/mysql_index2.png)
+
+可以看到已经插入了10000行数据。接下来我们进行以下有索引时和无索引时查询操作:
+
+```
+-- 开启运行时间监测：
+set profiling=1;
+-- 查找第1万条数据py-99999  无索引
+select * from test_index where title='py-99999';
+
+-- 为表title_index的title列创建索引：
+create index title_index on test_index(title(10));
+-- 查找第1万条数据py-99999  有索引
+select * from test_index where title='py-99999';
+-- 查看执行的时间：
+show profiles;
+```
+
+![](/assets/mysql_index3.png)
+
+从结果中可以看到，使用索引前，花费了0.036秒；使用索引后，花费了0.0004秒。整整73倍的差距，在海量数据时更加明显。
+
+_注：索引是占用存储空间的，且建立太多的索引将会影响更新和插入的速度，因为它需要同样更新每个索引文件。对于一个经常需要更新和插入的表格，就没有必要为一个很少使用的where字句单独建立索引了，对于比较小的表，排序的开销不会很大，也没有必要建立另外的索引。_
 
 
 
