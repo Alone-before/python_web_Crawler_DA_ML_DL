@@ -187,7 +187,7 @@ MySQL数据库提供了很多函数包括：
 * 加密函数；
 * 格式化函数；
 
-详见链接https://www.cnblogs.com/kissdodog/p/4168721.html,笔者已将其转化为pdf放置与源代码同目录内，为mysql\_function.pdf
+详见链接[https://www.cnblogs.com/kissdodog/p/4168721.html,笔者已将其转化为pdf放置与源代码同目录内，为mysql\_function.pdf](https://www.cnblogs.com/kissdodog/p/4168721.html,笔者已将其转化为pdf放置与源代码同目录内，为mysql_function.pdf)
 
 ## 3.4.4 索引
 
@@ -305,7 +305,6 @@ _注：索引是占用存储空间的，且建立太多的索引将会影响更�
 
 ```
 desc user;
-
 ```
 
 * 主要字段说明：
@@ -333,7 +332,6 @@ mysql
 | localhost | debian-sys-maint | *EFED9C764966EDB33BB7318E1CBD122C0DFE4827 |
 +-----------+------------------+-------------------------------------------+
 3 rows in set (0.00 sec)
-
 ```
 
 ##### 2. 创建账户、授权
@@ -449,7 +447,7 @@ flush privileges
 
 _注：推荐使用语法1删除用户, 如果使用语法1删除失败，采用语法2方式。_
 
-## 3.4.6 数据库设计基础知识
+
 
 
 
