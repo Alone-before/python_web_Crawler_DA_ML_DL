@@ -76,7 +76,7 @@ load data local infile '/path/goods.txt' into table goods;
 
 ![](/assets/mysqlpython1.png)
 
-```
+```py
 import pymysql  # 1、导入pymsql模块
 
 # connect对象用于建立连接
@@ -119,7 +119,7 @@ conn.close()
 
 * 创建对象：调用connect\(\)方法
 
-```
+```py
 conn=connect(参数列表)
 ```
 
@@ -141,7 +141,7 @@ conn=connect(参数列表)
 * 用于执行sql语句，使用频度最高的语句为select、insert、update、delete
 * 获取Cursor对象：调用Connection对象的cursor\(\)方法
 
-```
+```py
 cs1=conn.cursor()
 ```
 
@@ -159,7 +159,7 @@ cs1=conn.cursor()
 
 示例1： s2python\_mysql\_fetchone.py  查询goods表中id不大于4的数据，以fetchone方法来获取查询到的数据。
 
-```
+```py
 '''fetchone()获取单行结果并打印出来'''
 import pymysql
 
@@ -192,8 +192,8 @@ if __name__ == '__main__':
 
 示例2： s3python\_mysql\_fetchall.py  查询goods表中id不大于4的数据，以fetchall方法来获取查询到的数据。
 
-```
-'''sql注入'''
+```py
+'''fetchall()获取所有行结果并打印出来'''
 import pymysql
 
 
@@ -233,7 +233,7 @@ if __name__ == '__main__':
 
 示例3： s4python\_mysql\_safe.py   请用户输入商品名，并显示其具体信息。 ** \(注意SQL注入\)**
 
-```
+```py
 '''sql注入'''
 import pymysql
 
