@@ -226,7 +226,7 @@ MySQL数据库提供了很多函数包括：
 create table test_index(title varchar(10));
 ```
 
-```
+```py
 ‘’‘s8python_mysql_index.py  插入10000行数据’‘’
 import pymysql
 
@@ -446,8 +446,4 @@ flush privileges
 ```
 
 _注：推荐使用语法1删除用户, 如果使用语法1删除失败，采用语法2方式。_
-
-
-
-
 
