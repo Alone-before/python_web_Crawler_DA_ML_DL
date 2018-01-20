@@ -66,7 +66,7 @@ UDP用于发送数据，data为bytes类型，返回值为已经发送的字节�
 
 ## 2.3 UDP套接字流程
 
-这几章为了更好的无负担学习套接字的客户端和服务端程序学习，我们借助非常有名的网络调试助手来充当服务器或者客户端进行配合演示。网络调试助手的具体使用可以查看UDP操作[https://jingyan.baidu.com/article/20b68a88a9c056796dec625e.html和TCP操作：https://jingyan.baidu.com/article/148a1921dc93e74d71c3b1d7.html。 ](https://jingyan.baidu.com/article/20b68a88a9c056796dec625e.html和TCP操作：https://jingyan.baidu.com/article/148a1921dc93e74d71c3b1d7.html。本书采用mac的网络调试助手演示，其他系统的可以查看百度链接。)  
+这几章为了更好的无负担学习套接字的客户端和服务端程序学习，我们借助非常有名的网络调试助手来充当服务器或者客户端进行配合演示。网络调试助手的具体使用可以查看UDP操作[https://jingyan.baidu.com/article/20b68a88a9c056796dec625e.html](https://jingyan.baidu.com/article/20b68a88a9c056796dec625e.html)和TCP操作：[https://jingyan.baidu.com/article/148a1921dc93e74d71c3b1d7.html](https://jingyan.baidu.com/article/148a1921dc93e74d71c3b1d7.html)。   
 本书采用mac的网络调试助手演示，其他系统的可以查看百度链接。
 
 ![](/assets/udp01.png)
