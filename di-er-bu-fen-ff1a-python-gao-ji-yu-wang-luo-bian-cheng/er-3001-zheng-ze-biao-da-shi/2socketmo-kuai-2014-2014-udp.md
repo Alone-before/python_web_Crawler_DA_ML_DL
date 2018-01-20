@@ -66,7 +66,8 @@ UDP用于发送数据，data为bytes类型，返回值为已经发送的字节�
 
 ## 2.3 UDP套接字流程
 
-这几章为了更好的无负担学习套接字的客户端和服务端程序学习，我们借助非常有名的网络调试助手来充当服务器或者客户端进行配合演示。网络调试助手的具体使用可以查看UDP操作https://jingyan.baidu.com/article/20b68a88a9c056796dec625e.html和TCP操作：https://jingyan.baidu.com/article/148a1921dc93e74d71c3b1d7.html。本书采用mac的网络调试助手演示，其他系统的可以查看百度链接。
+这几章为了更好的无负担学习套接字的客户端和服务端程序学习，我们借助非常有名的网络调试助手来充当服务器或者客户端进行配合演示。网络调试助手的具体使用可以查看UDP操作[https://jingyan.baidu.com/article/20b68a88a9c056796dec625e.html和TCP操作：https://jingyan.baidu.com/article/148a1921dc93e74d71c3b1d7.html。 ](https://jingyan.baidu.com/article/20b68a88a9c056796dec625e.html和TCP操作：https://jingyan.baidu.com/article/148a1921dc93e74d71c3b1d7.html。本书采用mac的网络调试助手演示，其他系统的可以查看百度链接。)  
+[本书采用mac的网络调试助手演示，其他系统的可以查看百度链接。](https://jingyan.baidu.com/article/20b68a88a9c056796dec625e.html和TCP操作：https://jingyan.baidu.com/article/148a1921dc93e74d71c3b1d7.html。本书采用mac的网络调试助手演示，其他系统的可以查看百度链接。)
 
 ![](/assets/udp01.png)
 
@@ -75,6 +76,4 @@ UDP用于发送数据，data为bytes类型，返回值为已经发送的字节�
 **根据UDP协议的无连接特点，一般客户端仅仅需要创建套接字、数据收发、关闭套接字三个部分就可以完成了。服务器由于需要给众多客户端一个明确的连接地址和端口，所以需要额外的绑定端口操作**。下图为UDP客户端和UDP服务器之间的通信流程。
 
 ![](/assets/udp03.png)
-
-
 
