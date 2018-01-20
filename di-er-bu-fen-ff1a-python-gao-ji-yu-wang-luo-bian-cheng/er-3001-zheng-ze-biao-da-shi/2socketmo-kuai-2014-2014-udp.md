@@ -22,18 +22,47 @@ UDP 是User Datagram Protocol的简称， 中文名是**用户数据报协议**�
 python中实现套接字的基本模块为socket。一般公共socket\(\)函数来创建套接字，并进行网络通信。要使用socket需要导入socket模块：`import socket`。一般使用socket.socket\(\)函数来创建套接字。其语法如下：
 
 ```py
-socket.socket(family=AF_INET, type=SOCK_STREAM)
+socket.socket(family=AF_INET, type=SOCK_STREAM, proto)
 ```
 
-其中：
+其中：  
+family为套接字家族名:AN\_INET、AF\_INET6、AF\_UNIX、AF\_CAN、AF\_RDS;AN\_INET默认值代表ipv4。  
+type为套接字类型：SOCK\_STREAM、SOCK\_DGRAM、SOCK\_RAW;SOCK\_STREAM为TCP协议使用的类型，SOCK\_DGRAM为UDP使用的类型。  
+proto为协议类型，默认为0 。
 
-family为套接字家族名:AN\_INET、AF\_INET6、AF\_UNIX、AF\_CAN、AF\_RDS;AN\_INET默认值代表ipv4。
+##### 常见的socket对象常用的方法有：
 
-type为套接字类型：SOCK\_STREAM、SOCK\_DGRAM、SOCK\_RAW;SOCK\_STREAM为TCP协议使用的类型，SOCK\_DGRAM为UDP使用的类型。
+**bind\(address\)**
 
+其参数address是由ip和端口组成的元组，如\('127.0.0.1', 8888\) 。如果ip地址为空，则表示本机，它的作用为绑定端口，使该程序在运行时使用操作系统的固定端口。
 
+**listen\(backlog\)**
 
+其参数backlog是指在拒绝连接之前，操作系统允许此程序的最大挂起连接数量。最小值为0.
 
+**accept\(\)**
+
+等待进入连接，并返回一个由新建的与客户端的socket连接和客户端地址组成的元组，其中客户的地址是由客户端ip地址和端口组成的元组。
+
+**close\(\)**
+
+关闭套接字，停止连接。
+
+**recv\(buffersize\[, flag\]\)**
+
+TCP用于接收远程连接发来的信息，并获取该信息，python3中为bytes类型。buffersize为接收缓冲区的大小。
+
+**send\(data\[, flags\]\)**
+
+TCP用于发送数据，data为bytes类型，返回值为已经发送的字节数。
+
+**recvfrom\(buffersize\[, flag\]\)**
+
+UDP用于接收远程连接发来的信息，并获取该信息，python3中为bytes类型。buffersize为接收缓冲区的大小。
+
+**sendto\(data\[, flags\]\)**
+
+UDP用于发送数据，data为bytes类型，返回值为已经发送的字节数。
 
 
 
