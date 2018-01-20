@@ -13,6 +13,18 @@
 * [第二部分：python高级与网络编程](di-er-bu-fen-ff1a-python-gao-ji-yu-wang-luo-bian-cheng.md)
   * [一、python高级知识](di-er-bu-fen-ff1a-python-gao-ji-yu-wang-luo-bian-cheng/yi-3001-wang-luo-tong-xin-bian-cheng-ji-chu.md)
   * [二、网络编程基础](di-er-bu-fen-ff1a-python-gao-ji-yu-wang-luo-bian-cheng/er-3001-zheng-ze-biao-da-shi.md)
+    * 1、ip等基础知识
+    * 2、socket模块——UDP
+    * 3、socket模块——TCP
+    * 4、多线程
+    * 5、多进程
+    * 6、协程
+    * 7、HTTP协议
+    * 8、三种方式爬取斗鱼主播照片
+    * 9、基于socket的静态web实现
+    * 10、concurrent.futures
+    * 11、socketserver服务器
+    * 12、twisted异步小实例
   * [三、数据库MySQL知识](di-er-bu-fen-ff1a-python-gao-ji-yu-wang-luo-bian-cheng/san-3001-shu-ju-jie-gou-yu-suan-fa.md)
     * [3.1 MySQL基础](di-er-bu-fen-ff1a-python-gao-ji-yu-wang-luo-bian-cheng/san-3001-shu-ju-jie-gou-yu-suan-fa/31-mysqlji-chu.md)
     * [3.2 MySQL语句](di-er-bu-fen-ff1a-python-gao-ji-yu-wang-luo-bian-cheng/san-3001-shu-ju-jie-gou-yu-suan-fa/32-mysqlcha-xun.md)
@@ -42,7 +54,7 @@
   * 八、实战：移动 Web O2O
 * [第六部分：数据处理](di-liu-bu-fen-ff1a-shu-ju-fen-xi.md)
   * 一、数据分析软硬件基础
-  * 二、numpy数组处理
+  * [二、numpy数组处理](di-liu-bu-fen-ff1a-shu-ju-fen-xi/er-3001-numpy-shu-zu-chu-li.md)
   * 三、Pandas数据分析
   * [四、matplotlib图表绘制](di-liu-bu-fen-ff1a-shu-ju-fen-xi/si-3001-matplotlib-tu-biao-hui-zhi.md)
     * [4.1 快速基础入门](di-liu-bu-fen-ff1a-shu-ju-fen-xi/si-3001-matplotlib-tu-biao-hui-zhi/41-kuai-su-ji-chu-ru-men.md)
@@ -57,4 +69,6 @@
   * 四、深度学习
   * 五、开源工具Tensorflow
 * 参考书目
+
+
 
