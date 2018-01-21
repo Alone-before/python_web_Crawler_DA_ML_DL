@@ -219,7 +219,7 @@ address = ('192.168.234.1', 8888) # 和net02_udp_server服务器进行通信
 3. 接收数据函数  
    接收数据并打印
 
-### ![](/assets/socket_udp_chat_1.png)完整代码
+![](/assets/socket_udp_chat_1.png)完整代码
 
 ```py
 '''net03_udp_chat.py'''
@@ -270,6 +270,4 @@ if __name__ == '__main__':
 ## 2.7 小结
 
 ![](/assets/socket_udp_summary.png)
-
-
 
