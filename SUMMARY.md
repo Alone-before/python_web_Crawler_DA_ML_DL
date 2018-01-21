@@ -15,7 +15,7 @@
   * [二、网络编程基础](di-er-bu-fen-ff1a-python-gao-ji-yu-wang-luo-bian-cheng/er-3001-zheng-ze-biao-da-shi.md)
     * [1、ip、端口等基础知识](di-er-bu-fen-ff1a-python-gao-ji-yu-wang-luo-bian-cheng/er-3001-zheng-ze-biao-da-shi/1ipdeng-ji-chu-zhi-shi.md)
     * [2、socket模块——UDP](di-er-bu-fen-ff1a-python-gao-ji-yu-wang-luo-bian-cheng/er-3001-zheng-ze-biao-da-shi/2socketmo-kuai-2014-2014-udp.md)
-    * 3、socket模块——TCP
+    * [3、socket模块——TCP](di-er-bu-fen-ff1a-python-gao-ji-yu-wang-luo-bian-cheng/er-3001-zheng-ze-biao-da-shi/3socketmo-kuai-2014-2014-tcp.md)
     * 4、多线程
     * 5、多进程
     * 6、协程
