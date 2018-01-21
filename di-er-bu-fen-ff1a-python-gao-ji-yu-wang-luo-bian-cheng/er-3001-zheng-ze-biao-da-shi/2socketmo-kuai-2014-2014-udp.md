@@ -50,7 +50,7 @@ proto为协议类型，默认为0 。
 
 **recv\(buffersize\[, flag\]\)**
 
-TCP用于接收远程连接发来的信息，并获取该信息，python3中为bytes类型。buffersize为接收缓冲区的大小。
+TCP用于接收远程连接发来的信息，并获取该信息，python3中为bytes类型。buffersize为接收缓冲区的大小。**阻塞函数**
 
 **send\(data\[, flags\]\)**
 
@@ -58,7 +58,7 @@ TCP用于发送数据，data为bytes类型，返回值为已经发送的字节�
 
 **recvfrom\(buffersize\[, flag\]\)**
 
-UDP用于接收远程连接发来的信息，并获取该信息，python3中为bytes类型。buffersize为接收缓冲区的大小。
+UDP用于接收远程连接发来的信息，并获取该信息，python3中为bytes类型。buffersize为接收缓冲区的大小。**阻塞函数**
 
 **sendto\(data\[, flags\]\)**
 
@@ -189,7 +189,83 @@ sock.close()  # 关闭套接字
 
 ![](/assets/socket_udp_server.png)
 
+如果把上一节的客户端所要发送的目标地址修改为本节所创建的服务器地址\('192.168.234.1', 8888\)，我们会发现它们实现了通信：同一操作系统不同进程间的通信。
 
+```py
+# address = ('192.168.234.129', 8080)  # 服务器地址为192.168.234.129，端口号为8080
+address = ('192.168.234.1', 8888) # 和net02_udp_server服务器进行通信
+```
+
+![](/assets/socket_udp_for_self.png)
+
+## 2.6 实例：UDP简易版聊天工具实现
+
+### 需求实现：
+
+编写1个程序，有2个功能：1.获取键盘数据，并将其发送给指定方，2.接收数据并显示。进行简单选择以上的2个功能调用实现相应的功能。
+
+### 根据流程图书写模块代码
+
+1. 主程序
+   套接字创建与端口绑定  
+   功能菜单：1、发送数据  
+                      2、接收数据  
+   功能调用：如果1，调用发送数据函数；如果2 调用接收数据函数
+
+2. 发送数据函数
+   输入数据、指定方的ip和端口  
+   发送数据
+
+3. 接收数据函数
+   接收数据并打印
+
+### ![](/assets/socket_udp_chat_1.png)完整代码
+
+```py
+'''net03_udp_chat.py'''
+import socket
+
+
+def send_message():
+    send_data = input('请输入要发送的消息：\n')
+    send_ip = input('请输入要发送的ip：\n')
+    send_port = input('请输入要发送的端口:\n')
+    send_address = (send_ip, int(send_port))
+    sock.sendto(send_data.encode('utf-8'), send_address)
+
+
+def recv_message():
+    recv_data = sock.recvfrom(1024)  # 接收数据
+    print('从', recv_data[1], '接收的数据为：', recv_data[0].decode('utf-8'))
+
+
+if __name__ == '__main__':
+    sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+
+    address = ('192.168.234.1', 8888)  # 地址：设定服务器要使用端口8888
+    sock.bind(address)  # 绑定端口
+
+    # 功能菜单显示
+    print('*' * 30)
+    print('1、发送数据')
+    print('2、接收数据')
+    print('*' * 30)
+    fun_num = input('请选择并输入指定数字：\n')  # 获取键盘选项数据
+
+    # 输入判断
+    if fun_num == '1':
+        send_message()
+    elif fun_num == '2':
+        recv_message()
+    else:
+        print('您输入的数据有误！程序结束')
+```
+
+### 实现结果
+
+本节运行我们实例中的udp聊天器程序，在虚拟机上用linux上打开网络助手作为UDP客户端。其中，我们的udp聊天器的ip为192.168.234.1,设定绑定的端口号为8888；虚拟机上的linux系统的ip为192.168.234.129，设定服务器端口号为8080。 从下图的结果可以看到，选择不同的选项会进入不同的模块，来完成指定功能。此时我们便完成了udp的基本学习。
+
+![](/assets/socket_udp_chat.png)
 
 
 
