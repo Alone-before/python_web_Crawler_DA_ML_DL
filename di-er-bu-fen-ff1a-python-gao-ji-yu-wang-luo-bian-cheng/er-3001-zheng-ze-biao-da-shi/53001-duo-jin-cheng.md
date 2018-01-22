@@ -243,5 +243,157 @@ if __name__ == '__main__':
 
 结果和之前是一样的，但是代码构造更简洁了。
 
+## 5.5 线程间共享全局变量
+
+### 5.5.1 子线程的全局变量修改结果共享到其他线程中
+
+之前我们讲过线程的一个特性就是共享全局变量，这里我们通过一个代码实例进行演示,依旧是之前的唱歌跳舞实例，仅仅是在唱歌时对全局变量global\_num进行修改，可以看到跳舞子进程和父进程在读取全局变量global\_num时，已经发生了变化，从最初的0变为了3 。这就是线程间全局变量共享。
+
+```py
+'''net03_global_variables.py'''
+import threading
+import time
+
+global_num = 0 # 全局变量
+
+class Sing(threading.Thread):
+    def run(self):
+        for i in range(3):
+            print('正在唱歌呢 %d' % i)
+            global global_num
+            global_num = global_num + i # 修改全局变量
+            time.sleep(1)  # 休息1秒
+        print('全局变量sing global_num= ', global_num)
+
+
+class Dance(threading.Thread):
+    def run(self):
+        for i in range(3):
+            print('正在跳舞呢 %d' % i)
+            time.sleep(1)  # 休息1秒
+        global global_num
+        print('全局变量dance global_num= ', global_num)
+
+
+if __name__ == '__main__':
+    my_sing = Sing()
+    my_dance = Dance()
+    my_sing.start()
+    my_dance.start()
+    my_sing.join()  # 待子进程结束后再向下执行
+    my_dance.join()  # 待子进程结束后再向下执行
+    print('全局变量main global_num= ', global_num)
+```
+
+![](/assets/threading8.png)
+
+### 5.5.2 线程间全局变量竞争
+
+上一节我们看到了线程间可以共享全局变量，但这并不是一件好事情。假如各个子线程对全局变量都在修改，由于子线程的执行是由各子线程的实际状态进行交替运行的，并不能控制何时何地修改到何种程度，就会造成全局变量的混乱，得不到开发者想要获取的结果，这叫**非线程安全或者全局资源竞争**。我们通过修改上一节的代码来演示，这次我们在唱歌和跳舞两个子进程里面均对全局变量global\_num加1循环1000万次。如果不考虑资源竞争，应该会得到最终结尾哦为2000W。**实际结果呢？仅仅为12893573 **。这就是资源竞争，并且具体竞争的状态开发者并不知道，导致变量结果混乱，每次运行结果都不一样。
+
+```py
+'''net03_global_variable_competition'''
+import threading
+
+
+global_num = 0 # 全局变量
+
+class Sing(threading.Thread):
+    def run(self):
+        global global_num
+        print('开始：全局变量sing global_num= ', global_num)
+        for i in range(10000000):
+            global_num = global_num + 1 # 修改全局变量
+        print('结束：全局变量sing global_num= ', global_num)
+
+
+class Dance(threading.Thread):
+    def run(self):
+        global global_num
+        print('开始：全局变量dance global_num= ', global_num)
+        for i in range(10000000):
+            global_num = global_num + 1  # 修改全局变量
+        print('结束：全局变量dance global_num= ', global_num)
+
+
+if __name__ == '__main__':
+    print('开始：全局变量main global_num= ', global_num)
+    my_sing = Sing()
+    my_dance = Dance()
+    my_sing.start()
+    my_dance.start()
+    my_sing.join()  # 待子进程结束后再向下执行
+    my_dance.join()  # 待子进程结束后再向下执行
+    print('结束：全局变量main global_num= ', global_num)
+```
+
+![](/assets/threading9.png)
+
+如何解决这个问题呢？我们来思考一下：只有明确的知道何时Sing修改global\_num并结束修改、Dance修改global\_num并结束修改，我们才能精准地使global\_num获取到开发者想要赋予的值。这就叫**线程间同步**。
+
+**同步就是协同步调，按预定的先后次序进行运行**。如:你说完，我再说。"同"字从字面上容易理解为一起动作，其实不是，**"同"字应是指协同、协助、互相配合**。如进程、线程同步，可理解为进程或线程A和B一块配合，A执行到一定程度时要依靠B的某个结果，于是停下来，示意B运行;B执行，再将结果给A;A再继续操作。
+
+所以解决线程同时修改全局变量的方式的方法就是：对于上一小节提出的那个计算错误的问题，可以通过线程同步来进行解决。思路，如下:
+
+1. 系统调用Sing，然后获取到global\_num的值为0，此时上一把锁，即不允许其他线程操作global\_num
+2. Sing对global\_num的值进行+1操作
+3. Sing解锁，其他的线程就可以使用g\_num了，而且是g\_num的值不是0而是修改后的值
+4. 同理其他线程在对global\_num进行修改时，都要先上锁，处理完后再解锁，在上锁的整个过程中不允许其他线程访问，就保证了数据的正确性。
+
+## 5.6 互斥锁
+
+上一节我们提到解决全局变量资源竞争的有效方式是线程间实现同步，而实现线程间同步时候需要一把锁来处理全局变量。在python中该如何做呢？
+
+线程同步能够保证多个线程安全访问竞争资源，最简单的同步机制是引入**互斥锁**。互斥锁为资源引入一个状态：锁定/非锁定。某个线程要更改共享数据时，先将其锁定，此时资源的状态为“锁定”，其他线程不能更改；直到该线程释放资源，将资源的状态变成“非锁定”，其他的线程才能再次锁定该资源。互斥锁保证了每次只有一个线程进行写入操作，从而保证了多线程情况下数据的正确性。
+
+hreading模块中定义了Lock类，可以方便的处理锁定：
+
+```py
+# 创建锁
+mutex = threading.Lock()
+
+# 锁定
+mutex.acquire()
+
+# 释放
+mutex.release()
+```
+
+将上一节对全局变量global\_num同时相加1000万次的代码在修改操作位置进行如下修改：**增加锁、获取锁和释放锁**。从执行结果中可以看到，全局变量操作没有被竞争打乱。
+
+```py
+'''net03_mutex_lock.py'''
+  # 主程序中增加互斥锁
+ if __name__ == '__main__':
+    mutex = threading.Lock()
+ 
+ # 自定义Thread子类修改全局变量前获取锁，修改后释放锁       
+for i in range(10000000):
+   mutex.acquire()  # 锁定全局变量
+   global_num = global_num + 1
+   mutex.release()  # 释放全局变量
+```
+
+![](/assets/threading10.png)
+
+### 互斥锁要点：
+
+如果一个锁之前是没有上锁的，那么acquire不会堵塞。  
+如果在调用acquire对这个锁上锁之前 它已经被 其他线程上了锁，那么此时acquire会堵塞，直到这个锁被解锁为止。
+
+### 上锁解锁过程：
+
+当一个线程调用锁的acquire\(\)方法获得锁时，锁就进入“locked”状态。
+
+每次只有一个线程可以获得锁。如果此时另一个线程试图获得这个锁，该线程就会变为“blocked”状态，称为“阻塞”，直到拥有锁的线程调用锁的release\(\)方法释放锁之后，锁进入“unlocked”状态。
+
+线程调度程序从处于同步阻塞状态的线程中选择一个来获得锁，并使得该线程进入运行（running）状态。
+
+### 总结
+
+**锁的好处：**确保了某段关键代码只能由一个线程从头到尾完整地执行。
+
+**锁的坏处：**阻止了多线程并发执行，包含锁的某段代码实际上只能以单线程模式执行，效率就大大地下降了。由于可以存在多个锁，不同的线程持有不同的锁，并试图获取对方持有的锁时，可能会造成死锁。
+
 
 
