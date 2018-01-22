@@ -127,13 +127,53 @@ if __name__ == '__main__':
 
 4）在多线程操作系统中，进程不是一个可执行的实体。
 
+## 5.3 在python中使用线程
 
+**python中最常用的线程模块为threading，**可以完成多线程编写的大多数任务。目前除了个别UNIX不支持多线程外，基本上所有的python流行平台都支持线程了。接下来我们对照上一节那个同时唱歌跳舞的代码`net03_sing_dance_threading.py`。
 
+**我们在使用threading时，最经典的方式是：一般需要先导入该模块；再通过threading中的Thread创建一个Thread对象；然后启动该线程start即可。**
 
+```py
+import threading
+td1 = threading.Thread(target=sing)  # 创建唱歌子线程
+td1.start() # 开始运行子线程
+```
 
+其中，Thread类的最常用语法如下：
 
+```
+threading.Thread(target=None, name=None, args=(), kwargs={})
+```
 
+* target赋值为要被调用的子进程对象
+* name为将该进程自定义一个标识名称
+* args为调用时传入的无名参数
+* kwargs为调用时传入的有名参数
 
+在threading中提供了查询当前进程中还运行的线程函数enumerate\(\)和当前运行线程数量的函数active\_count\(\)，我们向net03\_sing\_dance\_threading.py添加进如下代码。
 
+```py
+'''net03_threading_enumerate.py'''
+    while True:
+        length = len(threading.enumerate()) # 当前线程数量
+        print('通过active_count查询到的线程数：', threading.active_count()) # 当前线程的数量
+        print(threading.enumerate()) # 打印显示目前还存在的线程
+        print('当前运行的线程数为：%d' % length)
+        if length <= 1: # 除了两个子进程，还有默认的父进程，所以当唱歌跳舞执行完毕后，还剩一个线程
+            break
 
+        time.sleep(0.5)
+```
+
+![](/assets/threading5.png)
+
+可以很清楚的看到，运行中总共有三个线程：
+
+默认父线程：&lt;\_MainThread\(MainThread, started 140735499973440\)&gt;
+
+子线程1：&lt;Thread\(Thread-1, started 123145313566720\)&gt;
+
+子线程2：&lt;Thread\(Thread-2, started 123145318821888\)&gt;
+
+当所有子线程结束时，才会结束父线程。
 
