@@ -167,13 +167,81 @@ threading.Thread(target=None, name=None, args=(), kwargs={})
 
 ![](/assets/threading5.png)
 
-可以很清楚的看到，运行中总共有三个线程：
-
-默认父线程：&lt;\_MainThread\(MainThread, started 140735499973440\)&gt;
-
-子线程1：&lt;Thread\(Thread-1, started 123145313566720\)&gt;
-
+可以很清楚的看到，运行中总共有三个线程：  
+默认父线程：&lt;\_MainThread\(MainThread, started 140735499973440\)&gt;  
+子线程1：&lt;Thread\(Thread-1, started 123145313566720\)&gt;  
 子线程2：&lt;Thread\(Thread-2, started 123145318821888\)&gt;
 
-当所有子线程结束时，才会结束父线程。
+**当所有子线程结束时，才会结束父线程。**
+
+## 5.4 自定义Thread子类
+
+上一节我们演示了创建Thread对象的基本方法。但是那是基于过程的一种思想，我们python是一种面向对象的语言，常常在开发中往往是将相关功能封装好进行调用，因此我们常常需要创建一个自定义Thread子类。
+
+### 5.4.1 Thread类常用方法
+
+#### **start\(\)启动线程活动**
+
+每个子线程如果需要启动运行，必须运行该方法，否则不执行。即之前的例子中创建Thread对象后子线程并没有执行，而是执行到start\(\)时才会启动。每个子进程此方法只能调用一次，否则会报错（假如我们连续写两行start\(\)调用启动同一个Thread对象则会报错RuntimeError）。
+
+#### run\(\) 线程处理方法
+
+该方法主要是执行线程要处理的内容。默认的Thread类run方法部分源代码如下
+
+```py
+if self._target:
+self._target(*self._args, **self._kwargs)
+```
+
+即调用用户赋予的target函数对象，例如我们之前的唱歌跳舞函数。**因此，我们常常在自定义Thread子类时，均是重载此方法来实现自定义的线程处理内容的。**
+
+#### join\(timeout=None\)
+
+默认为程序在此等待直到线程终止。一般也可赋值，如join\(timeout=3\)为等待3秒后，不管该子线程是否执行完毕均执行接下来的父线程内容。
+
+### 5.4.2 自定义Thread子类
+
+根据上一节的知识，我们已经知道，**自定义Thread子类需要重载run方法**。假如我们现在要以面向对象的形式重新编写之前的唱歌跳舞实例，该怎么做呢？那就是定义Thread子类，如下面这段伪代码:
+
+```py
+class sing(threading.Thread):
+    def run(self):
+        # do something
+        pass
+```
+
+现在我们重写唱歌跳舞实例，完整的代码如下：
+
+```py
+'''net03_Thread_subclass.py'''
+import threading
+import time
+
+
+class Sing(threading.Thread):
+    def run(self):
+        for i in range(5):
+            print('正在唱歌呢 %d' % i)
+            time.sleep(1)  # 休息1秒
+
+
+class Dance(threading.Thread):
+    def run(self):
+        for i in range(5):
+            print('正在跳舞呢 %d' % i)
+            time.sleep(1)  # 休息1秒
+
+
+if __name__ == '__main__':
+    my_sing = Sing()
+    my_dance = Dance()
+    my_sing.start()
+    my_dance.start()
+```
+
+![](/assets/threading7.png)
+
+结果和之前是一样的，但是代码构造更简洁了。
+
+
 
