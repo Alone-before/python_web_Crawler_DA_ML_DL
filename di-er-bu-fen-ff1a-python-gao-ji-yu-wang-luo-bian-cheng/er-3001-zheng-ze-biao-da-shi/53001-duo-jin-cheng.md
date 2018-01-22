@@ -424,9 +424,77 @@ class Sing(threading.Thread):
 
 常见的避免死锁方法有：程序设计时要尽量避免\(银行家算法、、使用上下文管理\(with lock\)保证锁的成对获取释放\)，添加超时时间等。
 
+## 5.7 多线程UDP聊天器
+
+### 需求实现：
+
+通过多线程的方式实现这样一个UDP聊天器：在发送数据的同时也能够自动接收数据。
+
+### 根据流程图书写代码
+
+1. 一个发送数据函数
+   ```
+   def send_message():
+   ```
+2. 一个接收数据函数
+   ```
+   def recv_message(udp_sock):
+   ```
+3. 父进程创建套接字绑定端口后调用发送数据函数
+   ```
+   send_message()
+   ```
+4. 子进程调用接收数据函数实现接收数据功能
+   ```
+   td1 = threading.Thread(target=recv_message, args=(sock, ))
+   ```
+
+![](/assets/theading12.png)
+
+### 完整代码
+
+```py
+'''net03_udp_threading_chat.py'''
+import threading
+import socket
 
 
+def send_message():
+    send_ip = input('请输入要发送的ip：\n')
+    send_port = input('请输入要发送的端口:\n')
+    send_address = (send_ip, int(send_port))
+    while True:
+        send_data = input('请输入要发送的消息：\n')
+        sock.sendto(send_data.encode('utf-8'), send_address)
 
+
+def recv_message(udp_sock):
+    while True:
+        recv_data = udp_sock.recvfrom(1024)  # 接收数据
+        print('从', recv_data[1], '接收的数据为：', recv_data[0].decode('utf-8'))
+
+
+if __name__ == '__main__':
+    sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+
+    address = ('localhost', 8888)  # 地址：设定服务器要使用端口8888
+    sock.bind(address)  # 绑定端口
+
+    td1 = threading.Thread(target=recv_message, args=(sock, ))
+    td1.start()
+
+    send_message()
+```
+
+### 实现结果
+
+我们此例中，设置聊天器的ip为本地localhost\(127.0.0.1\)、端口8888；本地的网络助手UDP端口设置为8080 。运行聊天器和网络助手后，我们先通过聊天器向网络助手发送了两次的hello udp，然后在输入第三次的消息hello udp threading时，从网络助手向聊天器发送了Hello threading。可以看到聊天器成功的在发送数据输入时接收到了网络助手发来的消息。最后我们用网络助手再次发行了Hello threading，聊天器依旧成功接收到，并运行等待在输入界面。这样我们便通过多线程的方式实现了同时收发数据的UDP聊天器。
+
+![](/assets/threading14.png)
+
+## 5.8 小结
+
+![](/assets/threading15.png)
 
 
 
