@@ -19,8 +19,8 @@
     * [4、多线程](di-er-bu-fen-ff1a-python-gao-ji-yu-wang-luo-bian-cheng/er-3001-zheng-ze-biao-da-shi/53001-duo-jin-cheng.md)
     * [5、多进程](di-er-bu-fen-ff1a-python-gao-ji-yu-wang-luo-bian-cheng/er-3001-zheng-ze-biao-da-shi/43001-duo-xian-cheng.md)
     * [6、协程](di-er-bu-fen-ff1a-python-gao-ji-yu-wang-luo-bian-cheng/er-3001-zheng-ze-biao-da-shi/63001-xie-cheng.md)
-    * [7、HTTP协议](di-er-bu-fen-ff1a-python-gao-ji-yu-wang-luo-bian-cheng/er-3001-zheng-ze-biao-da-shi/7httpxie-yi.md)
-    * [8、三种方式爬取斗鱼主播照片](di-er-bu-fen-ff1a-python-gao-ji-yu-wang-luo-bian-cheng/er-3001-zheng-ze-biao-da-shi/83001-san-zhong-fang-shi-pa-qu-dou-yu-zhu-bo-zhao-pian.md)
+    * [7、三种方式爬取斗鱼主播照片](di-er-bu-fen-ff1a-python-gao-ji-yu-wang-luo-bian-cheng/er-3001-zheng-ze-biao-da-shi/83001-san-zhong-fang-shi-pa-qu-dou-yu-zhu-bo-zhao-pian.md)
+    * [8、HTTP协议](di-er-bu-fen-ff1a-python-gao-ji-yu-wang-luo-bian-cheng/er-3001-zheng-ze-biao-da-shi/7httpxie-yi.md)
     * 9、基于socket的静态web实现
     * 10、concurrent.futures
     * 11、socketserver服务器
