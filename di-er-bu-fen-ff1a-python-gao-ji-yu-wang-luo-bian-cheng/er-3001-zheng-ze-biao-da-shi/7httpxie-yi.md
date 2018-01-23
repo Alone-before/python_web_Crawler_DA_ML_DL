@@ -96,7 +96,7 @@ HTTP响应的Body就是HTML源码，我们在菜单栏选择“视图”，“�
 
 Web采用的HTTP协议采用了非常简单的请求-响应模式，从而大大简化了开发。当我们编写一个页面时，我们只需要在HTTP请求中把HTML发送出去，不需要考虑如何附带图片、视频等，浏览器如果需要请求图片和视频，它会发送另一个HTTP请求，因此，一个HTTP请求只处理一个资源。
 
-HTTP协议同时具备极强的扩展性，虽然浏览器请求的是http://www.sina.com.cn/的首页，但是新浪在HTML中可以链入其他服务器的资源，比如&lt;imghttp://i1.sinaimg.cn/home/2013/1008/U8455P30DT20131008135420.png"&gt;，从而将请求压力分散到各个服务器上，并且，一个站点可以链接到其他站点，无数个站点互相链接起来，就形成了World src=" Wide Web，简称WWW。
+HTTP协议同时具备极强的扩展性，虽然浏览器请求的是http://www.sina.com.cn/ 的首页，但是新浪在HTML中可以链入其他服务器的资源，比如&lt;imghttp://i1.sinaimg.cn/home/2013/1008/U8455P30DT20131008135420.png"&gt;， 从而将请求压力分散到各个服务器上，并且，一个站点可以链接到其他站点，无数个站点互相链接起来，就形成了World src=" Wide Web，简称WWW。
 
 ![](/assets/http8.png)
 
@@ -209,5 +209,58 @@ HTTP响应如果包含body，也是通过**\r\n\r\n**来分隔的。请再次注
 
 * 对于中大型WEB网站一般都采用长连接，好处是响应用户时间更短，用户体验更好，虽然更耗硬件资源一些，但这都不是事儿。
 
-8.5 python程序模拟浏览器
+
+
+## 8.5 python程序模拟浏览器
+
+### 需求实现：
+
+通过python的socket来模拟浏览器请求服务和解析网页的过程，来实现百度主页网页下载。
+
+### 根据需求绘制流程图
+
+![](/assets/http15.png)
+
+我们打开百度主页会发现浏览器的请求信息为：GET / HTTP/1.1 Host: www.baidu.com因此我们将此数据发送给百度，这就模拟了浏览器的网页请求。接下来我们通过recv接收百度服务器的响应信息：在之前的小节中我们已经知道，响应头和响应体之间有一个空格，我们可以通过此来区分响应头和响应体，在这之前的为响应头，之后的为响应体。响应体即网页内容，通过文件写操作保存至本地。
+
+![](/assets/http18.png)
+
+### 完整代码
+
+```py
+'''net08_http_browser.py'''
+import socket
+
+
+tcp_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+tcp_sock.connect(('www.baidu.com', 80))  # http默认端口80
+
+# 模拟浏览器GET内容
+request_line = "GET / HTTP/1.1\r\n"  # 请求行
+request_header = "Host: www.baidu.com\r\n"  # 请求行
+
+# 请求数据
+request_data = request_line + request_header + '\r\n'
+# 发送请求
+tcp_sock.send(request_data.encode('utf-8'))
+
+# 收取服务器响应数据
+resp_data = tcp_sock.recv(4096)
+
+# 解析响应数据
+index = resp_data.find('\r\n\r\n')  # 找到空行,空行后面就是响应body，即网页内容
+resp_headers = resp_data[:index + 1]  # 响应头和响应行
+html_data = resp_data[index + 4:]  # 响应body
+print(resp_headers)  # 显示服务器响应信息
+
+# 保存网页到到本地文件baidu.html
+with open('baidu.html', 'wb') as html_file:
+    html_file.write(html_data.encode())
+```
+
+### 实现结果
+
+![](/assets/http17.png)
+
+运行代码之后，我们会发现打印显示的响应头信息和浏览器的信息时一样的。也可以看到文件夹中多了一个baidu.html。用浏览器打开该文件，和浏览器直接访问百度主页的内容一样。说明我们成功的模拟了浏览器实现网页请求和获取。
 
