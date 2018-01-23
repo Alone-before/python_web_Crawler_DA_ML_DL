@@ -106,5 +106,280 @@ if __name__ == '__main__':
 
 ![](/assets/process2.png)
 
+既然我们实现了多进程完成唱歌跳舞，那我们更进一步的实现告诉子进程让谁唱歌让谁跳舞吧，没错，我们就是导演，我们说了算。通过在Process对象创建时通过对args或者kwargs进行赋值来传递参数就可以实现。
+
+```py
+singer = 'Jam'
+sing_name = '不露声色'
+p1 = multiprocessing.Process(target=sing, args=(singer, sing_name))  # 创建唱歌进程,告诉子进程是Jam唱不露声色
+p2 = multiprocessing.Process(target=dance,kwargs={'dancer':'杰克逊'})  # 创建跳舞进程，告诉子进程是杰克逊来唱歌啦
+```
+
+实例完整代码如下:
+
+```py
+'''net04_sing_dance_variable.py'''
+import multiprocessing
+import time
+
+
+def sing(name, sing_name):
+    for i in range(5):
+        print(name, '正在唱歌%s呢 %d' % (sing_name, i))
+        time.sleep(1)  # 休息1秒
+
+
+def dance(**kwargs):
+    dancer = kwargs['dancer']
+    for i in range(5):
+        print('%s正在伴舞呢 %d' % (dancer,i))
+        time.sleep(1)  # 休息1秒
+
+
+if __name__ == '__main__':
+    singer = 'Jam'
+    sing_name = '不露声色'
+    p1 = multiprocessing.Process(target=sing, args=(singer, sing_name))  # 创建唱歌进程,告诉子进程是Jam唱不露声色
+    p2 = multiprocessing.Process(target=dance,kwargs={'dancer':'杰克逊'})  # 创建跳舞进程，告诉子进程是杰克逊来唱歌啦
+    p1.start()  # 开始运行进程sing
+    p2.start()  # 开始运行进程dance
+```
+
+从运行结果中我们可以很清晰的看到Jam唱不露声色的时候杰克逊在为她伴舞——so crazy。
+
+![](/assets/process3.png)
+
+## 5.3 进程间不共享全局变量
+
+上一章我们知道线程间会共享全局变量，本节我们来想一下，进程间呢？当然不会啦，假如我们的电脑上装有QQ音乐和网易云音乐，在网易云音乐收藏的歌单不会自动到QQ音乐的。我们一起看个实例吧。定义一个全局变量global\_num=0，然后在唱歌和跳舞两个代码块中添加global\_num+1操作。我们会发现，父进程、sing子进程和dance子进程之间global\_num并无半点关系，即进程间不共享全局变量。
+
+```py
+'''net04_global_variables.py'''
+import multiprocessing
+import time
+
+global_num = 0
+
+
+def sing():
+    global global_num
+    print('开始：全局变量sing global_num= ', global_num)
+    for i in range(5):
+        print('正在唱歌呢 %d' % i)
+        global_num = global_num + 1  # 修改全局变量
+        time.sleep(1)  # 休息1秒
+    print('结束：全局变量sing global_num= ', global_num)
+
+
+def dance():
+    global global_num
+    print('开始：全局变量dance global_num= ', global_num)
+    for i in range(5):
+        print('正在跳舞呢 %d' % i)
+        global_num = global_num + 1  # 修改全局变量
+        time.sleep(1)  # 休息1秒
+    print('结束：全局变量dance global_num= ', global_num)
+
+
+if __name__ == '__main__':
+    print('开始：全局变量main global_num= ', global_num)
+    p1 = multiprocessing.Process(target=sing)  # 创建唱歌进程
+    p2 = multiprocessing.Process(target=dance)  # 创建跳舞进程
+    p1.start()
+    p2.start()
+    p1.join()  # 待子进程p1执行完毕后再执行下面的语句
+    p2.join()  # 待子进程p2执行完毕后再执行下面的语句
+    print('结束：全局变量main global_num= ', global_num)
+```
+
+![](/assets/process4.png)
+
+## 5.4 进程间通信
+
+上一节我们了解到进程间不共享全局变量，但是试想一下，我们电脑上登录了两个QQ并需要互传消息或者杰克逊作为伴舞者打算给Jam递花，怎么办呢？这就要涉及进程间通信。在多进程程序中，有众多的进程间通信方式，我们今天通过python中multiprocessing模块中的Queue来实现进程间的通信。它的基本语法如下：
+
+初始化Queue\(\)对象时（例如：q=Queue\(\)），若括号中没有指定最大可接收的消息数量，或数量为负值，那么就代表可接受的消息数量没有上限（直到内存的尽头）；
+
+* Queue.qsize\(\)：返回当前队列包含的消息数量；
+* Queue.empty\(\)：如果队列为空，返回True，反之False ；
+* Queue.full\(\)：如果队列满了，返回True,反之False；
+* Queue.get\(\[block\[, timeout\]\]\)：获取队列中的一条消息，然后将其从列队中移除，block默认值为True；
+
+1）如果block使用默认值，且没有设置timeout（单位秒），消息列队如果为空，此时程序将被阻塞（停在读取状态），直到从消息列队读到消息为止，如果设置了timeout，则会等待timeout秒，若还没读取到任何消息，则抛出"Queue.Empty"异常；  
+2）如果block值为False，消息列队如果为空，则会立刻抛出"Queue.Empty"异常；
+
+* Queue.get\_nowait\(\)：相当Queue.get\(False\)；
+* Queue.put\(item,\[block\[, timeout\]\]\)：将item消息写入队列，block默认值为True；
+
+1）如果block使用默认值，且没有设置timeout（单位秒），消息列队如果已经没有空间可写入，此时程序将被阻塞（停在写入状态），直到从消息列队腾出空间为止，如果设置了timeout，则会等待timeout秒，若还没空间，则抛出"Queue.Full"异常；  
+2）如果block值为False，消息列队如果没有空间可写入，则会立刻抛出"Queue.Full"异常；
+
+* Queue.put\_nowait\(item\)：相当Queue.put\(item, False\)。
+
+我们来看一下下面这个例子：
+
+```py
+'''net04_queue_sample.py'''
+from multiprocessing import Queue
+
+q = Queue(3)  # 初始化一个Queue对象，最多可接收三条put消息
+q.put("消息1")
+q.put("消息2")
+print(q.full())  # False
+q.put("消息3")
+print(q.full())  # True
+
+# 因为消息列队已满,所以下面的try都会抛出异常，第一个try会等待2秒后再抛出异常，第二个Try会立刻抛出异常
+try:
+    q.put("消息4", True, 2)
+except:
+    print("消息列队已满，现有消息数量:%s" % q.qsize()) # mac os不支持qsize
+# Note that this may raise NotImplementedError on Unix platforms like Mac OS X where sem_getvalue() is not implemented.
+
+try:
+    q.put_nowait("消息4")
+except:
+    print("消息列队已满，现有消息数量:%s" % q.qsize())
+
+# 推荐的方式，先判断消息列队是否已满，再写入
+if not q.full():
+    q.put_nowait("消息4")
+
+# 读取消息时，先判断消息列队是否为空，再读取
+if not q.empty():
+    for i in range(q.qsize()):
+        print(q.get_nowait())
+```
+
+运行结果与语法中定义的一样，put为写入，get为读出；full为判断是否写满等。
+
+```
+False
+True
+消息列队已满，现有消息数量:3
+消息列队已满，现有消息数量:3
+消息1
+消息2
+消息3
+```
+
+接下来我们就通过multiprocessing模块中的Queue来实现唱歌跳舞时杰克逊为Jam递花这一构想。具体代码如下：
+
+```py
+'''net04_sing_dance_queue.py'''
+import multiprocessing
+import time
+
+
+def sing(name, sing_name):
+    for i in range(5):
+        print(name, '正在唱歌%s呢 %d' % (sing_name, i))
+        time.sleep(1)  # 休息1秒
+    while True:
+        if not q.empty():
+            value = q.get() # 从队列中读取数据
+            print('Jam收到了', value)
+        else:
+            break
+
+
+def dance(**kwargs):
+    dancer = kwargs['dancer']
+    q.put('花') # 向队列中写入花数据
+    print('杰克逊向Jam递了一朵花')
+    for i in range(5):
+        print('%s正在伴舞呢 %d' % (dancer, i))
+        time.sleep(1)  # 休息1秒
+
+
+if __name__ == '__main__':
+    singer = 'Jam'
+    sing_name = '不露声色'
+    q = multiprocessing.Queue() # 创建队列
+    p1 = multiprocessing.Process(target=sing, args=(singer, sing_name))  # 创建唱歌进程
+    p2 = multiprocessing.Process(target=dance, kwargs={'dancer': '杰克逊'})  # 创建跳舞进程
+    p1.start()  # 开始运行进程sing
+    p2.start()  # 开始运行进程dance
+```
+
+在这个构想的代码中，我们首先创建了一个消息队列Queue的实例对象q，然后在sing代码块中添加从队列中读取数据的语句q.get\(\)代表收取礼物、在dance代码块中添加向队列中写入数据的语句q.put\(‘花’\)代表送出了花。这样便实现了舞者和歌手两个进程之间的通信。从代码执行的结果来看，确实如此。
+
+## ![](/assets/process6.png)
+
+## 5.5 进程池Pool
+
+在之前的进程创建过程中我们通过multiprocessing中的Process来生成了唱歌和跳舞进程，但如果我们这次演唱会请的是少女时代组合呢？那可是有好多人呢，一个一个创建太累了，有没有批量创建的方法呢？答曰：有。我们可以使用进程池的概念来批量创建进程，即multiprocessing模块中的Pool。
+
+**multiprocessing.Pool常用的函数介绍：**
+
+* apply\_async\(func\[, args\[, kwds\]\]\) ：使用非阻塞方式调用func（并行执行，堵塞方式必须等待上一个进程退出才能执行下一个进程），args为传递给func的参数列表，kwds为传递给func的关键字参数列表；
+* close\(\)：关闭Pool，使其不再接受新的任务；
+* terminate\(\)：不管任务是否完成，立即终止；
+* join\(\)：主进程阻塞，等待子进程的退出， 必须在close或terminate之后使用；
+
+了解了基本语法，我们就来批量创建几个歌手进程吧:  
+首先我们创建一个最大只有3个进程的进程池：
+
+```
+processes = multiprocessing.Pool(3)
+```
+
+其次我们用进程池中的apply\_async来创建五个歌手进程。
+
+```py
+'''net04_process_pool.py'''
+import multiprocessing
+import time
+
+
+def sing(singer_num, sleep_time):
+    for i in range(4):
+        print('歌手', singer_num, '正在唱歌呢 %d' % i)
+        time.sleep(sleep_time)  # 休息
+
+
+if __name__ == '__main__':
+    processes = multiprocessing.Pool(3) # 创建进程池，最大进程数为3
+    for i in range(5):
+        processes.apply_async(sing, (i + 1, 1 + 0.3 * i)) # 进程池创建进程 ，传入参数为歌手编号和歌唱间隔休息时间
+
+    print('歌唱开始')
+    processes.close()
+    processes.join()
+    print('歌唱结束')
+```
+
+由于我们创建的进程池最大只能容纳3个进程，所以本实例中的4号歌手和5号歌手进程需要等到之前几位歌手进程中的某一个执行完毕方可创建。具体见结果。
+
+![](/assets/proceing1.png)
+
+**注意：如果要使用Pool进程池创建进程，就需要使用multiprocessing.Manager\(\)中的Queue\(\)，而不是multiprocessing.Queue\(\)。**
+
+## 5.6 进程与线程对比
+
+### 功能 {#功能}
+
+* 进程，能够完成多任务，比如 在一台电脑上能够同时运行多个QQ
+* 线程，能够完成多任务，比如 一个QQ中的多个聊天窗口
+
+### 定义的不同 {#定义的不同}
+
+* **进程是系统进行资源分配和调度的一个独立单位**.
+
+* **线程是进程的一个实体,是CPU调度和分派的基本单位,它是比进程更小的能独立运行的基本单位.**线程自己基本上不拥有系统资源,只拥有一点在运行中必不可少的资源\(如程序计数器,一组寄存器和栈\),但是它可与同属一个进程的其他的线程共享进程所拥有的全部资源.
+
+### 区别 {#区别}
+
+* 一个程序至少有一个进程,一个进程至少有一个线程.
+* 线程的划分尺度小于进程\(资源比进程少\)，使得多线程程序的并发性高。
+* 进程在执行过程中拥有独立的内存单元，而多个线程共享内存，从而极大地提高了程序的运行效率
+* 线线程不能够独立执行，必须依存在进程中
+
+### 优缺点 {#优缺点}
+
+线程和进程在使用上各有优缺点：线程执行开销小，但不利于资源的管理和保护；而进程正相反。
+
+
+
 
 
