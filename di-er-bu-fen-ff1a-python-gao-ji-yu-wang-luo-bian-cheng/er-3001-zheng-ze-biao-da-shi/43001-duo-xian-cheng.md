@@ -379,7 +379,121 @@ if __name__ == '__main__':
 
 线程和进程在使用上各有优缺点：线程执行开销小，但不利于资源的管理和保护；而进程正相反。
 
+## 5.7 多进程实现文件拷贝
 
+### 需求实现：
+
+通过多进程的方式实现拷贝文件夹下的文件\(文件夹嵌套不考虑\)；在拷贝过程中显示拷贝进度。
+
+### 根据流程图书写代码要点
+
+根据需求，我们可以将代码划分为两大部分：主程序、拷贝函数。主程序用来创建每个文件拷贝操作的子进程来实现多进程拷贝。通过os模块的listdir获取到要拷贝的文件夹内的文件名列表，并以此来创建相应的子进程，每个文件一个进程。最后我们通过进程间通信来让每个子进程在完成拷贝任务后来告知父进程它完成了拷贝，并传回它所拷贝的文件的文件名。父进程通过获取子进程的消息并计算已经完成的文件拷贝数来计算进度并显示。待100%时结束程序。
+
+![](/assets/processing11.png)
+
+**拷贝函数**
+
+文件拷贝：文件读写操作
+
+```
+open(filename, 'rb')
+f.read()
+open(filename, 'wb')
+f.write()
+.close()
+```
+
+与父进程通信
+
+```
+queue.put()
+```
+
+**主程序**
+
+获取文件列表
+
+```
+os.listdir(path)
+```
+
+多进程创建
+
+```
+multiprocessing.Process(拷贝函数）
+```
+
+获取进度
+
+	创建队列
+
+```
+	multiprocessing.Queue()
+```
+
+	获取子进程通信内容
+
+```
+	queue.get()
+```
+
+### 完整代码
+
+```py
+'''net04_file_copy.py'''
+import multiprocessing
+import os
+import time
+import random
+
+
+def copy_file(file_name, src, dest, queue):
+    '''拷贝文件的函数'''
+    src_file = open(src + '/' + file_name, 'rb')
+    dest_file = open(dest + '/' + file_name, 'wb')
+
+    while True:
+        time.sleep(random.random())
+        data = src_file.read(4096)
+        if data:
+            dest_file.write(data)
+        else:
+            break
+    src_file.close()
+    dest_file.close()
+    queue.put(file_name)
+
+
+if __name__ == '__main__':
+    src_path = input('请输入你要拷贝的目录名：')
+    try:
+        dest_path = src_path + '-备份'
+        os.mkdir(dest_path)
+        file_list = os.listdir(src_path)
+    except Exception as e:
+        print(e)
+    else:
+        queue = multiprocessing.Queue()
+
+        for file in file_list:
+            pro = multiprocessing.Process(
+                target=copy_file, args=(file, src_path, dest_path, queue)
+            )
+            pro.start()
+
+        count = 0
+        while True:
+            queue.get()
+            count += 1
+            print('\r当前进度为%d%%' % (100.0 * count / len(file_list)),end='')
+            if count == len(file_list):
+                break
+
+```
+
+## 5.8 小结
+
+![](/assets/process12.png)
 
 
 
