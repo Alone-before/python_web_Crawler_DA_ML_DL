@@ -21,7 +21,7 @@
     * [6、协程](di-er-bu-fen-ff1a-python-gao-ji-yu-wang-luo-bian-cheng/er-3001-zheng-ze-biao-da-shi/63001-xie-cheng.md)
     * [7、三种方式爬取斗鱼主播照片](di-er-bu-fen-ff1a-python-gao-ji-yu-wang-luo-bian-cheng/er-3001-zheng-ze-biao-da-shi/83001-san-zhong-fang-shi-pa-qu-dou-yu-zhu-bo-zhao-pian.md)
     * [8、HTTP协议](di-er-bu-fen-ff1a-python-gao-ji-yu-wang-luo-bian-cheng/er-3001-zheng-ze-biao-da-shi/7httpxie-yi.md)
-    * 9、基于socket的静态web实现
+    * [9、基于socket的静态web实现](di-er-bu-fen-ff1a-python-gao-ji-yu-wang-luo-bian-cheng/er-3001-zheng-ze-biao-da-shi/93001-ji-yu-socket-de-jing-tai-web-shi-xian.md)
     * 10、concurrent.futures
     * 11、socketserver服务器
     * 12、twisted异步小实例
