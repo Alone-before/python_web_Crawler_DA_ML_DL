@@ -4,7 +4,7 @@
 
 ## 8.1 单线程抓取
 
-首先，我们可以先通过浏览器查看到斗鱼美女主播首页的相关信息：https://www.douyu.com/directory/game/yz。通过查看网页源代码，我们会发现每一张主播图片都对应着一个url。因此我们可以想到，通过打开首页网页源代码中所有的该url就可以将首页的所有美女主播的图片获取到。
+首先，我们可以先通过浏览器查看到斗鱼美女主播首页的相关信息：[https://www.douyu.com/directory/game/yz。通过查看网页源代码，我们会发现每一张主播图片都对应着一个url。因此我们可以想到，通过打开首页网页源代码中所有的该url就可以将首页的所有美女主播的图片获取到。](https://www.douyu.com/directory/game/yz。通过查看网页源代码，我们会发现每一张主播图片都对应着一个url。因此我们可以想到，通过打开首页网页源代码中所有的该url就可以将首页的所有美女主播的图片获取到。)
 
 ![](/assets/douyu_webpage1.png)
 
@@ -143,9 +143,54 @@ if __name__ == '__main__':
 
 ## 8.2 多线程抓取
 
+根据之前我们第4章所学习的知识，我们只需将for循环抓取替代为多线程创建抓取即可。替换代码\(完整代码见net07\_douyu\_threading.py\)如下：
+
+```py
+    # 下载美女主播图片
+    for img_url in img_list:
+        td = threading.Thread(target=down_img, args=(img_url,))
+        td.start()
+    # 阻塞程序直到所有线程运行完毕
+    while True:
+        length = len(threading.enumerate())
+        if length == 1:
+            break
+```
+
+我们共花费了22.84秒。
+
 ## 8.3 多进程抓取
 
+根据之前我们第5章所学习的进程知识，我们只需将for循环抓取替代为多进程创建抓取即可。替换代码\(完整代码见net07\_douyu\_multiprocessing.py\)如下：
+
+```py
+    # 下载美女主播图片
+    for img_url in img_list:
+        p = multiprocessing.Process(target=down_img, args=(img_url,))
+        p.start()
+    # 阻塞程序直到所有进程运行完毕
+    while True:
+        length = len(multiprocessing.active_children()) # 存活的子进程的数量
+        if length == 0:
+            break
+```
+
+我们共花费了7.23秒。
+
 ## 8.4 协程抓取
+
+根据之前我们第6章所学习的进程知识，我们只需将for循环抓取替代为协程创建抓取即可。替换代码\(完整代码见net07\_douyu\_gevent.py\)如下：
+
+```py
+    # 下载美女主播图片
+    gevent_list = []
+    for img_url in img_list:
+        g1 = gevent.spawn(down_img, img_url)
+        gevent_list.append(g1)
+    gevent.joinall(gevent_list) # 待所有协程执行完毕再向下执行
+```
+
+同样是单线程的协程，我们共花费了5.46秒。
 
 
 
