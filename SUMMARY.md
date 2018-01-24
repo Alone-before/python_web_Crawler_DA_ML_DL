@@ -25,7 +25,7 @@
     * [10、socketserver服务器](di-er-bu-fen-ff1a-python-gao-ji-yu-wang-luo-bian-cheng/er-3001-zheng-ze-biao-da-shi/11socketserverfu-wu-qi.md)
     * [11、concurrent.futures并发模块](di-er-bu-fen-ff1a-python-gao-ji-yu-wang-luo-bian-cheng/er-3001-zheng-ze-biao-da-shi/10concurrentfutures.md)
 * [第三部分：数据库基础](di-san-bu-fen-ff1a-shu-ju-ku-kai-fa.md)
-  * [一、MySQL](di-san-bu-fen-ff1a-shu-ju-ku-kai-fa/yi-3001-mysql.md)
+  * [一、MySQL数据库](di-san-bu-fen-ff1a-shu-ju-ku-kai-fa/yi-3001-mysql.md)
     * [1、 MySQL基础](di-er-bu-fen-ff1a-python-gao-ji-yu-wang-luo-bian-cheng/san-3001-shu-ju-jie-gou-yu-suan-fa/31-mysqlji-chu.md)
     * [2、 MySQL语句](di-er-bu-fen-ff1a-python-gao-ji-yu-wang-luo-bian-cheng/san-3001-shu-ju-jie-gou-yu-suan-fa/32-mysqlcha-xun.md)
     * [3、 MySQL与python交互基础](di-er-bu-fen-ff1a-python-gao-ji-yu-wang-luo-bian-cheng/san-3001-shu-ju-jie-gou-yu-suan-fa/mysqlyu-python-jiao-hu-ji-chu.md)
@@ -33,7 +33,6 @@
   * 二、MongoDB开发
   * 三、Redis开发
   * 四、数据库调优和部署
-* [三、数据库MySQL知识](di-er-bu-fen-ff1a-python-gao-ji-yu-wang-luo-bian-cheng/san-3001-shu-ju-jie-gou-yu-suan-fa.md)
 * [第四部分：前端与移动开发](di-si-bu-fen-ff1a-qian-duan-yu-yi-dong-kai-fa.md)
   * 一、HTML与CSS基础
   * 二、PC端页面开发实战
