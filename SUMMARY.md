@@ -56,8 +56,7 @@
   * [四、matplotlib图表绘制](di-liu-bu-fen-ff1a-shu-ju-fen-xi/si-3001-matplotlib-tu-biao-hui-zhi.md)
     * [4.1 快速基础入门](di-liu-bu-fen-ff1a-shu-ju-fen-xi/si-3001-matplotlib-tu-biao-hui-zhi/41-kuai-su-ji-chu-ru-men.md)
     * [4.2 面向程序员的matplotlib](di-liu-bu-fen-ff1a-shu-ju-fen-xi/si-3001-matplotlib-tu-biao-hui-zhi/42-mian-xiang-cheng-xu-yuan-de-matplotlib.md)
-  * 五、网络爬虫基础
-  * 六、网络爬虫进阶
+
   * 七、大数据基础与现状概述
 * [第七部分：机器学习](di-qi-bu-fen-ff1a-ji-qi-xue-xi.md)
   * [一、话说人工智能与机器学习](di-qi-bu-fen-ff1a-ji-qi-xue-xi/yi-3001-ren-gong-zhi-neng-de-li-shi.md)
@@ -65,5 +64,9 @@
   * 三、神经网络算法进阶
   * 四、深度学习
   * 五、开源工具Tensorflow
-* 参考书目
+* 第六部分 爬虫
+  * 一、网络爬虫基础
+  * 二、网络爬虫进阶
+
+
 
