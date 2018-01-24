@@ -342,26 +342,32 @@ python中有个select模块可以实现epoll。一般的使用方式为：
   self.epoll = select.epoll()  # 创建一个epoll对象
   ```
 * 注册事件文件描述符，监听epoll.poll列表并执行相应操作
-  ```
-  self.epoll.register(self.tcp_socket.fileno(), select.EPOLLIN | select.EPOLLET) # 将服务套接字注册
-  self.epoll.register(new_client_socket.fileno(), select.EPOLLIN | select.EPOLLET)
 
-  EPOLLIN （可读）
-  EPOLLOUT （可写）
-  EPOLLET （ET模式）EPOLLLT（LT模式）
-  LT模式：当epoll检测到描述符事件发生并将此事件通知应用程序，应用程序可以不立即处理该事件。下次调用epoll时，
-  会再次响应应用程序并通知此事件。
-
-  ET模式：当epoll检测到描述符事件发生并将此事件通知应用程序，应用程序必须立即处理该事件。
-  如果不处理，下次调用epoll时，不会再次响应应用程序并通知此事件
+```
+self.epoll.register(self.tcp_socket.fileno(), select.EPOLLIN | select.EPOLLET) # 将服务套接字注册
+self.epoll.register(new_client_socket.fileno(), select.EPOLLIN | select.EPOLLET)
 
 
-  epoll_list = self.epoll.poll()
+EPOLLIN （可读）
+EPOLLOUT （可写）
+EPOLLET （ET模式）EPOLLLT（LT模式）
+LT模式：当epoll检测到描述符事件发生并将此事件通知应用程序，应用程序可以不立即处理该事件。下次调用epoll时，
+会再次响应应用程序并通知此事件。
+ET模式：当epoll检测到描述符事件发生并将此事件通知应用程序，应用程序必须立即处理该事件。
+如果不处理，下次调用epoll时，不会再次响应应用程序并通知此事件
+
+
+
+epoll_list = self.epoll.poll()
               for fd, events in epoll_list:
                           do something
-  ```
+```
 
-**单进程单线程采用epoll实现静态web服务器完整代码**
+
+
+\*\*单进程单线程采用epoll实现静态web服务器完整代码\*\*
+
+
 
 ```py
 """linux平台 epoll 实现web服务器"""
