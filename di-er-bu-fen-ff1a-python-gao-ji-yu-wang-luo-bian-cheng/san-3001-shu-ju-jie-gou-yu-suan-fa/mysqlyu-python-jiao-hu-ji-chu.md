@@ -1,6 +1,6 @@
-# 3.3 MySQL 与python交互
+# 3 MySQL 与python交互
 
-## 3.3.1 实例数据库创建——京东商品数据库
+## 3.1 实例数据库创建——京东商品数据库
 
 此处我们创建三个表，为后面两章\(3.3和3.4\)演练服务：goods代表商品，goods\_cates代表商品种类\_，\_goods\_brands代表品牌 。
 
@@ -66,7 +66,7 @@ load data local infile '/path/goods.txt' into table goods;
 
 ![](/assets/mysqltables.png)
 
-## 3.3.2 交互操作逻辑
+## 3.2 交互操作逻辑
 
 本章我们使用第三方库pymysql来说明mysql和python的交互。在使用python操作mysql前，一般需要终端命令安装该库：
 
@@ -109,7 +109,7 @@ conn.close()
 
 ![](/assets/mysql_python_sample.png)
 
-## 3.3.3 pymysql语句
+## 3.3 pymysql语句
 
 上一节中我们用了一个简单实例演示了python操作mysql的基本流程，本节将详细讲述里面的一些基本命令含义及其参数，并进行几个实例演练。
 
