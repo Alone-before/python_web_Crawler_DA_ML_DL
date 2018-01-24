@@ -49,24 +49,23 @@
   * 六、Tornado Web框架
   * 七、微信公众号
   * 八、实战：移动 Web O2O
-* [第六部分：数据处理](di-liu-bu-fen-ff1a-shu-ju-fen-xi.md)
+* 第六部分 爬虫
+  * 一、网络爬虫基础
+  * 二、网络爬虫进阶
+* [第七部分：数据处理](di-liu-bu-fen-ff1a-shu-ju-fen-xi.md)
   * 一、数据分析软硬件基础
   * [二、numpy数组处理](di-liu-bu-fen-ff1a-shu-ju-fen-xi/er-3001-numpy-shu-zu-chu-li.md)
   * 三、Pandas数据分析
   * [四、matplotlib图表绘制](di-liu-bu-fen-ff1a-shu-ju-fen-xi/si-3001-matplotlib-tu-biao-hui-zhi.md)
     * [4.1 快速基础入门](di-liu-bu-fen-ff1a-shu-ju-fen-xi/si-3001-matplotlib-tu-biao-hui-zhi/41-kuai-su-ji-chu-ru-men.md)
     * [4.2 面向程序员的matplotlib](di-liu-bu-fen-ff1a-shu-ju-fen-xi/si-3001-matplotlib-tu-biao-hui-zhi/42-mian-xiang-cheng-xu-yuan-de-matplotlib.md)
-
   * 七、大数据基础与现状概述
-* [第七部分：机器学习](di-qi-bu-fen-ff1a-ji-qi-xue-xi.md)
+* [第八部分：机器学习](di-qi-bu-fen-ff1a-ji-qi-xue-xi.md)
   * [一、话说人工智能与机器学习](di-qi-bu-fen-ff1a-ji-qi-xue-xi/yi-3001-ren-gong-zhi-neng-de-li-shi.md)
   * [二、神经网络基础](di-qi-bu-fen-ff1a-ji-qi-xue-xi/er-3001-shen-jing-wang-luo-ji-chu.md)
   * 三、神经网络算法进阶
   * 四、深度学习
   * 五、开源工具Tensorflow
-* 第六部分 爬虫
-  * 一、网络爬虫基础
-  * 二、网络爬虫进阶
 
 
 
