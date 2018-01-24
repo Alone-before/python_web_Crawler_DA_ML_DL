@@ -25,13 +25,13 @@
     * [10、socketserver服务器](di-er-bu-fen-ff1a-python-gao-ji-yu-wang-luo-bian-cheng/er-3001-zheng-ze-biao-da-shi/11socketserverfu-wu-qi.md)
     * [11、concurrent.futures并发模块](di-er-bu-fen-ff1a-python-gao-ji-yu-wang-luo-bian-cheng/er-3001-zheng-ze-biao-da-shi/10concurrentfutures.md)
   * [三、数据库MySQL知识](di-er-bu-fen-ff1a-python-gao-ji-yu-wang-luo-bian-cheng/san-3001-shu-ju-jie-gou-yu-suan-fa.md)
-    * [3.1 MySQL基础](di-er-bu-fen-ff1a-python-gao-ji-yu-wang-luo-bian-cheng/san-3001-shu-ju-jie-gou-yu-suan-fa/31-mysqlji-chu.md)
     * [3.2 MySQL语句](di-er-bu-fen-ff1a-python-gao-ji-yu-wang-luo-bian-cheng/san-3001-shu-ju-jie-gou-yu-suan-fa/32-mysqlcha-xun.md)
     * [3.3 MySQL与python交互基础](di-er-bu-fen-ff1a-python-gao-ji-yu-wang-luo-bian-cheng/san-3001-shu-ju-jie-gou-yu-suan-fa/mysqlyu-python-jiao-hu-ji-chu.md)
     * [3.4 MySQL高级了解](di-er-bu-fen-ff1a-python-gao-ji-yu-wang-luo-bian-cheng/san-3001-shu-ju-jie-gou-yu-suan-fa/34-mysqlgao-ji-le-jie.md)
   * 四、python实现web服务器
 * [第三部分：数据库开发](di-san-bu-fen-ff1a-shu-ju-ku-kai-fa.md)
   * [一、MySQL](di-san-bu-fen-ff1a-shu-ju-ku-kai-fa/yi-3001-mysql.md)
+    * [3.1 MySQL基础](di-er-bu-fen-ff1a-python-gao-ji-yu-wang-luo-bian-cheng/san-3001-shu-ju-jie-gou-yu-suan-fa/31-mysqlji-chu.md)
   * 二、MongoDB开发
   * 三、Redis开发
   * 四、数据库调优和部署
@@ -68,4 +68,6 @@
   * 四、深度学习
   * 五、开源工具Tensorflow
 * 参考书目
+
+
 
