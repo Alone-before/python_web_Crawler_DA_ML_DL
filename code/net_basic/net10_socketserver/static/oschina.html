@@ -1,0 +1,2218 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <style>
+    .ie_dialog {
+        position: fixed;
+        z-index: 10000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: #FAFAFA !important;
+        display: none;
+    }
+
+    .ie_notice .logo_osc {
+        display: block;
+        margin: 0 auto;
+        padding-bottom: 24px;
+    }
+
+    .ie_notice h2, .ie_notice h4 {
+        margin: 0;
+        text-align: center;
+    }
+
+    .ie_notice .title {
+        font-size: 28px;
+        color: #4A4A4A;
+    }
+
+    .ie_notice .subtitle {
+        font-size: 20px;
+        color: #9B9B9B;
+        font-weight: normal;
+    }
+
+    .ie_notice .ie_box {
+        width: 560px;;
+        margin: 24px auto;;
+        background: #FFFFFF;
+        border: 1px solid #E6E6E6;
+        box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.10);
+        border-radius: 4px;
+        display: table !important;
+    }
+
+    .ie_notice .ie_box .desc {
+        font-size: 14px;
+        color: #6D6D6D;
+        line-height: 22px;
+        padding: 20px;
+    }
+
+    .ie_notice .ie_box a {
+        display: inline-block;
+        width: 30%;
+        text-align: center;
+    }
+
+    .ie_notice .ie_box .go {
+        width: 100%;
+        background: #F6F6F6;
+        font-size: 16px;
+        color: #9B9B9B;
+        padding: 16px 0;
+        text-align: center;
+        border: none;
+        margin-top: 20px;
+        text-decoration: none;
+    }
+
+    .ie_notice .ie_box a img {
+        border: none;
+    }
+</style>
+<center class="ie_dialog" id="incompatible_tip">
+    <div>
+        <br>
+        <table class="ie_notice" style="border:0">
+            <tr>
+                <td>
+                    <img class="logo_osc" src="/img/ie/logo_osc.png"" alt="开源中国"/>
+                </td>
+            </tr>
+            <tr>
+                <td><h2 class="title">我们不支持 IE 10 及以下版本浏览器</h2></td>
+            </tr>
+            <tr>
+                <td><h4 class="subtitle">It appears you’re using an unsupported browser</h4></td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="ie_box">
+                        <div class="desc">为了获得更好的浏览体验，我们强烈建议您使用较新版本的 Chrome、 Firefox、 Safari 等，或者升级到最新版本的IE浏览器。 如果您使用的是
+                            IE 11 或以上版本，请关闭“兼容性视图”。
+                        </div>
+                        <div class="logos">
+                            <a href="http://www.google.cn/chrome/browser/desktop/index.html" target="_blank"
+                               title="下载Chrome浏览器">
+                                <img src="/img/ie/logo_chrome.png"/>
+                            </a>
+                            <a href="http://www.firefox.com.cn" target="_blank" title="下载Firefox浏览器">
+                                <img src="/img/ie/logo_firefox.png"/>
+                            </a>
+                            <a href="http://windows.microsoft.com/zh-cn/internet-explorer/download-ie" target="_blank"
+                               title="升级IE浏览器">
+                                <img src="/img/ie/logo_ie.png"/>
+                            </a>
+                        </div>
+                        <div>
+                            <a href="javascript:void(0);"
+                               onclick="document.getElementById('incompatible_tip').style.cssText = 'display:none;';"
+                               class="go">继续访问</a>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</center>
+
+<script>
+    var isIE = (function () {
+        var browser = {};
+        return function (ver, c) {
+            var key = ver ? ( c ? "is" + c + "IE" + ver : "isIE" + ver ) : "isIE";
+            var v = browser[key];
+            if (typeof(v) != "undefined") {
+                return v;
+            }
+            if (!ver) {
+                v = (navigator.userAgent.indexOf('MSIE') !== -1 || navigator.appVersion.indexOf('Trident/') > 0);
+            } else {
+                var match = navigator.userAgent.match(/(?:MSIE |Trident\/.*; rv:|Edge\/)(\d+)/);
+                if (match) {
+                    var v1 = parseInt(match[1]);
+                    v = c ? ( c == 'lt' ? v1 < ver : ( c == 'gt' ? v1 > ver : undefined ) ) : v1 == ver;
+                } else if (ver <= 9) {
+                    var b = document.createElement('b')
+                    var s = '<!--[if ' + (c ? c : '') + ' IE ' + ver + ']><i></i><![endif]-->';
+                    b.innerHTML = s;
+                    v = b.getElementsByTagName('i').length === 1;
+                } else {
+                    v = undefined;
+                }
+            }
+            browser[key] = v;
+            return v;
+        };
+    }());
+
+        if (isIE(11, 'lt')) {
+        console.log("fvck ie");
+                document.getElementById('incompatible_tip').style.cssText = 'display:block;';
+    }
+
+</script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Content-Language" content="zh-CN">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 此meta用于腾讯验证我们网址的有效性 -->
+    <meta property="qc:admins" content="2554550177673301616654" />
+    <!-- 此meta用于百度站长工具 -->
+    <meta name="baidu-site-verification" content="yikf5IoT7Z" />
+    <meta name="keywords" content="开源,OSC,开源软件,开源硬件,开源网站,开源社区,java开源,perl开源,python开源,ruby开源,php开源,开源项目,开源代码">
+    <meta name="description" itemprop="description" content="开源中国 www.oschina.net 是目前中国最大的开源技术社区。我们传播开源的理念，推广开源项目，为 IT 开发者提供了一个发现、使用、并交流开源技术的平台。目前开源中国社区已收录超过两万款开源软件。, 开源中国社区">
+    <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico?t=1451964198000" />
+    <meta itemprop="image" content="https://www.oschina.net/img/logo_s2.png" />
+    <title>开源中国 - 找到您想要的开源项目，分享和交流</title>
+
+    <link rel="alternate" type="application/rss+xml" title="最新开源项目" href="https://www.oschina.net/project/rss" />
+    <link rel="alternate" type="application/rss+xml" title="最新开源资讯" href="https://www.oschina.net/news/rss" />
+    <link rel="alternate" type="application/rss+xml" title="最新问题列表" href="https://www.oschina.net/question/rss" />
+    <link rel="alternate" type="application/rss+xml" title="最新翻译列表" href="https://www.oschina.net/translate/rss" />
+    <link rel="alternate" type="application/rss+xml" title="最新博客列表" href="https://www.oschina.net/blog/rss" />
+    <link rel="alternate" type="application/rss+xml" title="推荐博客列表" href="https://www.oschina.net/blog/rss?show=more" />
+    <link rel="alternate" type="application/rss+xml" title="推荐软件列表" href="https://www.oschina.net/project/rss?show=recomms" />
+    <link rel="alternate" type="application/rss+xml" title="最新代码分享列表" href="https://www.oschina.net/code/rss" />
+    <link rel="alternate" type="application/rss+xml" title="开源中国 - 源码列表" href="https://www.oschina.net/code/source_rss" />
+
+    <!-- 此script用于百度统计工具-->
+
+
+                    <link type="text/css" rel="stylesheet" href="/dist/oschina/community/stylesheets/community-main-7cc2da92110c93618a211c7f82acf9d6fcd476e4.css">        </head><body class="sc body" data-define="oschina">
+        <div data-traceid="首页" data-tracepid="page_pv" style="display: none"></div>
+        <header class="header-navbar">
+    <div class="box top-banner">
+        <div class="box vertical box-aw">
+            <a href="https://www.oschina.net/" class="osc-logo"></a>
+            <div class="menus">
+                <a class="menu-item" href="https://www.oschina.net/">首页</a>
+                <div class="menu-item menu-drop">
+                    <a href="https://www.oschina.net/project" class="project">
+                        开源项目
+                        <i class="icon-svg icon-arr-down-white"></i>
+                    </a>
+                    <div class="menu-drop-down">
+                        <ul class="drop-list">
+                            <li><a href="https://www.oschina.net/project/zh">国产开源项目</a></li>
+                            <li><a href="https://www.oschina.net/project/tags">项目分类</a></li>
+                            <li><a href="https://www.oschina.net/project/list?sort=time">最新收录项目</a></li>
+                            <li class="split"></li>
+                            <li><a href="https://www.oschina.net/project/lang/19/java">Java 开源软件</a></li>
+                            <li><a href="https://www.oschina.net/project/lang/194/csharp">C# 开源软件</a></li>
+                            <li><a href="https://www.oschina.net/project/lang/22/php">PHP 开源软件</a></li>
+                            <li><a href="https://www.oschina.net/project/lang/21/c">C/C++ 开源软件</a></li>
+                            <li><a href="https://www.oschina.net/project/lang/26/ruby">Ruby 开源软件</a></li>
+                            <li><a href="https://www.oschina.net/project/lang/25/python">Python 开源软件</a></li>
+                            <li><a href="https://www.oschina.net/project/lang/358/go">Go开源软件</a></li>
+                            <li><a href="https://www.oschina.net/project/lang/28/javascript">JS开源软件</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="box menu-item menu-drop">
+                    <a href="https://www.oschina.net/question" class="question">
+                        问答
+                        <i class="icon-svg icon-arr-down-white"></i>
+                    </a>
+                    <div class="menu-drop-down">
+                        <ul class="drop-list">
+                            <li><a href="https://www.oschina.net/question?catalog=1"> 技术问答</a></li>
+                            <li><a href="https://www.oschina.net/question?catalog=2"> 技术分享</a></li>
+                            <li><a href="https://www.oschina.net/question?catalog=3"> IT大杂烩</a></li>
+                            <li><a href="https://www.oschina.net/question?catalog=100"> 职业生涯</a></li>
+                            <li><a href="https://www.oschina.net/question?catalog=4"> 站务/建议</a></li>
+                            <li><a href="https://www.oschina.net/alipay"> 支付宝专区</a></li>
+                            <li><a href="https://www.oschina.net/mopaas"> MoPaaS专区</a></li>
+                            <li><a href="https://www.oschina.net/hardware"> 开源硬件专区</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <a href="https://www.oschina.net/tweets" class="menu-item tweets">动弹</a>
+                <a href="https://www.oschina.net/blog" class="menu-item blog">博客</a>
+                <a href="https://www.oschina.net/translate" class="menu-item tran">翻译</a>
+                <a href="https://www.oschina.net/news" class="menu-item news">资讯</a>
+                <div class="menu-item menu-drop">
+                    <a href="https://www.oschina.net/android" class="mobile">
+                        专题
+                        <i class="icon-svg icon-arr-down-white"></i>
+                    </a>
+                    <div class="menu-drop-down">
+                        <ul class="drop-list drop-list-inline">
+                            <li><a href="https://www.oschina.net/event/ych" class="font-red">源创会</a></li>
+                            <li><a href="https://www.oschina.net/question/tag/%E9%AB%98%E6%89%8B%E9%97%AE%E7%AD%94">高手问答</a> <a
+                                    href="https://www.oschina.net/question/tag/%E5%BC%80%E6%BA%90%E8%AE%BF%E8%B0%88">访谈</a></li>
+                            <li><a href="https://my.oschina.net/editorial-story/blog">周刊</a> <a
+                                    href="https://my.oschina.net/xxiaobian/blog">乱弹</a></li>
+                            <li><a href="https://www.oschina.net/company">公司开源导航页</a></li>
+                        </ul>
+                        <div class="split"></div>
+                        <ul class="drop-list mobile">
+                            <li class="android"><a href="https://www.oschina.net/android">Android开发专区</a></li>
+                            <li class="ios"><a href="https://www.oschina.net/ios/home">iOS开发专区</a></li>
+                            <li class="ios"><a href="https://www.oschina.net/ios/codingList">iOS代码库</a></li>
+                            <li class="wp7"><a href="https://www.oschina.net/wp">Windows Phone</a></li>
+                            <li class="wp7"><a href="https://www.oschina.net/ibm">IBM开发专区</a></li>
+                            <li class="wp7"><a href="http://hsbn.oschina.net/" target="_blank">高安全区块链社区</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <a href="https://www.oschina.net/event" class="menu-item event">活动</a>
+                <a href="https://job.oschina.net/" class="menu-item event">招聘</a>
+                <a href="https://gitee.com?from=osc-index" target="_blank" class="menu-item event mayun">码云</a>
+            </div>
+
+        </div>
+        <div class="box-fr user-bar">
+            <div class="box user-info">
+                                                    [ <a href='https://www.oschina.net/home/login?goto_page=https%3A%2F%2Fwww.oschina.net%2F'>登录</a> | <a
+                        href='https://www.oschina.net/home/reg?goto_page=https%3A%2F%2Fwww.oschina.net%2F'>注册</a> ]
+                            </div>
+        </div>
+    </div>
+</header>
+<!-- 此script用于百度统计工具-->
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?a411c4d1664dd70048ee98afe7b28f0b";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+<section class="bottom-space">
+    <header class="box vertical sec-header osc-banner">
+    <div class="banner-box box vertical">
+        <div class="box vertical box-fl">
+            <a href="https://www.oschina.net/" class="sec-title" title="开源中国社区">
+                <img src="/build/oschina/components/imgs/oschina.svg?t=1484580008000" alt="开源中国社区logo">
+            </a>
+        </div>
+        <div class="box box-aw">
+            <nav class="osc-banner-nav">
+                <div class="box around osc-bnav-wrapper">
+                    <div class="box">
+                        <a href="https://zb.oschina.net/" class="banner-link site" title="众包">众包</a>
+                        <div class="box column">
+                            <a href="https://zb.oschina.net/projects" class="banner-link" title="项目大厅">项目大厅</a>
+                            <a href="https://zb.oschina.net/services" class="banner-link" title="软件与服务">软件与服务</a>
+                            <a href="https://zb.oschina.net/account/choose-role" class="banner-link" title="接活赚钱">接活赚钱</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            <nav class="osc-banner-nav">
+                <div class="box around osc-bnav-wrapper">
+                    <div class="box">
+                        <a href="https://gitee.com/?from=osc-index" class="banner-link site" title="码云">码云</a>
+                        <div class="box column">
+                            <a href="https://gitee.com/enterprises?from=osc-index" target="_blank" class="banner-link" title="码云企业版 3.0">码云企业版&nbsp;3.0<span class="icon_mayun">特惠</span></a>
+                            <a href="https://gitee.com/gists" class="banner-link" title="代码片段分享" target="_blank">代码片段分享</a>
+                            <a href="http://tool.oschina.net/" class="banner-link" target="_blank" title="在线工具">在线工具</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            <nav class="osc-banner-nav">
+                <div class="box around osc-bnav-wrapper">
+                    <div class="box">
+                        <a href="/event" class="banner-link site" title="活动">活动</a>
+                        <div class="box column">
+                            <a href="/event?tab=latest&city=全国&time=all" class="banner-link" title="线下活动">线下活动</a>
+                            <a href="/event/create" class="banner-link" title="发起活动">发起活动</a>
+                            <a href="/event/ych" class="banner-link" title="源创会">源创会</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div class="box-fr">
+            <form class="sec-search" action="https://www.oschina.net/search">
+                <input type='hidden' name='scope' value='project'/>
+                                <input type="text" class="search-text" placeholder="在 45067 款开源软件中搜索" name="q">
+                <button type="submit" class="ic-search box vertical"></button>
+            </form>
+        </div>
+    </div>
+</header>
+    			 					<div name="floatAdbox"  data-traceid="floatAdbox" data-tracepid="floatAdbox"   >
+			<style>
+    .float_adbox {display:none;position:fixed;left:0;bottom:10px;z-index: 10001;}
+    .float_adbox .close-left {position:absolute;top:74px;left:26px;cursor:pointer;}
+</style>
+<div class='float_adbox'>
+    <a href='https://gitee.com/gitee-stars/6?from=osc-index' target='_blank'>
+        <img alt="Float_left" class="float-people" src="https://static.oschina.net/uploads/space/2018/0111/173815_TThb_1046130.png" />
+        <img alt="Icon_close" class="close-left" src="https://static.oschina.net/uploads/space/2018/0111/173815_drYD_1046130.png" />
+    </a>
+</div>
+<script src="https://www.oschina.net/public/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="https://www.oschina.net/uploads/js.cookie.min.js"></script>
+<script>
+    var leftPeople = $('.float_adbox');
+    var isVisit = Cookies.get('visit-gitee-stars-bts-06');
+    if (isVisit == 1) {
+        leftPeople.hide();
+    } else {
+        leftPeople.show();
+    }
+    $('.close-left').on('click', function (e) {
+        e.preventDefault();
+        Cookies.set('visit-gitee-stars-bts-06', 1, { expires: 90, path: '/' });
+        leftPeople.slideUp();
+    })
+</script>
+
+            </div>
+
+    <!-- 首页整体缓存 -->
+    <section class="box sc-container">
+    <!-- 左侧 -->
+    <article class="box-aw main-container">
+        <!-- 综合资讯和软件 -->
+        <section class="box justify news-container" id="v_news">
+            <!--综合资讯 -->
+            <div class="col-of-news">
+    <div class="box justify content-header flag">
+        <a href="/news/industry" class="title fb" title="综合资讯">综合资讯</a>
+        <!-- 固定在第一条的内容 -->
+        <div class="box vertical">
+            <span class="diamond active" :class="{'active':index1==1}" @mouseenter="setPageIndex('index1',1)"></span>
+            <span class="diamond" :class="{'active':index1==2}" @mouseenter="setPageIndex('index1',2)"></span>
+            <span class="diamond" :class="{'active':index1==3}" @mouseenter="setPageIndex('index1',3)"></span>
+            <a href="/news/industry" class="more" title="更多综合资讯">更多</a>
+        </div>
+    </div>
+    <div class="top1">
+                <!--第一条新闻（虽然是列表，但是只有一条的）： -->
+                                    <div class="box vertical">
+
+                    <div class="box-aw">
+                        <a class="top1-link" href="https://www.oschina.net/news/92653/2017-gitee-new-item-list-top-50" target="_blank" title="2017 年度码云新增项目排行榜 TOP 50，技术“大爆炸”">2017 年度码云新增项目排行榜 TOP 50，技术“大爆炸”</a>
+
+                        <p class="wrap top1-content">2017 年度码云新增项目排行榜 TOP 50 正式出炉 ！2017 结束了，我们来关注一下这一年里码云上新增的最热...</p>
+                    </div>
+                </div>
+                        </div>
+        <!-- 第一页 -->
+    <div class="page" :class="{'hide':index1!=1}">
+                                    <div class="box vertical news">
+                    <a class="news-link is-today " href="/news/92719/technology-or-management" title="技术还是管理，程序员应该如何规划自己的职业道路？" target="_blank">技术还是管理，程序员应该如何规划自己的职业道路？</a>
+                    <span class="box-fr news-date">01/24</span>
+                </div>
+                                                <div class="box vertical news">
+                    <a class="news-link is-today " href="https://my.oschina.net/didispace/blog/1611566" title="每日一博 | Spring Cloud 构建消息驱动的微服务架构" target="_blank">每日一博 | Spring Cloud 构建消息驱动的微服务架构</a>
+                    <span class="box-fr news-date">01/24</span>
+                </div>
+                                                <div class="box vertical news">
+                    <a class="news-link is-today " href="/p/darkon" title="Darkon — 可更好理解深度学习模型的工具包" target="_blank">Darkon — 可更好理解深度学习模型的工具包</a>
+                    <span class="box-fr news-date">01/24</span>
+                </div>
+                                                <div class="box vertical news">
+                    <a class="news-link is-today " href="https://gitee.com/52itstyle/spring-boot-elasticsearch" title="码云推荐 | ES 全文搜索引擎 spring-boot-elasticsearch" target="_blank">码云推荐 | ES 全文搜索引擎 spring-boot-elasticsearch</a>
+                    <span class="box-fr news-date">01/24</span>
+                </div>
+                                                <div class="box vertical news">
+                    <a class="news-link is-today " href="/news/92715/ubuntu-18-04-lts-bionic-beaver-will-come-with-boot-speed-boost" title="Canonical 表示，Ubuntu 18.04 LTS 启动速度将会提升" target="_blank">Canonical 表示，Ubuntu 18.04 LTS 启动速度将会提升</a>
+                    <span class="box-fr news-date">01/24</span>
+                </div>
+                                                <div class="box vertical news">
+                    <a class="news-link is-today " href="https://my.oschina.net/xxiaobian/blog/1612127" title="OSChina 周三乱弹 — 您的好友，苏菲利普亲王已经上线" target="_blank">OSChina 周三乱弹 — 您的好友，苏菲利普亲王已经上线</a>
+                    <span class="box-fr news-date">01/24</span>
+                </div>
+                                                <div class="box vertical news">
+                    <a class="news-link is-today " href="/news/92713/facebook-open-sources-detectron" title="脸书开源自家 AR 核心技术，能快速识别影片中的物体" target="_blank">脸书开源自家 AR 核心技术，能快速识别影片中的物体</a>
+                    <span class="box-fr news-date">01/24</span>
+                </div>
+                                                <div class="box vertical news">
+                    <a class="news-link is-today " href="/news/92712/microsoft-and-id2020-cooperation" title="微软与 ID2020 合作，基于区块链推进数字身份认证网络" target="_blank">微软与 ID2020 合作，基于区块链推进数字身份认证网络</a>
+                    <span class="box-fr news-date">01/24</span>
+                </div>
+                                                <div class="box vertical news">
+                    <a class="news-link is-today " href="/news/92711/opensuse-leap-42-2-linux-end-of-life-on-january-26" title="Linux 发行版 openSUSE Leap 42.2 将在本周五到期" target="_blank">Linux 发行版 openSUSE Leap 42.2 将在本周五到期</a>
+                    <span class="box-fr news-date">01/24</span>
+                </div>
+                                                <div class="box vertical news">
+                    <a class="news-link is-today " href="/news/92710/root-causes-of-frequent-restarts-have-been-found" title="Intel 喊你别更新补丁，导致频繁重启根源已被找到" target="_blank">Intel 喊你别更新补丁，导致频繁重启根源已被找到</a>
+                    <span class="box-fr news-date">01/24</span>
+                </div>
+                                            </div>
+    <!-- 第二页 -->
+    <div  class="page hide" :class="{'hide':index1!=2}">
+                    <div class="box vertical news">
+                <a class="news-link   " href="/news/92697/spectre-linux-creator-torvalds-criticises-intels-garbage-patches" title="Linus Torvalds 称英特尔的 Spectre 补丁是“垃圾” " target="_blank">Linus Torvalds 称英特尔的 Spectre 补丁是“垃圾” </a>
+                <span class="box-fr news-date">01/23</span>
+            </div>
+                    <div class="box vertical news">
+                <a class="news-link   " href="https://my.oschina.net/gitosc/blog/1611298" title="码云周刊 | 实用型 Maven 插件，让事情变得简单" target="_blank">码云周刊 | 实用型 Maven 插件，让事情变得简单</a>
+                <span class="box-fr news-date">01/23</span>
+            </div>
+                    <div class="box vertical news">
+                <a class="news-link   " href="https://my.oschina.net/silenceyawen/blog/1610900" title="每日一博 | 在 spring 中使用自定义注解注册监听器" target="_blank">每日一博 | 在 spring 中使用自定义注解注册监听器</a>
+                <span class="box-fr news-date">01/23</span>
+            </div>
+                    <div class="box vertical news">
+                <a class="news-link   " href="/p/laxcus" title="Laxcus — 多集群多用户多任务通用数据管理系统" target="_blank">Laxcus — 多集群多用户多任务通用数据管理系统</a>
+                <span class="box-fr news-date">01/23</span>
+            </div>
+                    <div class="box vertical news">
+                <a class="news-link   " href="https://gitee.com/stevenshen/hexo-theme-BlueLake" title="码云推荐 | 响应式 hexo 博客主题  hexo-theme-BlueLake" target="_blank">码云推荐 | 响应式 hexo 博客主题  hexo-theme-BlueLake</a>
+                <span class="box-fr news-date">01/23</span>
+            </div>
+                    <div class="box vertical news">
+                <a class="news-link   " href="/news/92682/ipv6-large-scale-deployment-ready" title="IPv6 大规模部署蓄势待发 物联网或成“杀手级应用”" target="_blank">IPv6 大规模部署蓄势待发 物联网或成“杀手级应用”</a>
+                <span class="box-fr news-date">01/23</span>
+            </div>
+                    <div class="box vertical news">
+                <a class="news-link   " href="/news/92681/specter-fixes-continue-to-cause-catastrophe" title="Spectre 修复程序持续引发大灾难，Red Hat 干脆撤回" target="_blank">Spectre 修复程序持续引发大灾难，Red Hat 干脆撤回</a>
+                <span class="box-fr news-date">01/23</span>
+            </div>
+                    <div class="box vertical news">
+                <a class="news-link   " href="https://my.oschina.net/xxiaobian/blog/1611550" title="OSC 周二乱弹 — 说完我喜欢你，姑娘把钱都掏出来了" target="_blank">OSC 周二乱弹 — 说完我喜欢你，姑娘把钱都掏出来了</a>
+                <span class="box-fr news-date">01/23</span>
+            </div>
+                    <div class="box vertical news">
+                <a class="news-link   " href="/news/92679/apache-software-foundation-receives-1m-donation" title="Pineapple 捐赠价值百万比特币支持 Apache 软件基金会" target="_blank">Pineapple 捐赠价值百万比特币支持 Apache 软件基金会</a>
+                <span class="box-fr news-date">01/23</span>
+            </div>
+                    <div class="box vertical news">
+                <a class="news-link   " href="/news/92678/google-has-paid-112500-as-bounty-for-an-android-exploit-chain" title="中国安全研究人员获得谷歌 112,500 美元的最高赏金" target="_blank">中国安全研究人员获得谷歌 112,500 美元的最高赏金</a>
+                <span class="box-fr news-date">01/23</span>
+            </div>
+            </div>
+    <!-- 第三页 -->
+    <div  class="page hide" :class="{'hide':index1!=3}">
+                    <div class="box vertical news">
+                <a class="news-link   " href="/news/92677/evrial-trojan-birth-for-the-virtual-currency" target="_blank" title="Evrial 木马诞生：针对虚拟货币，可监视并替换交易地址">Evrial 木马诞生：针对虚拟货币，可监视并替换交易地址</a>
+                <span class="box-fr news-date">01/23</span>
+            </div>
+                    <div class="box vertical news">
+                <a class="news-link   " href="/news/92665/mysql-security-vulnerablity" target="_blank" title="安全预警：MySQL 被发现影响重大的安全漏洞">安全预警：MySQL 被发现影响重大的安全漏洞</a>
+                <span class="box-fr news-date">01/22</span>
+            </div>
+                    <div class="box vertical news">
+                <a class="news-link   " href="/news/92653/2017-gitee-new-item-list-top-50" target="_blank" title="2017 年度码云新增项目排行榜 TOP 50，为它们打“call”">2017 年度码云新增项目排行榜 TOP 50，为它们打“call”</a>
+                <span class="box-fr news-date">01/22</span>
+            </div>
+                    <div class="box vertical news">
+                <a class="news-link   " href="/p/synonyms" target="_blank" title="Synonyms — 基于 Word2vec 的中文近义词工具包">Synonyms — 基于 Word2vec 的中文近义词工具包</a>
+                <span class="box-fr news-date">01/22</span>
+            </div>
+                    <div class="box vertical news">
+                <a class="news-link   " href="https://my.oschina.net/u/1778239/blog/1610185" target="_blank" title="每日一博 | 一篇文章看懂 Java 并发和线程安全（一）">每日一博 | 一篇文章看懂 Java 并发和线程安全（一）</a>
+                <span class="box-fr news-date">01/22</span>
+            </div>
+                    <div class="box vertical news">
+                <a class="news-link   " href="https://gitee.com/tommygun/PgBatis3AutoCode" target="_blank" title="码云推荐 | 代码自动生成工具 PgBatis3AutoCode">码云推荐 | 代码自动生成工具 PgBatis3AutoCode</a>
+                <span class="box-fr news-date">01/22</span>
+            </div>
+                    <div class="box vertical news">
+                <a class="news-link   " href="/news/92649/the-national-high-school-new-curriculum-standard" target="_blank" title="教育部：AI、算法、开源硬件等进入全国高中新课标">教育部：AI、算法、开源硬件等进入全国高中新课标</a>
+                <span class="box-fr news-date">01/22</span>
+            </div>
+                    <div class="box vertical news">
+                <a class="news-link   " href="/news/92648/openssl-development-policy-changes" target="_blank" title="OpenSSL 改变开发策略：转用 GitHub issue 讨论补丁">OpenSSL 改变开发策略：转用 GitHub issue 讨论补丁</a>
+                <span class="box-fr news-date">01/22</span>
+            </div>
+                    <div class="box vertical news">
+                <a class="news-link   " href="/news/92647/best-web-browsers-for-pc" target="_blank" title="2017 年度十大最受欢迎的浏览器，你在用哪一款？">2017 年度十大最受欢迎的浏览器，你在用哪一款？</a>
+                <span class="box-fr news-date">01/22</span>
+            </div>
+                    <div class="box vertical news">
+                <a class="news-link   " href="https://my.oschina.net/xxiaobian/blog/1610770" target="_blank" title="OSChina 周一乱弹 —— 一个游戏值 9999 个比特币">OSChina 周一乱弹 —— 一个游戏值 9999 个比特币</a>
+                <span class="box-fr news-date">01/22</span>
+            </div>
+            </div>
+</div>            <!--软件资讯 -->
+            <div class="col-of-news">
+    <div class="box justify content-header">
+        <a href="/news/project" class="title fb" title="软件更新资讯">软件更新资讯</a>
+        <!-- 固定在第一条的内容 -->
+        <div class="box vertical">
+            <span class="diamond active" :class="{'active':index2==1}" @mouseenter="setPageIndex('index2',1)"></span>
+            <span class="diamond" :class="{'active':index2==2}" @mouseenter="setPageIndex('index2',2)"></span>
+            <span class="diamond" :class="{'active':index2==3}" @mouseenter="setPageIndex('index2',3)"></span>
+            <a href="/news/project"  class="more" title="更多软件更新资讯">更多</a>
+        </div>
+    </div>
+    <!-- 固定在第一条的内容 -->
+    <div class="top1">
+                <!-- 第一条新闻（虽然是列表，但是只有一条的）： -->
+                    <div class="box vertical">
+
+                <div class="box-aw">
+                    <a class="top1-link" target="_blank" href="/news/92687/dubbo-spring-boot-starter-1-0-0" title="官方 Dubbo Spring Boot Starter 1.0.0 公测版即将发布">官方 Dubbo Spring Boot Starter 1.0.0 公测版即将发布</a>
+
+                    <p class="wrap top1-content">据阿里开发团队宣布，Dubbo Spring Boot Starter 1.0.0 公测版已开发完毕，即将发布至 Maven 公有仓库，...</p>
+                </div>
+            </div>
+            </div>
+        <!-- 第一页 -->
+    <div class="page" :class="{'hide':index2!=1}">
+                                    <div class="box vertical news">
+                    <a target="_blank" class="news-link is-today  " href="/news/92724/mapper-3-5-2-released" title="Mybatis 通用 Mapper 3.5.2 发布">Mybatis 通用 Mapper 3.5.2 发布</a>
+                    <span class="box-fr news-date">01/24</span>
+                </div>
+                                                <div class="box vertical news">
+                    <a target="_blank" class="news-link is-today  " href="/news/92723" title="Proxy-Go v4.1 发布，升级 Basic 认证和进行多项优化">Proxy-Go v4.1 发布，升级 Basic 认证和进行多项优化</a>
+                    <span class="box-fr news-date">01/24</span>
+                </div>
+                                                <div class="box vertical news">
+                    <a target="_blank" class="news-link is-today  " href="/news/92722/oschina-android-app-v4.10-release" title="开源中国 Android 客户端 v4.1.0 发布，可以看国外文章">开源中国 Android 客户端 v4.1.0 发布，可以看国外文章</a>
+                    <span class="box-fr news-date">01/24</span>
+                </div>
+                                                <div class="box vertical news">
+                    <a target="_blank" class="news-link is-today  " href="/news/92721/apache-nifi-minifi-0-4-0" title="Apache NiFi MiNiFi 0.4.0 发布，改善错误报告">Apache NiFi MiNiFi 0.4.0 发布，改善错误报告</a>
+                    <span class="box-fr news-date">01/24</span>
+                </div>
+                                                <div class="box vertical news">
+                    <a target="_blank" class="news-link is-today  " href="/news/92720/thinkcmf-5-0-180123-released" title="ThinkCMF 5.0.180123 正式版发布，支持小程序开发">ThinkCMF 5.0.180123 正式版发布，支持小程序开发</a>
+                    <span class="box-fr news-date">01/24</span>
+                </div>
+                                                <div class="box vertical news">
+                    <a target="_blank" class="news-link is-today  " href="/news/92709/j2cache-2-3-5" title="J2Cache 2.3.5 正式版发布，支持缓存空对象">J2Cache 2.3.5 正式版发布，支持缓存空对象</a>
+                    <span class="box-fr news-date">01/24</span>
+                </div>
+                                                <div class="box vertical news">
+                    <a target="_blank" class="news-link is-today  " href="/news/92708/spring-framework-5-0-3-and-4-3-14" title="Spring Framework 5.0.3 和 4.3.14，开始支持 JDK 10">Spring Framework 5.0.3 和 4.3.14，开始支持 JDK 10</a>
+                    <span class="box-fr news-date">01/24</span>
+                </div>
+                                                <div class="box vertical news">
+                    <a target="_blank" class="news-link is-today  " href="/news/92707/castle-game-engine-6-4" title="Castle Game Engine 6.4 发布，带来大量新特性">Castle Game Engine 6.4 发布，带来大量新特性</a>
+                    <span class="box-fr news-date">01/24</span>
+                </div>
+                                                <div class="box vertical news">
+                    <a target="_blank" class="news-link is-today  " href="/news/92706/ampache-3-8-5" title="Ampache 3.8.5 发布，Web 音视频流应用/文件管理器">Ampache 3.8.5 发布，Web 音视频流应用/文件管理器</a>
+                    <span class="box-fr news-date">01/24</span>
+                </div>
+                                                <div class="box vertical news">
+                    <a target="_blank" class="news-link is-today  " href="/news/92705/tomcat-8-5-27-and-9-0-4" title="Apache Tomcat 8.5.27 和 9.0.4 发布，支持 GZIP 压缩">Apache Tomcat 8.5.27 和 9.0.4 发布，支持 GZIP 压缩</a>
+                    <span class="box-fr news-date">01/24</span>
+                </div>
+                                            </div>
+    <!-- 第二页 -->
+    <div  class="page hide" :class="{'hide':index2!=2}">
+                    <div class="box vertical news">
+                <a target="_blank" class="news-link is-today  " href="/news/92704/vue-element-admin-3-6-1" title="vue-element-admin v3.6.1 发布，后台集成方案">vue-element-admin v3.6.1 发布，后台集成方案</a>
+                <span class="box-fr news-date">01/24</span>
+            </div>
+                    <div class="box vertical news">
+                <a target="_blank" class="news-link is-today  " href="/news/92703/darktable-2-4-1" title="Darktable 2.4.1 发布，跨平台 RAW 图像编辑器">Darktable 2.4.1 发布，跨平台 RAW 图像编辑器</a>
+                <span class="box-fr news-date">01/24</span>
+            </div>
+                    <div class="box vertical news">
+                <a target="_blank" class="news-link is-today  " href="/news/92702/dejavu-1-4-0" title="dejaVu 1.4.0 发布，ElasticSearch 的 Web UI 工具">dejaVu 1.4.0 发布，ElasticSearch 的 Web UI 工具</a>
+                <span class="box-fr news-date">01/24</span>
+            </div>
+                    <div class="box vertical news">
+                <a target="_blank" class="news-link is-today  " href="/news/92701/apache-jackrabbit-1-0-41" title="Apache Jackrabbit Oak 1.0.41 发布，内容储存库">Apache Jackrabbit Oak 1.0.41 发布，内容储存库</a>
+                <span class="box-fr news-date">01/24</span>
+            </div>
+                    <div class="box vertical news">
+                <a target="_blank" class="news-link is-today  " href="/news/92700/ghc-8-4-1-alpha2" title="GHC 8.4.1 alpha2 发布，Haskell 顶级编译套件">GHC 8.4.1 alpha2 发布，Haskell 顶级编译套件</a>
+                <span class="box-fr news-date">01/24</span>
+            </div>
+                    <div class="box vertical news">
+                <a target="_blank" class="news-link   " href="/news/92699/hutool-4-0-2" title="Hutool 4.0.2 发布，Java 工具">Hutool 4.0.2 发布，Java 工具</a>
+                <span class="box-fr news-date">01/23</span>
+            </div>
+                    <div class="box vertical news">
+                <a target="_blank" class="news-link   " href="/news/92698/smart-socket-1-3-0" title="smart-socket v1.3.0 发布：通信安全，不妥协！">smart-socket v1.3.0 发布：通信安全，不妥协！</a>
+                <span class="box-fr news-date">01/23</span>
+            </div>
+                    <div class="box vertical news">
+                <a target="_blank" class="news-link   " href="/news/92694/egret-engine-5-1-4-released" title="白鹭引擎 5.1.4 发布，完善微信小游戏，QQ 玩一玩">白鹭引擎 5.1.4 发布，完善微信小游戏，QQ 玩一玩</a>
+                <span class="box-fr news-date">01/23</span>
+            </div>
+                    <div class="box vertical news">
+                <a target="_blank" class="news-link   " href="/news/92693/rhaphp-1-3-1-released" title="RhaPHP 1.3.1 版本发布，免费开源微信公众号管理系统">RhaPHP 1.3.1 版本发布，免费开源微信公众号管理系统</a>
+                <span class="box-fr news-date">01/23</span>
+            </div>
+                    <div class="box vertical news">
+                <a target="_blank" class="news-link   " href="/news/92692/quill-1-3-5" title="Quill 1.3.5 发布，开源富文本编辑器">Quill 1.3.5 发布，开源富文本编辑器</a>
+                <span class="box-fr news-date">01/23</span>
+            </div>
+            </div>
+    <!-- 第三页 -->
+    <div  class="page hide" :class="{'hide':index2!=3}">
+                    <div class="box vertical news">
+                <a target="_blank" class="news-link   " href="/news/92691/netty-4-0-55-final-and-4-1-20-final-released" title="Netty 4.0.55 和 4.1.20.Final 发布，Java 网络服务框架">Netty 4.0.55 和 4.1.20.Final 发布，Java 网络服务框架</a>
+                <span class="box-fr news-date">01/23</span>
+            </div>
+                    <div class="box vertical news">
+                <a target="_blank" class="news-link   " href="/news/92689/doclever-5-4-0-released" title="DOClever 5.4.0 大幅增强自动化测试并支持可视化 UI">DOClever 5.4.0 大幅增强自动化测试并支持可视化 UI</a>
+                <span class="box-fr news-date">01/23</span>
+            </div>
+                    <div class="box vertical news">
+                <a target="_blank" class="news-link   " href="/news/92688/rdoc-1-3-3" title="RDoc 1.3.3 发布，兼容 Windows 系统下运行">RDoc 1.3.3 发布，兼容 Windows 系统下运行</a>
+                <span class="box-fr news-date">01/23</span>
+            </div>
+                    <div class="box vertical news">
+                <a target="_blank" class="news-link   " href="/news/92676/prometheus-2-1-0" title="Prometheus 2.1.0 发布，服务监控系统">Prometheus 2.1.0 发布，服务监控系统</a>
+                <span class="box-fr news-date">01/23</span>
+            </div>
+                    <div class="box vertical news">
+                <a target="_blank" class="news-link   " href="/news/92675/jsdom-11-6-0" title="Jsdom 11.6.0 发布，Web 标准的纯 JavaScript 实现">Jsdom 11.6.0 发布，Web 标准的纯 JavaScript 实现</a>
+                <span class="box-fr news-date">01/23</span>
+            </div>
+                    <div class="box vertical news">
+                <a target="_blank" class="news-link   " href="/news/92674/go-1-9-3" title="Go 语言 1.9.3 发布，Go 1.10 计划下个月发布">Go 语言 1.9.3 发布，Go 1.10 计划下个月发布</a>
+                <span class="box-fr news-date">01/23</span>
+            </div>
+                    <div class="box vertical news">
+                <a target="_blank" class="news-link   " href="/news/92673/egg-2-2-1" title="Egg 2.2.1 发布，阿里开源的企业级 Node.js 框架">Egg 2.2.1 发布，阿里开源的企业级 Node.js 框架</a>
+                <span class="box-fr news-date">01/23</span>
+            </div>
+                    <div class="box vertical news">
+                <a target="_blank" class="news-link   " href="/news/92672/simditor-2-3-11" title="Simditor v2.3.11 发布，简单快速的富文本编辑器">Simditor v2.3.11 发布，简单快速的富文本编辑器</a>
+                <span class="box-fr news-date">01/23</span>
+            </div>
+                    <div class="box vertical news">
+                <a target="_blank" class="news-link   " href="/news/92671/git-for-windows-2-16-1" title="Git for Windows 2.16.1 发布，分布式版本控制系统">Git for Windows 2.16.1 发布，分布式版本控制系统</a>
+                <span class="box-fr news-date">01/23</span>
+            </div>
+                    <div class="box vertical news">
+                <a target="_blank" class="news-link   " href="/news/92670/draftjs-0-10-5" title="Draft.js v0.10.5 发布，用于 React 的富文本编辑框架">Draft.js v0.10.5 发布，用于 React 的富文本编辑框架</a>
+                <span class="box-fr news-date">01/23</span>
+            </div>
+            </div>
+</div>        </section>
+        			 					<div name="index_banner_one"  data-traceid="index01" data-tracepid="index_banner_one"   >
+			<div id="index-banner-one" data-traceid="index01" data-tracepid="index_banner_one" style="margin-top: 10px;margin-bottom: -10px;"><a href="http://click.aliyun.com/m/9083/" target="_blank" style="max-width:900px;max-height:64px;"></a></div>
+<script>
+    function success_jsonpCallback(data) {
+        var obj = eval(data);
+        if( obj.success ){
+            var contents = eval(obj.data[0].content);
+            if(contents.length > 0){
+                var content = contents[0];
+                $('#index-banner-one').html("<a  href='"+ content.url +"' target='_blank' style='max-width:900px;max-height:64px;'><img src='"+content.img+"'/></a>");
+            }
+
+        }else {
+            $('#index-banner-one').hide();
+        }
+    }
+    window.addEventListener("load", function() {
+         var url="https://promotion.aliyun.com/promotion/adv/getAliyunAdv.htm?cback=success_jsonpCallback&s=9cd174d9efd443e3982131f97b07e70f&p=page_1470989159759&pin=pos_1488361958646";
+        $.ajax({
+            type: 'POST',
+            url: url,
+            jsonp: "callback",
+            dataType: 'jsonp',
+            jsonpCallback: 'success_jsonpCallback',
+            contentType: "application/json; charset=utf-8",
+            success: function( response ) {
+                // do in callback
+            },
+            error:function(){
+                $('#index-banner-one').hide();
+            }
+        });
+    }, false);
+</script>
+
+            </div>
+				        <!-- 软件 -->
+        <section class="box soft-container">
+            <!-- 每周推荐 -->
+            <div class="box-aw">
+
+    <div class="box justify content-header flag">
+        <a href="/project/weekly_projects" class="title fb" title="每周软件推荐">每周软件推荐</a>
+
+        <a href="/project/weekly_projects" class="more" title="更多软件推荐">更多</a>
+    </div>
+        <div class="box soft-figure">
+        <div class="box-fl">
+                        <a href="/p/vmware-dispatch" class="soft-wrapper bigger" title="开源 Serverless 框架 VMware-Dispatch">
+                <figure class="figure">
+                    <img class="soft-icon" src="https://static.oschina.net/uploads/space/2018/0118/111615_fEMd_2903254.png" alt="开源 Serverless 框架 VMware-Dispatch">
+                    <figcaption class="figcaption">
+                        <div class="figure-title fb big">开源 Serverless 框架 VMware-Dispatch</div>
+                    </figcaption>
+                </figure>
+            </a>
+        </div>
+        <div class="box justify wrap box-aw">
+
+                <a href="/p/inmap" class="soft-wrapper normal  mb " title="基于 Canvas 的大数据可视化库 inMap">
+                    <figure class="figure">
+                        <img class="soft-icon" src="https://static.oschina.net/uploads/space/2018/0114/083401_qFI0_12.jpg" alt="基于 Canvas 的大数据可视化库 inMap">
+                        <figcaption class="figcaption">
+                            <div class="figure-title fb">基于 Canvas 的大数据可视化库 inMap</div>
+                        </figcaption>
+                    </figure>
+                </a>
+
+                <a href="/p/apache-edgent" class="soft-wrapper normal  mb " title="面向物联网设备的运行时 Apache Edgent">
+                    <figure class="figure">
+                        <img class="soft-icon" src="https://static.oschina.net/uploads/space/2018/0107/170100_NGXK_12.jpg" alt="面向物联网设备的运行时 Apache Edgent">
+                        <figcaption class="figcaption">
+                            <div class="figure-title fb">面向物联网设备的运行时 Apache Edgent</div>
+                        </figcaption>
+                    </figure>
+                </a>
+
+                <a href="/p/tucodec" class="soft-wrapper normal " title="基于网络通信协议所集成的 VoIP 技术 Tucodec">
+                    <figure class="figure">
+                        <img class="soft-icon" src="https://static.oschina.net/uploads/space/2018/0101/083930_R7a0_12.jpg" alt="基于网络通信协议所集成的 VoIP 技术 Tucodec">
+                        <figcaption class="figcaption">
+                            <div class="figure-title fb">基于网络通信协议所集成的 VoIP 技术 Tucodec</div>
+                        </figcaption>
+                    </figure>
+                </a>
+
+                <a href="/p/react-static" class="soft-wrapper normal " title="渐进式静态网站生成器 React Static">
+                    <figure class="figure">
+                        <img class="soft-icon" src="https://static.oschina.net/uploads/space/2017/1224/080502_3i0d_12.jpg" alt="渐进式静态网站生成器 React Static">
+                        <figcaption class="figcaption">
+                            <div class="figure-title fb">渐进式静态网站生成器 React Static</div>
+                        </figcaption>
+                    </figure>
+                </a>
+                                    </div>
+    </div>
+</div>            <!-- 码云 -->
+            <div class="box-fr aside-container">
+
+    <div class="box justify content-header">
+        <span class="box">
+            <a href="https://gitee.com/explore/recommend" title="码云最新推荐"><img class="myicon" src='/build/oschina/community/stylesheets/imgs/git.svg?t=1509508820000'></a>
+            <a href="https://gitee.com/explore/recommend" class="title fb" title="码云最新推荐">码云最新推荐</a>
+        </span>
+        <a href="https://gitee.com/explore/recommend" class="more" title="更多码云最新推荐">更多</a>
+    </div>
+
+        <a class=" git-project" href="https://gitee.com/smirkcat/cardidpsm" title="cardidpsm">
+            <div class="box">
+                <h1 class="git-name">cardidpsm</h1>
+                <span class="git-lang">[C++]</span>
+            </div>
+            <p class="git-content wrap">文本里面身份证号码银行卡号码快速识别</p>
+        </a>
+
+        <a class=" git-project" href="https://gitee.com/daba0007/game2048" title="game2048">
+            <div class="box">
+                <h1 class="git-name">game2048</h1>
+                <span class="git-lang">[Python]</span>
+            </div>
+            <p class="git-content wrap">最近突然想起来之前一个很火的游戏2048，于是我就做了一个网站，然后希望自己能够写出一个比较好的算法来...</p>
+        </a>
+
+        <a class=" git-project" href="https://gitee.com/52itstyle/spring-boot-elasticsearch" title="spring-boot-elasticsearch">
+            <div class="box">
+                <h1 class="git-name">spring-boot-elasticsearch</h1>
+                <span class="git-lang">[Java]</span>
+            </div>
+            <p class="git-content wrap">ES全文搜索引擎，基于Elasticsearch构建网站日志处理系统，通过数据同步工具等一些列开源组件来快速构建...</p>
+        </a>
+
+        <a class=" git-project" href="https://gitee.com/cgoxopx/BrowserHack" title="BrowserHack">
+            <div class="box">
+                <h1 class="git-name">BrowserHack</h1>
+                <span class="git-lang">[C]</span>
+            </div>
+            <p class="git-content wrap">nethack网页版</p>
+        </a>
+
+        <a class=" git-project" href="https://gitee.com/crafts/light-push" title="light-push">
+            <div class="box">
+                <h1 class="git-name">light-push</h1>
+                <span class="git-lang">[JavaScript]</span>
+            </div>
+            <p class="git-content wrap">轻量级推送服务和实时在线监控平台，基于node的socket.io，支持web、android、ios客户端，支持移动端离线...</p>
+        </a>
+    </div>        </section>
+        <!-- 众包 -->
+        <section class="zb-container">
+        <!-- 博客分类 -->
+    <header class="box justify content-header flag">
+        <a href='https://zb.oschina.net/' class="title fb" title="开源中国众包">开源中国众包</a>
+        <!-- 固定在第一条的内容 -->
+        <div class="box box-aw link-wrapper">
+            <a class="sub-link" href='https://zb.oschina.net/?type=2' target='_blank' title="微信小程序">微信小程序</a>
+            <a class="sub-link" href='https://zb.oschina.net/?type=0' target='_blank' title="网站开发">网站开发</a>
+            <a class="sub-link" href='https://zb.oschina.net/?type=1' target='_blank' title="APP">APP</a>
+            <a class="sub-link" href='https://zb.oschina.net/?type=2' target='_blank' title="微信服务号">微信服务号</a>
+            <a class="sub-link" href='https://zb.oschina.net/?type=3' target='_blank' title="H5营销">H5营销</a>
+        </div>
+        <div class="box vertical box-fr">
+            <a href='https://zb.oschina.net/' target='_blank' class="image-url" title="进入众包平台"><img class="smicon" src='/build/oschina/community/stylesheets/imgs/zb/goto.svg?t=1484694603000'></a>
+            <a class="more icon" href='https://zb.oschina.net/' target='_blank' title="进入众包平台">进入众包平台</a>
+        </div>
+    </header>
+    <section class="box">
+        <articel class="box-aw">
+                                                <div class="box vertical osc-link">
+                        <a class="link-content zb-width" href="https://zb.oschina.net/project/74e64e880f302f0b" target="_blank" title="【华为】华为公有云服务SDK开发">【华为】华为公有云服务SDK开发</a>
+                        <span class="box-fr yen">竞标报价</span>
+                    </div>
+                                                                <div class="box vertical osc-link">
+                        <a class="link-content zb-width" href="https://zb.oschina.net/project/a18fdf0f11d3a6db" target="_blank" title="ANDROID 美妆美颜APP外包">ANDROID 美妆美颜APP外包</a>
+                        <span class="box-fr yen">竞标报价</span>
+                    </div>
+                                                                <div class="box vertical osc-link">
+                        <a class="link-content zb-width" href="https://zb.oschina.net/project/272deb7041e975b9" target="_blank" title="移动端订单系统（要买源码）">移动端订单系统（要买源码）</a>
+                        <span class="box-fr yen">竞标报价</span>
+                    </div>
+                                                                <div class="box vertical osc-link">
+                        <a class="link-content zb-width" href="https://zb.oschina.net/project/7399544235ff4e65" target="_blank" title="Android逆向开发">Android逆向开发</a>
+                        <span class="box-fr yen">&yen;5,000</span>
+                    </div>
+                                                                <div class="box vertical osc-link">
+                        <a class="link-content zb-width" href="https://zb.oschina.net/project/a21f8c029368fb6f" target="_blank" title="Flash三打哈棋牌游戏">Flash三打哈棋牌游戏</a>
+                        <span class="box-fr yen">&yen;5,000</span>
+                    </div>
+                                                                <div class="box vertical osc-link">
+                        <a class="link-content zb-width" href="https://zb.oschina.net/project/36265d0cb2897af2" target="_blank" title="Excel 报表宏脚本开发">Excel 报表宏脚本开发</a>
+                        <span class="box-fr yen">&yen;3,000</span>
+                    </div>
+                                                                <div class="box vertical osc-link">
+                        <a class="link-content zb-width" href="https://zb.oschina.net/project/7cac9fcf143fdded" target="_blank" title=".net后台开发的交友类微信小程序">.net后台开发的交友类微信小程序</a>
+                        <span class="box-fr yen">&yen;5,000</span>
+                    </div>
+                                                                <div class="box vertical osc-link">
+                        <a class="link-content zb-width" href="https://zb.oschina.net/project/dccbeaedde1e7248" target="_blank" title="中国移动新八达通项目">中国移动新八达通项目</a>
+                        <span class="box-fr yen">竞标报价</span>
+                    </div>
+                                                                <div class="box vertical osc-link">
+                        <a class="link-content zb-width" href="https://zb.oschina.net/project/da41b62721794766" target="_blank" title="某集团中台规划咨询项目">某集团中台规划咨询项目</a>
+                        <span class="box-fr yen">&yen;50,000</span>
+                    </div>
+                                                                <div class="box vertical osc-link">
+                        <a class="link-content zb-width" href="https://zb.oschina.net/project/1403f4b21f807d24" target="_blank" title="制作提取轮廓的CorelDarw插件">制作提取轮廓的CorelDarw插件</a>
+                        <span class="box-fr yen">&yen;3,000</span>
+                    </div>
+                                                                <div class="box vertical osc-link">
+                        <a class="link-content zb-width" href="https://zb.oschina.net/project/37d9d2d86a5817a0" target="_blank" title="夜郎厨房CVKB2C端微商城">夜郎厨房CVKB2C端微商城</a>
+                        <span class="box-fr yen">&yen;3,000</span>
+                    </div>
+                                                                <div class="box vertical osc-link">
+                        <a class="link-content zb-width" href="https://zb.oschina.net/project/ea3bac8b597b388f" target="_blank" title="唯品会系统点击">唯品会系统点击</a>
+                        <span class="box-fr yen">&yen;4,500</span>
+                    </div>
+                                    </articel>
+        <aside class="box-fr aside">
+            <header class="box vertical justify nav">
+                <figure class="box">
+                    <img class="smicon" src='/build/oschina/community/stylesheets/imgs/zb/service.svg?t=1484694603000' alt="开源技术服务">
+                    <figcaption class="title">开源技术服务</figcaption>
+                </figure>
+                <a class="more" href='https://zb.oschina.net/services' target="_blank" title="更多开源技术服务">更多</a>
+            </header>
+            <section class="box wrap justify">
+                <a class="zb-service-wrapper" href='https://zb.oschina.net/services/?key=mongoDB' target="_blank" title="mongoDB">
+                    <figure class="zb-figure">
+                        <img class="zb-figthumb"
+                             src='/build/oschina/community/stylesheets/imgs/zb/zb_mongodb.jpg?t=1484694603000'>
+                        <figcaption class="zb-service">mongoDB</figcaption>
+                    </figure>
+                </a>
+                <a class="zb-service-wrapper" href='https://zb.oschina.net/services/?key=WordPress' target="_blank"
+                   title="WordPress">
+                    <figure class="zb-figure">
+                        <img class="zb-figthumb"
+                             src='/build/oschina/community/stylesheets/imgs/zb/zb_wordpress.jpg?t=1484694603000'>
+                        <figcaption class="zb-service">WordPress</figcaption>
+                    </figure>
+                </a>
+                <a class="zb-service-wrapper" href='https://zb.oschina.net/services/?key=Linux' target="_blank" title="Linux">
+                    <figure class="zb-figure">
+                        <img class="zb-figthumb"
+                             src='/build/oschina/community/stylesheets/imgs/zb/zb_redhat.jpg?t=1484694603000'>
+                        <figcaption class="zb-service">Linux</figcaption>
+                    </figure>
+                </a>
+                <a class="zb-service-wrapper" href='https://zb.oschina.net/services/?key=Java' target="_blank" title="Java">
+                    <figure class="zb-figure">
+                        <img class="zb-figthumb" src='/build/oschina/community/stylesheets/imgs/zb/zb_java.jpg?t=1484694603000'>
+                        <figcaption class="zb-service">Java</figcaption>
+                    </figure>
+                </a>
+                <a class="zb-service-wrapper" href='https://zb.oschina.net/services/?key=Docker' target="_blank" title="Docker">
+                    <figure class="zb-figure">
+                        <img class="zb-figthumb"
+                             src='/build/oschina/community/stylesheets/imgs/zb/zb_docker.jpg?t=1484694603000'>
+                        <figcaption class="zb-service">Docker</figcaption>
+                    </figure>
+                </a>
+                <a class="zb-service-wrapper" href='https://zb.oschina.net/services/?key=MySQL' target="_blank" title="MySQL">
+                    <figure class="zb-figure">
+                        <img class="zb-figthumb"
+                             src='/build/oschina/community/stylesheets/imgs/zb/zb_mysql.jpg?t=1484694603000'>
+                        <figcaption class="zb-service">MySQL</figcaption>
+                    </figure>
+                </a>
+                <a class="zb-service-wrapper" href='https://zb.oschina.net/services/?key=Python' target="_blank" title="Python">
+                    <figure class="zb-figure">
+                        <img class="zb-figthumb"
+                             src='/build/oschina/community/stylesheets/imgs/zb/zb_python.jpg?t=1484694603000'>
+                        <figcaption class="zb-service">Python</figcaption>
+                    </figure>
+                </a>
+                <a class="zb-service-wrapper" href='https://zb.oschina.net/services/?key=Apache' target="_blank" title="Apache">
+                    <figure class="zb-figure">
+                        <img class="zb-figthumb"
+                             src='/build/oschina/community/stylesheets/imgs/zb/zb_apache.jpg?t=1484694603000'>
+                        <figcaption class="zb-service">Apache</figcaption>
+                    </figure>
+                </a>
+            </section>
+            <footer class="box justify">
+                <a href='https://zb.oschina.net/publish' target="_blank" title="我要找人做项目">
+                    <figure>
+                        <img class="zb-link-img" src='/build/oschina/community/stylesheets/imgs/zb/ic_zb_find.svg?t=1484694603000'>
+                    </figure>
+                </a>
+                <a href='https://zb.oschina.net/invite' target="_blank" title="我要成为服务商">
+                    <figure>
+                        <img class="zb-link-img" src='/build/oschina/community/stylesheets/imgs/zb/ic_zb_service.svg?t=1484694603000'>
+                    </figure>
+                </a>
+            </footer>
+        </aside>
+    </section>
+</section>        			 					<div class='jj' style='font-size:0;margin: 12px 0 0 0;'>
+			<a name="index_banner_two"/>
+			<a  data-traceid="index02" data-tracepid="index_banner_two"   href="http://clickc.admaster.com.cn/c/a102398,b2255296,c3159,i0,m101,8a1,8b2,h" target="_blank" title="华为云">
+				<img src="https://static.oschina.net/uploads/cooperation/index_banner_two_OkaIl.jpg" width="900" height="64">
+			</a>
+            			 </div>
+				        <!-- 技术问答 -->
+        <section>
+    <!-- 头 -->
+    <header class="box justify content-header flag">
+        <a href="/question" class="title fb" title="技术问答">技术问答</a>
+        <!-- 固定在第一条的内容 -->
+        <div class="box box-aw link-wrapper">
+                            <a class="sub-link" href="/question?catalog=1" title="技术问答">技术问答</a>
+                            <a class="sub-link" href="/question?catalog=2" title="技术分享">技术分享</a>
+                            <a class="sub-link" href="/question?catalog=3" title="IT大杂烩">IT大杂烩</a>
+                            <a class="sub-link" href="/question?catalog=4" title="站务/建议">站务/建议</a>
+                        <a class="sub-link" href="http://www.oschina.net/search?scope=bbs&q=%E5%BE%AE%E7%94%B5%E5%BD%B1" title="微电影">微电影</a>
+            <a class="sub-link r-highlight" href='/question?catalog=100' title="职业生涯">职业生涯</a>
+        </div>
+        <div class="box vertical box-fr">
+            <a href="/question/ask" class="image-url" title="我要提问"><img class="smicon" src='/build/oschina/community/stylesheets/imgs/ic_add.svg?t=1485012124000'></a>
+            <a href="/question/ask" class="more icon" title="我要提问">我要提问</a>
+        </div>
+    </header>
+    <section class="box question-container">
+        <!-- 列表 -->
+        <div class="box-aw">
+    <!--热门标签：-->
+    <div class="box wrap tags-wrapper">
+        <a class="tag" href="/question/tag/OSCHINA%E5%8E%9F%E5%88%9B%E7%BF%BB%E8%AF%91" title="原创翻译">原创翻译</a>
+        <a class="tag" href="/question/tag/oschina" title="OSCHINA">OSCHINA</a>
+        <a class="tag" href="/question/tag/java" title="Java">Java</a>
+        <a class="tag" href="/question/tag/cpp" title="C/C++">C/C++</a>
+        <a class="tag" href="/question/tag/php" title="PHP">PHP</a>
+
+
+        <a class="tag" href="/android" title="Android">Android</a>
+        <a class="tag" href="/ios" title="iOS">iOS</a>
+
+    </div>
+    <!-- 问答列表 -->
+    <div>
+
+
+
+            <div class="box vertical osc-link">
+                <a title="嗨翻，华为云社区年度盛典嘉年华火热进行中！十大分会场，抢万元豪礼！" class="link-content technology-width  highlight  " href="https://www.oschina.net/question/2663968_2273326">[顶]嗨翻，华为云社区年度盛典嘉年华火热进行中！十大分会场，抢万元豪礼！</a>
+                <span class="box-fr sub-of">0回/33阅</span>
+            </div>
+
+
+
+            <div class="box vertical osc-link">
+                <a title="【华为云市场】“吐槽有礼 no 吐 no 快”--求批评我们是认真的（活动时间：1/11--1/31）" class="link-content technology-width  highlight  " href="https://www.oschina.net/question/2663968_2273125">[顶]【华为云市场】“吐槽有礼 no 吐 no 快”--求批评我们是认真的（活动时间：1/11--1/31）</a>
+                <span class="box-fr sub-of">0回/1111阅</span>
+            </div>
+
+
+
+            <div class="box vertical osc-link">
+                <a title="请问tio可以在建立连接时做用户验证吗" class="link-content technology-width " href="https://www.oschina.net/question/438468_2273370">请问tio可以在建立连接时做用户验证吗</a>
+                <span class="box-fr sub-of">0回/1阅</span>
+            </div>
+
+
+
+            <div class="box vertical osc-link">
+                <a title="最近产品做得不错，可发现市面上有一些盗版的出现，想对产品进行升级，但还是担心再有同类现象发生，怎么办啊？" class="link-content technology-width " href="https://www.oschina.net/question/3738270_2273369">最近产品做得不错，可发现市面上有一些盗版的出现，想对产品进行升级，但还是担心再有同类现象发生，怎么办啊？</a>
+                <span class="box-fr sub-of">1回/22阅</span>
+            </div>
+
+
+
+            <div class="box vertical osc-link">
+                <a title="公司有几台淘汰的电脑，能不能做成云平台、超级计算机那种系统？" class="link-content technology-width " href="https://www.oschina.net/question/2618266_2273335">公司有几台淘汰的电脑，能不能做成云平台、超级计算机那种系统？</a>
+                <span class="box-fr sub-of">9回/505阅</span>
+            </div>
+
+
+
+            <div class="box vertical osc-link">
+                <a title="APP分享新闻倒朋友圈 要单独做一个web模板吗？" class="link-content technology-width " href="https://www.oschina.net/question/3742403_2273359">APP分享新闻倒朋友圈 要单独做一个web模板吗？</a>
+                <span class="box-fr sub-of">2回/26阅</span>
+            </div>
+
+
+
+            <div class="box vertical osc-link">
+                <a title="使用spring Cloud后session会话共享" class="link-content technology-width " href="https://www.oschina.net/question/1243437_2273342">使用spring Cloud后session会话共享</a>
+                <span class="box-fr sub-of">4回/103阅</span>
+            </div>
+
+
+
+            <div class="box vertical osc-link">
+                <a title="spring mvc 后台如何获取手机app端传来的参数" class="link-content technology-width " href="https://www.oschina.net/question/2491333_2273362">spring mvc 后台如何获取手机app端传来的参数</a>
+                <span class="box-fr sub-of">4回/44阅</span>
+            </div>
+
+
+
+            <div class="box vertical osc-link">
+                <a title="如果Download选择了PhantomJSDownloader 还能使用代理吗" class="link-content technology-width " href="https://www.oschina.net/question/1988479_2273368">如果Download选择了PhantomJSDownloader 还能使用代理吗</a>
+                <span class="box-fr sub-of">0回/5阅</span>
+            </div>
+
+
+
+            <div class="box vertical osc-link">
+                <a title="多线程操作同一个对象并且调用相同的方法，为什么不会阻塞" class="link-content technology-width " href="https://www.oschina.net/question/2709988_2273327">多线程操作同一个对象并且调用相同的方法，为什么不会阻塞</a>
+                <span class="box-fr sub-of">9回/225阅</span>
+            </div>
+
+
+
+            <div class="box vertical osc-link">
+                <a title="iOS使用ShareSDK集成QQ，微信，微博等第三方分享" class="link-content technology-width " href="https://www.oschina.net/question/3768634_2273367">iOS使用ShareSDK集成QQ，微信，微博等第三方分享</a>
+                <span class="box-fr sub-of">0回/9阅</span>
+            </div>
+
+
+
+            <div class="box vertical osc-link">
+                <a title="PYTHON无法换行问题，求指点" class="link-content technology-width " href="https://www.oschina.net/question/3643756_2273363">PYTHON无法换行问题，求指点</a>
+                <span class="box-fr sub-of">1回/25阅</span>
+            </div>
+
+
+
+            <div class="box vertical osc-link">
+                <a title="求助：（Java）如何实现在web页面上调用本地安装的打印机打印文件？" class="link-content technology-width " href="https://www.oschina.net/question/3191915_2273357">求助：（Java）如何实现在web页面上调用本地安装的打印机打印文件？</a>
+                <span class="box-fr sub-of">4回/50阅</span>
+            </div>
+
+
+
+            <div class="box vertical osc-link">
+                <a title="织梦dede:arclist 标签加 limit或者row 后 权重就不准确了" class="link-content technology-width " href="https://www.oschina.net/question/2884992_2273360">织梦dede:arclist 标签加 limit或者row 后 权重就不准确了</a>
+                <span class="box-fr sub-of">0回/14阅</span>
+            </div>
+                </div>
+
+</div>        <!-- 高手问答，精彩问答 -->
+        <div class="box-fr sub-question-container">
+    <!-- 高手问答 -->
+    <div class="master-card">
+
+        <header class="box vertical header-wrapper">
+            <figure class="box-fl">
+                <img class="master-icon" src='/build/oschina/community/stylesheets/imgs/master.svg?t=1484580392000' alt="高手问答">
+            </figure>
+            <div class="box column box-aw">
+                <div class="box justify">
+                    <h1 class="periodical">高手问答第 186 期</h1>
+                    <a class="history" href="/question/tag/高手问答" title="查看往期">查看往期</a>
+                </div>
+                <a class="periodical-link" href="https://www.oschina.net/question/2720166_2273043" title="Spring Cloud 微服务实战">Spring Cloud 微服务实战</a>
+            </div>
+        </header>
+        <section class="box master-wrapper">
+            <a class="box-fl" href="https://my.oschina.net/JavaLaw" title="杨恩雄">
+                <img class="portait" src="https://static.oschina.net/uploads/img/201801/16180236_qLO5.png" alt="杨恩雄">
+            </a>
+            <div class="box-aw">
+                <div class="box justify">
+                    <h2 class="master-name">杨恩雄</h2>
+                    <a class="ask" href="https://www.oschina.net/question/2720166_2273043#form_answer" title="向高手提问">提问</a>
+                </div>
+                <p class="about-master wrap">从事 Java EE 企业应用开发十多年，在 SOA、SaaS、大数据应用、互联网系统架构方面有着丰富的经验。</p>
+            </div>
+        </section>
+    </div>
+    <!-- 精彩问答 -->
+
+
+    <div class="box vertical justify wonderful">
+        <figure class="box">
+            <img class="icon smicon" src='/build/oschina/community/stylesheets/imgs/wonderful.svg?t=1484580392000' alt="精彩问答">
+            <figcaption class="title">精彩问答</figcaption>
+        </figure>
+        <a class="more" href="/question?catalog=1&show=hot" title="更多精彩问答">更多</a>
+    </div>
+
+    <script type="text/javascript" defer="defer">
+        var wonderful = [{"answer_user_name":"局长","question_url":"https://www.oschina.net/question/2720166_2273043","answer_content":"高手问答第 186 期 —— 拥抱 Spring Cloud 拥抱微服务生态 @明MikeWoo @六楼的雨 @书生小兰 @一条弧 @雪舞潇湘 恭喜以上五位用户获得《疯狂Spring Cloud微服务架构实战》图书一本 请尽快私信@局长  告知快递信息（格式：姓名+电话+地址），感谢支持~","answer_user_url":"https://my.oschina.net/hardbone","answer_url":"https://www.oschina.net/question/2720166_2273043#answer_1344827","question_title":"高手问答第 186 期 —— 拥抱 Spring Cloud 拥抱微服务生态","answer_count":99,"view_count":3873},{"answer_user_name":"博文视点","question_url":"https://www.oschina.net/question/2720166_2272715","answer_content":"高手问答第 181 期  —— 聊聊饱受 Pythoner 好评的深度学习框架 PyTorch @萌唬吓删  @crf1111  @xiaoaiwhc1  @aires-sky   @p2ng   恭喜以上五位网友或获得《深度学习框架PyTorch：入门与实践》图书一本  请私信 @博文视点   告知快递信息(格式：姓名+电话+地址）！ ","answer_user_url":"https://my.oschina.net/broadviewbj","answer_url":"https://www.oschina.net/question/2720166_2272715#answer_1343766","question_title":"高手问答第 185 期 —— 聊聊饱受 Pythoner 好评的深度学习框架 PyTorch","answer_count":36,"view_count":2631},{"answer_user_name":"悠悠然然","question_url":"https://www.oschina.net/question/1245989_2272073","answer_content":"已经结贴。 花费时间:17ms 起始位置：9736 9745 9740 9747 9796  当前位置：316 318 318 318 318  前序位置：319 319 319 320 319  在50000个数据的情况下，用17ms找到合适的位置，效果不错，100红包已发，本帖结束。","answer_user_url":"https://my.oschina.net/tinyframework","answer_url":"https://www.oschina.net/question/1245989_2272073#answer_1342910","question_title":"100元现金奖赏征求算法","answer_count":39,"view_count":1705},{"answer_user_name":"局长","question_url":"https://www.oschina.net/question/2720166_2272064","answer_content":"高手问答第 183 期 — 十年开发老兵带来 Android 开发实战分享 @肖申克救赎 @宝富@我心中有猛狗 @ff100 @开源中国首席圣杯守护者Saber 恭喜以上五位用户获得《Android Studio开发实战：从零基础到App上线》图书一本 请尽快私信@局长  告知快递信息（格式：姓名+电话+地址），感谢支持~","answer_user_url":"https://my.oschina.net/hardbone","answer_url":"https://www.oschina.net/question/2720166_2272064#answer_1341548","question_title":"高手问答第 183 期 — 十年开发老兵带来 Android 开发实战分享","answer_count":41,"view_count":2684},{"answer_user_name":"华章","question_url":"https://www.oschina.net/question/2720166_2271733","answer_content":"OSC 第 182 期高手问答 -- 开源全文检索引擎 Solr @aires-sky    @雪舞潇湘    @朱选林    @赤脚小子    @FrendLin 恭喜以上五位网友获得《Solr权威指南：上卷》一本 请私信@华章 告知快递信息（格式：姓名+电话+地址+邮编）","answer_user_url":"https://my.oschina.net/huazhangbook","answer_url":"https://www.oschina.net/question/2720166_2271733#answer_1340104","question_title":"高手问答第 182 期 —— 来聊聊老牌开源全文检索引擎 Solr","answer_count":50,"view_count":3328}];
+    </script>
+    <div class="hor-group" id="v_wonderful">
+        <div class="item" v-for="(index,item) in items"  transition="staggered" stagger="100" @mouseenter="pause" @mouseleave="play">
+            <div class="ask-wrapper">
+                <a class="ask-title wrap" :href="item.question_url" v-text="item.question_title"></a>
+                <div class="sub-ask">{{item.answer_count}}回/{{item.view_count}}阅</div>
+            </div>
+            <a class="solution-wrapper wrap" :href="item.answer_url">
+                <p class="solution-content"><span class="user">{{item.answer_user_name}}:</span>{{item.answer_content}}</p>
+            </a>
+        </div>
+
+    </div>
+</div>    </section>
+</section>        			 					<div class='jj' style='font-size:0;margin: 12px 0 0 0;'>
+			<a name="index_banner_three"/>
+			<a  data-traceid="index03" data-tracepid="index_banner_three"   href="http://www.tucodec.com/" target="_blank" title="图鸭科技">
+				<img src="https://static.oschina.net/uploads/cooperation/index_banner_three_Bbeld.jpg" width="900" height="64">
+			</a>
+            			 </div>
+				        <!-- 博客 -->
+        <div>
+    <!-- 博客分类 -->
+    <header class="box justify content-header flag">
+        <a href='/blog' class="title fb" title="博客">博客</a>
+        <!-- 固定在第一条的内容 -->
+        <div class="box box-aw link-wrapper">
+                                                                                    <a class="sub-link" href="https://www.oschina.net/blog?classification=428602" title="移动开发">移动开发</a>
+                                                                                <a class="sub-link" href="https://www.oschina.net/blog?classification=428612" title="前端开发">前端开发</a>
+                                                                                <a class="sub-link" href="https://www.oschina.net/blog?classification=5611447" title="人工智能">人工智能</a>
+                                                                                <a class="sub-link" href="https://www.oschina.net/blog?classification=428640" title="服务端开发/管理">服务端开发/管理</a>
+                                                                                <a class="sub-link" href="https://www.oschina.net/blog?classification=429511" title="游戏开发">游戏开发</a>
+                                                                                <a class="sub-link" href="https://www.oschina.net/blog?classification=428609" title="编程语言">编程语言</a>
+                                                                                <a class="sub-link" href="https://www.oschina.net/blog?classification=428610" title="数据库">数据库</a>
+                                                                                <a class="sub-link" href="https://www.oschina.net/blog?classification=428611" title="企业开发">企业开发</a>
+                                                                                                                                                                                                                                                                                                                    </div>
+        <div class="box-fr">
+            <a href="/blog" class="more" title="更多博客">更多</a>
+        </div>
+    </header>
+    <!-- 推荐博客列表 -->
+    <section class="box">
+        <div class="box-aw">
+                                        <div class="box vertical justify osc-link">
+
+                    <a class="link-content blog-width" href="https://my.oschina.net/u/3695009/blog/1612258" title="Protobuf在微信小游戏开发中的使用技巧">Protobuf在微信小游戏开发中的使用技巧</a>
+                    <span class="sub-of">52阅/0评/0赞</span>
+                </div>
+                            <div class="box vertical justify osc-link">
+
+                    <a class="link-content blog-width" href="https://my.oschina.net/eacdy/blog/1612218" title="Spring Cloud Edgware新特性之九：Sleuth使用MQ方式整合Zipkin">Spring Cloud Edgware新特性之九：Sleuth使用MQ方式整合Zipkin</a>
+                    <span class="sub-of">29阅/0评/0赞</span>
+                </div>
+                            <div class="box vertical justify osc-link">
+
+                    <a class="link-content blog-width" href="https://my.oschina.net/powertoolsteam/blog/1612162" title="2017年 JavaScript 框架回顾 -- React生态系统">2017年 JavaScript 框架回顾 -- React生态系统</a>
+                    <span class="sub-of">78阅/0评/0赞</span>
+                </div>
+                            <div class="box vertical justify osc-link">
+
+                    <a class="link-content blog-width" href="https://my.oschina.net/quanke/blog/1612156" title="Spring Boot 与 Kotlin 使用Redis数据库">Spring Boot 与 Kotlin 使用Redis数据库</a>
+                    <span class="sub-of">73阅/0评/0赞</span>
+                </div>
+                            <div class="box vertical justify osc-link">
+
+                    <a class="link-content blog-width" href="https://my.oschina.net/styshoo/blog/1612125" title="rexray在CentOS上不能创建ceph rbd的docker volume问题定位">rexray在CentOS上不能创建ceph rbd的docker volume问题定位</a>
+                    <span class="sub-of">15阅/0评/0赞</span>
+                </div>
+                            <div class="box vertical justify osc-link">
+
+                    <a class="link-content blog-width" href="https://my.oschina.net/u/3662721/blog/1612067" title="Vue（三）goods组件开发">Vue（三）goods组件开发</a>
+                    <span class="sub-of">52阅/0评/0赞</span>
+                </div>
+                            <div class="box vertical justify osc-link">
+
+                    <a class="link-content blog-width" href="https://my.oschina.net/yanpenglei/blog/1612013" title="分布式和集群区别？什么是云计算平台？分布式的应用场景？">分布式和集群区别？什么是云计算平台？分布式的应用场景？</a>
+                    <span class="sub-of">73阅/6评/0赞</span>
+                </div>
+                            <div class="box vertical justify osc-link">
+
+                    <a class="link-content blog-width" href="https://my.oschina.net/daba0007/blog/1612008" title="2048小游戏ai设计">2048小游戏ai设计</a>
+                    <span class="sub-of">167阅/3评/1赞</span>
+                </div>
+                            <div class="box vertical justify osc-link">
+
+                    <a class="link-content blog-width" href="https://my.oschina.net/panzi1/blog/1612006" title="tio-http-server 源码浅析（一）HttpRequestDecoder的实现">tio-http-server 源码浅析（一）HttpRequestDecoder的实现</a>
+                    <span class="sub-of">245阅/1评/4赞</span>
+                </div>
+                            <div class="box vertical justify osc-link">
+
+                    <a class="link-content blog-width" href="https://my.oschina.net/hansonwang99/blog/1611995" title="初探Kotlin+SpringBoot联合编程">初探Kotlin+SpringBoot联合编程</a>
+                    <span class="sub-of">173阅/2评/0赞</span>
+                </div>
+                            <div class="box vertical justify osc-link">
+
+                    <a class="link-content blog-width" href="https://my.oschina.net/u/3772106/blog/1611971" title="京东活动系统--亿级流量架构应对之术">京东活动系统--亿级流量架构应对之术</a>
+                    <span class="sub-of">345阅/1评/1赞</span>
+                </div>
+                            <div class="box vertical justify osc-link">
+
+                    <a class="link-content blog-width" href="https://my.oschina.net/VILLE/blog/1611920" title="Java   Money与Currency  API浅谈">Java   Money与Currency  API浅谈</a>
+                    <span class="sub-of">154阅/0评/0赞</span>
+                </div>
+                            <div class="box vertical justify osc-link">
+
+                    <a class="link-content blog-width" href="https://my.oschina.net/dengfuwei/blog/1611917" title="代码结构及一些代码规范建议">代码结构及一些代码规范建议</a>
+                    <span class="sub-of">172阅/0评/0赞</span>
+                </div>
+                            <div class="box vertical justify osc-link">
+
+                    <a class="link-content blog-width" href="https://my.oschina.net/u/1433482/blog/1611804" title=" [雪峰磁针石博客] 使用pandas处理excel"> [雪峰磁针石博客] 使用pandas处理excel</a>
+                    <span class="sub-of">142阅/0评/0赞</span>
+                </div>
+                            <div class="box vertical justify osc-link">
+
+                    <a class="link-content blog-width" href="https://my.oschina.net/lsjcoder/blog/1611755" title="Eslint(二)：规则字典">Eslint(二)：规则字典</a>
+                    <span class="sub-of">112阅/0评/0赞</span>
+                </div>
+                    </div>
+        <!-- 带图片的推荐博客列表 -->
+        <div class="box-fr">
+            <div class="box wrap justify blog-thumbs">
+
+                            <a class="thumb blog-thumb  mb " href="https://my.oschina.net/u/1773979/blog/1550679" title="java并发编程的艺术-第四章之Java并发基础">
+                                <figure class="figure">
+                                    <img class="limit_height thumb-img" src="https://static.oschina.net/uploads/img/201801/11161036_H6jT.jpg">
+                                    <figcaption class="figcaption">
+                                        <div class="thumb-txt fb">java并发编程的艺术-第四章之Java并发基础</div>
+                                    </figcaption>
+                                </figure>
+                            </a>
+
+                            <a class="thumb blog-thumb  mb " href="https://my.oschina.net/mkh/blog/1605966" title="火车票抢票代码公开揭秘">
+                                <figure class="figure">
+                                    <img class="limit_height thumb-img" src="https://static.oschina.net/uploads/img/201801/15145501_Gq2L.jpg">
+                                    <figcaption class="figcaption">
+                                        <div class="thumb-txt fb">火车票抢票代码公开揭秘</div>
+                                    </figcaption>
+                                </figure>
+                            </a>
+
+                            <a class="thumb blog-thumb  mb " href="https://my.oschina.net/liuyatao19921025/blog/1605614" title="使用Java 8 Optional避免空指针异常">
+                                <figure class="figure">
+                                    <img class="limit_height thumb-img" src="https://static.oschina.net/uploads/img/201801/11162929_utEf.jpg">
+                                    <figcaption class="figcaption">
+                                        <div class="thumb-txt fb">使用Java 8 Optional避免空指针异常</div>
+                                    </figcaption>
+                                </figure>
+                            </a>
+
+                            <a class="thumb blog-thumb  mb " href="https://my.oschina.net/u/2488220/blog/1604829" title="springmvc 开门篇之源码解读 ContextLoaderListener">
+                                <figure class="figure">
+                                    <img class="limit_height thumb-img" src="https://static.oschina.net/uploads/img/201801/15145653_lmoJ.jpg">
+                                    <figcaption class="figcaption">
+                                        <div class="thumb-txt fb">springmvc 开门篇之源码解读 ContextLoaderListener</div>
+                                    </figcaption>
+                                </figure>
+                            </a>
+
+                            <a class="thumb blog-thumb  mb " href="https://my.oschina.net/happyBKs/blog/1603604" title="JAVA NIO知识点总结(5)——网络阻塞IO与非阻塞IO">
+                                <figure class="figure">
+                                    <img class="limit_height thumb-img" src="https://static.oschina.net/uploads/img/201801/15150019_htnv.jpg">
+                                    <figcaption class="figcaption">
+                                        <div class="thumb-txt fb">JAVA NIO知识点总结(5)——网络阻塞IO与非阻塞IO</div>
+                                    </figcaption>
+                                </figure>
+                            </a>
+
+                            <a class="thumb blog-thumb  mb " href="https://my.oschina.net/yanpenglei/blog/1600087" title="Docker 容器操作">
+                                <figure class="figure">
+                                    <img class="limit_height thumb-img" src="https://static.oschina.net/uploads/img/201801/05110415_WD3S.jpg">
+                                    <figcaption class="figcaption">
+                                        <div class="thumb-txt fb">Docker 容器操作</div>
+                                    </figcaption>
+                                </figure>
+                            </a>
+
+                            <a class="thumb blog-thumb " href="https://my.oschina.net/kangvcar/blog/1599867" title="手把手教你用1行 Python 代码实现FTP服务器 -- Pyftpdlib">
+                                <figure class="figure">
+                                    <img class="limit_height thumb-img" src="https://static.oschina.net/uploads/img/201801/05110647_pF6Y.jpg">
+                                    <figcaption class="figcaption">
+                                        <div class="thumb-txt fb">手把手教你用1行 Python 代码实现FTP服务器 -- Pyftpdlib</div>
+                                    </figcaption>
+                                </figure>
+                            </a>
+
+                            <a class="thumb blog-thumb " href="https://my.oschina.net/u/2342449/blog/1589297" title="Spring Cloud Stream 简明教程（持续更新）">
+                                <figure class="figure">
+                                    <img class="limit_height thumb-img" src="https://static.oschina.net/uploads/img/201712/14142333_Vvke.jpg">
+                                    <figcaption class="figcaption">
+                                        <div class="thumb-txt fb">Spring Cloud Stream 简明教程（持续更新）</div>
+                                    </figcaption>
+                                </figure>
+                            </a>
+                                                                        </div>
+        </div>
+    </section>
+</div>        			 					<div class='jj' style='font-size:0;margin: 12px 0 0 0;'>
+			<a name="index_banner_four"/>
+			<a  data-traceid="index04" data-tracepid="index_banner_four"   href="http://e.cn.miaozhen.com/r/k=2066972&p=7Bq47&dx=__IPDX__&rt=2&ns=__IP__&ni=__IESID__&v=__LOC__&xa=__ADPLATFORM__&tr=__REQUESTID__&mo=__OS__&m0=__OPENUDID__&m0a=__DUID__&m1=__ANDROIDID1__&m1a=__ANDROIDID__&m2=__IMEI__&m4=__AAID__&m5=__IDFA__&m6=__MAC1__&m6a=__MAC__&o=https://www.didiyun.com/?channel=14" target="_blank" title="滴滴云">
+				<img src="https://static.oschina.net/uploads/cooperation/index_banner_four_aQFdN.jpg" width="900" height="64">
+			</a>
+            			 </div>
+				        <!-- 职业 -->
+        <section class="box justify job-container">
+    <!--职业生涯 -->
+        <div class="col-of-career">
+        <div class="box justify content-header flag">
+            <a href="/question?catalog=100" class="title fb" title="职业生涯">职业生涯</a>
+            <div class="box-fr">
+                <a href="/question?catalog=100" class="more" title="更多职业生涯内容">更多</a>
+            </div>
+        </div>
+                                            <div class="box vertical items">
+                    <a class="item-link job-width " href="https://www.oschina.net/question/1182150_2273339" title="有人在vultr搭建vpn的吗？怎么搞都连不上。">有人在vultr搭建vpn的吗？怎么搞都连不上。</a>
+                    <span class="box-fr item-vote">10评/455阅</span>
+                </div>
+                                                <div class="box vertical items">
+                    <a class="item-link job-width " href="https://www.oschina.net/question/3747381_2273201" title="推荐java好书">推荐java好书</a>
+                    <span class="box-fr item-vote">22评/1272阅</span>
+                </div>
+                                                <div class="box vertical items">
+                    <a class="item-link job-width " href="https://www.oschina.net/question/3769605_2273077" title="专科实习生应该怎么写简历">专科实习生应该怎么写简历</a>
+                    <span class="box-fr item-vote">15评/1020阅</span>
+                </div>
+                                                <div class="box vertical items">
+                    <a class="item-link job-width " href="https://www.oschina.net/question/3249674_2273005" title="专科今年6月份毕业，找不到工作，很难受">专科今年6月份毕业，找不到工作，很难受</a>
+                    <span class="box-fr item-vote">61评/4951阅</span>
+                </div>
+                                                <div class="box vertical items">
+                    <a class="item-link job-width " href="https://www.oschina.net/question/1586247_2273145" title="公司代码审查竟然提这种要求">公司代码审查竟然提这种要求</a>
+                    <span class="box-fr item-vote">58评/5114阅</span>
+                </div>
+                                                <div class="box vertical items">
+                    <a class="item-link job-width " href="https://www.oschina.net/question/2260923_2273108" title="转行了，现转让几本经典的java书籍，九成新">转行了，现转让几本经典的java书籍，九成新</a>
+                    <span class="box-fr item-vote">48评/3552阅</span>
+                </div>
+                                                <div class="box vertical items">
+                    <a class="item-link job-width " href="https://www.oschina.net/question/1474176_2273193" title="有个厉害的的“程序员”老婆是什么感受？">有个厉害的的“程序员”老婆是什么感受？</a>
+                    <span class="box-fr item-vote">20评/3290阅</span>
+                </div>
+                                                <div class="box vertical items">
+                    <a class="item-link job-width " href="https://www.oschina.net/question/2810406_2273106" title="个人java程序员,怎么独自创业开发,实现自己的公司梦想?">个人java程序员,怎么独自创业开发,实现自己的公司梦想?</a>
+                    <span class="box-fr item-vote">22评/2142阅</span>
+                </div>
+                                                <div class="box vertical items">
+                    <a class="item-link job-width " href="https://www.oschina.net/question/940506_2273135" title="进入公司一个月由于组织变更被调到其他小组迟迟不被接收怎么破？">进入公司一个月由于组织变更被调到其他小组迟迟不被接收怎么破？</a>
+                    <span class="box-fr item-vote">11评/2133阅</span>
+                </div>
+                                                <div class="box vertical items">
+                    <a class="item-link job-width " href="https://www.oschina.net/question/1455335_2272910" title="家里不认可女盆友。">家里不认可女盆友。</a>
+                    <span class="box-fr item-vote">66评/5281阅</span>
+                </div>
+                        </div>
+    <!--招聘信息 -->
+        <div class="col-of-recruit">
+        <div class="box justify content-header">
+            <a href="https://job.oschina.net/" class="title fb" title="招聘信息">招聘信息</a>
+            <div class="box-fr">
+                <a href="https://job.oschina.net/" class="more" title="更多招聘信息">更多</a>
+            </div>
+        </div>
+        <div class="tags-wrapper">
+                            <a class="tag" href="https://job.oschina.net/search?city=%E5%8C%97%E4%BA%AC" target="_blank">北京</a>
+                            <a class="tag" href="https://job.oschina.net/search?city=%E4%B8%8A%E6%B5%B7" target="_blank">上海</a>
+                            <a class="tag" href="https://job.oschina.net/search?city=%E5%B9%BF%E5%B7%9E" target="_blank">广州</a>
+                            <a class="tag" href="https://job.oschina.net/search?city=%E6%B7%B1%E5%9C%B3" target="_blank">深圳</a>
+                            <a class="tag" href="https://job.oschina.net/search?city=%E6%88%90%E9%83%BD" target="_blank">成都</a>
+                            <a class="tag" href="https://job.oschina.net/search?city=%E6%AD%A6%E6%B1%89" target="_blank">武汉</a>
+                            <a class="tag" href="https://job.oschina.net/search?city=%E5%8D%97%E4%BA%AC" target="_blank">南京</a>
+                            <a class="tag" href="https://job.oschina.net/search?city=%E9%95%BF%E6%B2%99" target="_blank">长沙</a>
+                            <a class="tag" href="https://job.oschina.net/search?city=%E8%A5%BF%E5%AE%89" target="_blank">西安</a>
+                    </div>
+                                                                <div class="box vertical items">
+                        <span class="item-link">
+                            <span class="span-hidden span-company"><a href="https://job.oschina.net/company/571135_80" title="IObit">IObit</a></span><span class="span-hidden"><a href="https://job.oschina.net/position/80_571135_31856" target="_blank" title="高级嵌入式开发工程师 20-30K/成都
+">&nbsp;&nbsp;-&nbsp;&nbsp;</a></span><span class="span-hidden span-content"><a href="https://job.oschina.net/position/80_571135_31856" target="_blank" title="高级嵌入式开发工程师 20-30K/成都
+">高级嵌入式开发工程师</a></span><span class="span-hidden span-address"><a href="https://job.oschina.net/position/80_571135_31856" target="_blank" title="高级嵌入式开发工程师 20-30K/成都
+">&nbsp;20-30K/成都
+</a></span>
+                        </span>
+                    </div>
+                                                                <div class="box vertical items">
+                        <span class="item-link">
+                            <span class="span-hidden span-company"><a href="https://job.oschina.net/company/3756223_13429" title="惟实信">惟实信</a></span><span class="span-hidden"><a href="https://job.oschina.net/position/13429_3756223_31828" target="_blank" title="android开发工程师 10-15K/武汉
+">&nbsp;&nbsp;-&nbsp;&nbsp;</a></span><span class="span-hidden span-content"><a href="https://job.oschina.net/position/13429_3756223_31828" target="_blank" title="android开发工程师 10-15K/武汉
+">android开发工程师</a></span><span class="span-hidden span-address"><a href="https://job.oschina.net/position/13429_3756223_31828" target="_blank" title="android开发工程师 10-15K/武汉
+">&nbsp;10-15K/武汉
+</a></span>
+                        </span>
+                    </div>
+                                                                <div class="box vertical items">
+                        <span class="item-link">
+                            <span class="span-hidden span-company"><a href="https://job.oschina.net/company/3754868_13419" title="天眼查">天眼查</a></span><span class="span-hidden"><a href="https://job.oschina.net/position/13419_3754868_31774" target="_blank" title="前端工程师 13-25K/北京
+">&nbsp;&nbsp;-&nbsp;&nbsp;</a></span><span class="span-hidden span-content"><a href="https://job.oschina.net/position/13419_3754868_31774" target="_blank" title="前端工程师 13-25K/北京
+">前端工程师</a></span><span class="span-hidden span-address"><a href="https://job.oschina.net/position/13419_3754868_31774" target="_blank" title="前端工程师 13-25K/北京
+">&nbsp;13-25K/北京
+</a></span>
+                        </span>
+                    </div>
+                                                                <div class="box vertical items">
+                        <span class="item-link">
+                            <span class="span-hidden span-company"><a href="https://job.oschina.net/company/2367032_12814" title="大连泰伦管理咨询有限公司">大连泰伦管理咨询有限公司</a></span><span class="span-hidden"><a href="https://job.oschina.net/position/12814_2367032_31734" target="_blank" title="Java架构师 20-32K/广州
+">&nbsp;&nbsp;-&nbsp;&nbsp;</a></span><span class="span-hidden span-content"><a href="https://job.oschina.net/position/12814_2367032_31734" target="_blank" title="Java架构师 20-32K/广州
+">Java架构师</a></span><span class="span-hidden span-address"><a href="https://job.oschina.net/position/12814_2367032_31734" target="_blank" title="Java架构师 20-32K/广州
+">&nbsp;20-32K/广州
+</a></span>
+                        </span>
+                    </div>
+                                                                <div class="box vertical items">
+                        <span class="item-link">
+                            <span class="span-hidden span-company"><a href="https://job.oschina.net/company/3705990_13190" title="科南软件">科南软件</a></span><span class="span-hidden"><a href="https://job.oschina.net/position/13190_3705990_31727" target="_blank" title="技术架构师 17-30K/深圳
+">&nbsp;&nbsp;-&nbsp;&nbsp;</a></span><span class="span-hidden span-content"><a href="https://job.oschina.net/position/13190_3705990_31727" target="_blank" title="技术架构师 17-30K/深圳
+">技术架构师</a></span><span class="span-hidden span-address"><a href="https://job.oschina.net/position/13190_3705990_31727" target="_blank" title="技术架构师 17-30K/深圳
+">&nbsp;17-30K/深圳
+</a></span>
+                        </span>
+                    </div>
+                                                                <div class="box vertical items">
+                        <span class="item-link">
+                            <span class="span-hidden span-company"><a href="https://job.oschina.net/company/3740994_13370" title="厦门肖年">厦门肖年</a></span><span class="span-hidden"><a href="https://job.oschina.net/position/13370_3740994_31723" target="_blank" title="安卓开发工程师 15-30K/深圳
+">&nbsp;&nbsp;-&nbsp;&nbsp;</a></span><span class="span-hidden span-content"><a href="https://job.oschina.net/position/13370_3740994_31723" target="_blank" title="安卓开发工程师 15-30K/深圳
+">安卓开发工程师</a></span><span class="span-hidden span-address"><a href="https://job.oschina.net/position/13370_3740994_31723" target="_blank" title="安卓开发工程师 15-30K/深圳
+">&nbsp;15-30K/深圳
+</a></span>
+                        </span>
+                    </div>
+                                                                <div class="box vertical items">
+                        <span class="item-link">
+                            <span class="span-hidden span-company"><a href="https://job.oschina.net/company/3293699_12179" title="紫鲸互联">紫鲸互联</a></span><span class="span-hidden"><a href="https://job.oschina.net/position/12179_3293699_31716" target="_blank" title="高级Java工程师 15-25K/广州
+">&nbsp;&nbsp;-&nbsp;&nbsp;</a></span><span class="span-hidden span-content"><a href="https://job.oschina.net/position/12179_3293699_31716" target="_blank" title="高级Java工程师 15-25K/广州
+">高级Java工程师</a></span><span class="span-hidden span-address"><a href="https://job.oschina.net/position/12179_3293699_31716" target="_blank" title="高级Java工程师 15-25K/广州
+">&nbsp;15-25K/广州
+</a></span>
+                        </span>
+                    </div>
+                                                                <div class="box vertical items">
+                        <span class="item-link">
+                            <span class="span-hidden span-company"><a href="https://job.oschina.net/company/943418_5898" title="开源中国">开源中国</a></span><span class="span-hidden"><a href="https://job.oschina.net/position/5898_2340783_23309" target="_blank" title="iOS开发工程师 8-15K/深圳
+">&nbsp;&nbsp;-&nbsp;&nbsp;</a></span><span class="span-hidden span-content"><a href="https://job.oschina.net/position/5898_2340783_23309" target="_blank" title="iOS开发工程师 8-15K/深圳
+">iOS开发工程师</a></span><span class="span-hidden span-address"><a href="https://job.oschina.net/position/5898_2340783_23309" target="_blank" title="iOS开发工程师 8-15K/深圳
+">&nbsp;8-15K/深圳
+</a></span>
+                        </span>
+                    </div>
+
+    </div>
+</section>    </article>
+    <!-- 右侧 -->
+    <aside class="box-fr aside-container">
+        			 					<div class='jj' style='margin:0 0 10px 0;'>
+			<a name="index_banner_five"/>
+			<a  data-traceid="index05" data-tracepid="index_banner_five"   href="https://dnspod.cloud.tencent.com/act/yearendsales?from=IT&fromSource=gwzcw.719380.719380.719380" target="_blank" title="腾讯云">
+				<img src="https://static.oschina.net/uploads/cooperation/index_banner_five_VzQnX.jpg" width="280" height="108">
+			</a>
+            			 </div>
+				            <h3 class="aside-topjj"> <a href="http://clickc.admaster.com.cn/c/a102398,b2255296,c3159,i0,m101,8a1,8b2,h" target="_blank" data-tracepid="index_tweet_above_text_link" data-traceid="index_tweet_above_text_link_1">华为云服务器5折购买</a></h3>
+        <!-- 动弹 -->
+        <div>
+    <!-- 发动弹的表单 -->
+    <div id="tweet" class="tweet-form" action="/action/tweet/pub"
+        onkeydown="if((event.metaKey || event.ctrlKey)&&event.keyCode==13){submitMe();}" method='POST'>
+        <input type='hidden' v-model='user_code' :bind="user_code" value=''>
+        <input type='hidden' v-model='user' :bind="user" value=''>
+        <div class="editor-wrapper">
+            <div class="box effect" :class="{'blur': tip !== ''}">
+                <textarea v-el:txt class="tweet-editor" v-model='msg' :bind="msg" placeholder='今天你动弹了吗？' @keydown="keyTweet"></textarea>
+                <button class="bn-tweet" type='button' @click="tweet">动弹</button>
+            </div>
+            <div class="editor-tip" :class="{'show': tip !== '','error':error}"  v-text="tip"></div>
+        </div>
+    </div>
+    <!-- 最新动弹列表 -->
+        <div id="v_tweet_list">
+            <!--
+            title：最新动弹
+            更多：/tweets
+            -->
+            <header class="box justify aside-header">
+                <nav class="box">
+                    <h2 class="tweet-name cursor active" :class="{'active':isShowTweet}" @click="showTweet(true)">最新动弹</h2>
+                    <h2 class="tweet-name cursor" :class="{'active':!isShowTweet}" @click="showTweet(false)">热门动弹</h2>
+                </nav>
+                <a class="more" href="/tweets" title="更多" id="tweetMore">更多</a>
+            </header>
+            <section id="tweetList" v-show="isShowTweet">
+                                    <div class="box tweet"  data-last="16464528" >
+            <a class="box-fl" href="https://my.oschina.net/linqing" target="_blank"
+               title="林青OSC">
+                <figure>
+                    <img class="tweet-uimg" src="https://static.oschina.net/uploads/user/1245/2491310_50.jpeg?t=1505841698000">
+                </figure>
+            </a>
+            <div class="box-aw">
+                <p class="tweet-content wrap"><span class="tweet-user"><a href="https://my.oschina.net/linqing" target="_blank" title="林青OSC">林青OSC</a>：</span>不知不觉还有三个多星期就过年了，你来回的车票都买好了吗？</p>
+                <div class="box vertical justify toolbox">
+                    <span>3分钟前&nbsp;<a class="commened"
+                                                                                      href='https://my.oschina.net/linqing/tweet/16464528'
+                                                                                      target="_blank">(1评)</a>&nbsp;            Android    </span>
+                    <figure class="box vertical cursor" data-count="0"
+                            onclick="page.favor(this,'',16464528,0,16464528,2491310)">
+                        <div class="favor-icon "></div>
+                        <figcaption class="favor-count">0</figcaption>
+                    </figure>
+                </div>
+            </div>
+        </div>
+                            <div class="box tweet" >
+            <a class="box-fl" href="https://my.oschina.net/clouddyy" target="_blank"
+               title="clouddyy">
+                <figure>
+                    <img class="tweet-uimg" src="https://static.oschina.net/uploads/user/173/347223_50.jpeg?t=1477362397000">
+                </figure>
+            </a>
+            <div class="box-aw">
+                <p class="tweet-content wrap"><span class="tweet-user"><a href="https://my.oschina.net/clouddyy" target="_blank" title="clouddyy">clouddyy</a>：</span>胖也要胖出威严~！</p>
+                <div class="box vertical justify toolbox">
+                    <span>4分钟前&nbsp;<a class="commened"
+                                                                                      href='https://my.oschina.net/clouddyy/tweet/16464523'
+                                                                                      target="_blank">(0评)</a>&nbsp;                                                    <a href="https://my.oschina.net/clouddyy/tweet/16464523" class="image-url" target="_blank"><img class="ssmicon" src='/build/oschina/community/stylesheets/imgs/tweet_img.svg?t=1485169033000' align='absmiddle'/></a>
+                                                                                    </span>
+                    <figure class="box vertical cursor" data-count="0"
+                            onclick="page.favor(this,'',16464523,0,16464523,347223)">
+                        <div class="favor-icon "></div>
+                        <figcaption class="favor-count">0</figcaption>
+                    </figure>
+                </div>
+            </div>
+        </div>
+                            <div class="box tweet" >
+            <a class="box-fl" href="https://my.oschina.net/u/2528940" target="_blank"
+               title="原来如此绿">
+                <figure>
+                    <img class="tweet-uimg" src="https://static.oschina.net/uploads/user/1264/2528940_50.jpg?t=1448103696000">
+                </figure>
+            </a>
+            <div class="box-aw">
+                <p class="tweet-content wrap"><span class="tweet-user"><a href="https://my.oschina.net/u/2528940" target="_blank" title="原来如此绿">原来如此绿</a>：</span>手机滑屏不灵了怎么办，求解！
+</p>
+                <div class="box vertical justify toolbox">
+                    <span>4分钟前&nbsp;<a class="commened"
+                                                                                      href='https://my.oschina.net/u/2528940/tweet/16464520'
+                                                                                      target="_blank">(1评)</a>&nbsp;                </span>
+                    <figure class="box vertical cursor" data-count="0"
+                            onclick="page.favor(this,'',16464520,0,16464520,2528940)">
+                        <div class="favor-icon "></div>
+                        <figcaption class="favor-count">0</figcaption>
+                    </figure>
+                </div>
+            </div>
+        </div>
+                            <div class="box tweet" >
+            <a class="box-fl" href="https://my.oschina.net/u/3282811" target="_blank"
+               title="随风丶默">
+                <figure>
+                    <img class="tweet-uimg" src="https://static.oschina.net/uploads/user/1641/3282811_50.jpeg?t=1495724384000">
+                </figure>
+            </a>
+            <div class="box-aw">
+                <p class="tweet-content wrap"><span class="tweet-user"><a href="https://my.oschina.net/u/3282811" target="_blank" title="随风丶默">随风丶默</a>：</span>听说今年要发个两千多块的年终奖……</p>
+                <div class="box vertical justify toolbox">
+                    <span>7分钟前&nbsp;<a class="commened"
+                                                                                      href='https://my.oschina.net/u/3282811/tweet/16464475'
+                                                                                      target="_blank">(1评)</a>&nbsp;                </span>
+                    <figure class="box vertical cursor" data-count="0"
+                            onclick="page.favor(this,'',16464475,1,16464475,3282811)">
+                        <div class="favor-icon "></div>
+                        <figcaption class="favor-count">1</figcaption>
+                    </figure>
+                </div>
+            </div>
+        </div>
+                            <div class="box tweet" >
+            <a class="box-fl" href="https://my.oschina.net/u/554046" target="_blank"
+               title="大灰狼wow">
+                <figure>
+                    <img class="tweet-uimg" src="https://static.oschina.net/uploads/user/277/554046_50.jpg?t=1502609719000">
+                </figure>
+            </a>
+            <div class="box-aw">
+                <p class="tweet-content wrap"><span class="tweet-user"><a href="https://my.oschina.net/u/554046" target="_blank" title="大灰狼wow">大灰狼wow</a>：</span>医生说我过敏了，因为看到你脸就红了</p>
+                <div class="box vertical justify toolbox">
+                    <span>9分钟前&nbsp;<a class="commened"
+                                                                                      href='https://my.oschina.net/u/554046/tweet/16464464'
+                                                                                      target="_blank">(0评)</a>&nbsp;            iPhone    </span>
+                    <figure class="box vertical cursor" data-count="0"
+                            onclick="page.favor(this,'',16464464,0,16464464,554046)">
+                        <div class="favor-icon "></div>
+                        <figcaption class="favor-count">0</figcaption>
+                    </figure>
+                </div>
+            </div>
+        </div>
+                            <div class="box tweet" >
+            <a class="box-fl" href="https://my.oschina.net/zhangyafei" target="_blank"
+               title="筱飞">
+                <figure>
+                    <img class="tweet-uimg" src="https://static.oschina.net/uploads/user/1304/2608629_50.jpg?t=1452912457000">
+                </figure>
+            </a>
+            <div class="box-aw">
+                <p class="tweet-content wrap"><span class="tweet-user"><a href="https://my.oschina.net/zhangyafei" target="_blank" title="筱飞">筱飞</a>：</span>我们老板看得懂代码， <a href='https://www.oschina.net/p/genact' class='project' target='_blank' title='无实际意义的活动生成器Genact'>#Genact#</a></p>
+                <div class="box vertical justify toolbox">
+                    <span>17分钟前&nbsp;<a class="commened"
+                                                                                      href='https://my.oschina.net/zhangyafei/tweet/16464398'
+                                                                                      target="_blank">(1评)</a>&nbsp;                </span>
+                    <figure class="box vertical cursor" data-count="0"
+                            onclick="page.favor(this,'',16464398,0,16464398,2608629)">
+                        <div class="favor-icon "></div>
+                        <figcaption class="favor-count">0</figcaption>
+                    </figure>
+                </div>
+            </div>
+        </div>
+                        </section>
+            <section v-show="!isShowTweet" style="display:none">
+
+        <div class="box tweet"  data-last="16447596" >
+            <a class="box-fl" href="https://my.oschina.net/u/3238650" target="_blank"
+               title="JavaSon712">
+                <figure>
+                    <img class="tweet-uimg" src="https://static.oschina.net/uploads/user/1619/3238650_50.jpg?t=1485134795000">
+                </figure>
+            </a>
+            <div class="box-aw">
+                <p class="tweet-content wrap"><span class="tweet-user"><a href="https://my.oschina.net/u/3238650" target="_blank" title="JavaSon712">JavaSon712</a>：</span>我要结婚啦</p>
+                <div class="box vertical justify toolbox">
+                    <span>2天前&nbsp;<a class="commened"
+                                                                                      href='https://my.oschina.net/u/3238650/tweet/16447596'
+                                                                                      target="_blank">(79评)</a>&nbsp;                                                    <a href="https://my.oschina.net/u/3238650/tweet/16447596" class="image-url" target="_blank"><img class="ssmicon" src='/build/oschina/community/stylesheets/imgs/tweet_img.svg?t=1485169033000' align='absmiddle'/></a>
+                                                                                Android    </span>
+                    <figure class="box vertical cursor" data-count="0"
+                            onclick="page.favor(this,'',16447596,71,16447596,3238650)">
+                        <div class="favor-icon "></div>
+                        <figcaption class="favor-count">71</figcaption>
+                    </figure>
+                </div>
+            </div>
+        </div>
+
+        <div class="box tweet" >
+            <a class="box-fl" href="https://my.oschina.net/u/3661447" target="_blank"
+               title="程序猿流川枫">
+                <figure>
+                    <img class="tweet-uimg" src="https://static.oschina.net/uploads/user/1830/3661447_50.jpeg?t=1503655202000">
+                </figure>
+            </a>
+            <div class="box-aw">
+                <p class="tweet-content wrap"><span class="tweet-user"><a href="https://my.oschina.net/u/3661447" target="_blank" title="程序猿流川枫">程序猿流川枫</a>：</span>发现开源众包那些报价居然都是几k的，
+还要支持安卓苹果端啥啥的，包含服务后端，各种后续扩展要求，
+架构如何如何。你在逗我？发布需求的人是脑残？你们真把搞软件的当成屌丝？
+不狂妄的说搞软件开发的薪资能够秒杀绝大多数行业。劝你们尽早回家洗洗睡吧，别瞎比比发布项目需求，
+简直你们爸妈的脸都给你们捉急的智商丢光了。也奉劝各位搞软件有点尊严，
+别连屎一样的项目也去做，有空提高自己能力知识就是在挣钱</p>
+                <div class="box vertical justify toolbox">
+                    <span>3天前&nbsp;<a class="commened"
+                                                                                      href='https://my.oschina.net/u/3661447/tweet/16444673'
+                                                                                      target="_blank">(41评)</a>&nbsp;                </span>
+                    <figure class="box vertical cursor" data-count="0"
+                            onclick="page.favor(this,'',16444673,63,16444673,3661447)">
+                        <div class="favor-icon "></div>
+                        <figcaption class="favor-count">63</figcaption>
+                    </figure>
+                </div>
+            </div>
+        </div>
+
+        <div class="box tweet" >
+            <a class="box-fl" href="https://my.oschina.net/u/3152716" target="_blank"
+               title="星星是我">
+                <figure>
+                    <img class="tweet-uimg" src="https://static.oschina.net/uploads/user/1576/3152716_50.jpeg?t=1506679284000">
+                </figure>
+            </a>
+            <div class="box-aw">
+                <p class="tweet-content wrap"><span class="tweet-user"><a href="https://my.oschina.net/u/3152716" target="_blank" title="星星是我">星星是我</a>：</span>过年回去要相亲 家里给了三个选择 好烦 选哪个？？</p>
+                <div class="box vertical justify toolbox">
+                    <span>2天前&nbsp;<a class="commened"
+                                                                                      href='https://my.oschina.net/u/3152716/tweet/16450911'
+                                                                                      target="_blank">(75评)</a>&nbsp;                                                    <a href="https://my.oschina.net/u/3152716/tweet/16450911" class="image-url" target="_blank"><img class="ssmicon" src='/build/oschina/community/stylesheets/imgs/tweet_img.svg?t=1485169033000' align='absmiddle'/></a>
+                                                                                    </span>
+                    <figure class="box vertical cursor" data-count="0"
+                            onclick="page.favor(this,'',16450911,8,16450911,3152716)">
+                        <div class="favor-icon "></div>
+                        <figcaption class="favor-count">8</figcaption>
+                    </figure>
+                </div>
+            </div>
+        </div>
+
+        <div class="box tweet" >
+            <a class="box-fl" href="https://my.oschina.net/u/3227492" target="_blank"
+               title="CherryDSL">
+                <figure>
+                    <img class="tweet-uimg" src="https://static.oschina.net/uploads/user/1613/3227492_50.jpg?t=1484614638000">
+                </figure>
+            </a>
+            <div class="box-aw">
+                <p class="tweet-content wrap"><span class="tweet-user"><a href="https://my.oschina.net/u/3227492" target="_blank" title="CherryDSL">CherryDSL</a>：</span>结婚请假13天,,领导不给批,,,怎么说服,,在线等?回老家结婚路途1000里..</p>
+                <div class="box vertical justify toolbox">
+                    <span>23小时前&nbsp;<a class="commened"
+                                                                                      href='https://my.oschina.net/u/3227492/tweet/16457472'
+                                                                                      target="_blank">(38评)</a>&nbsp;                </span>
+                    <figure class="box vertical cursor" data-count="0"
+                            onclick="page.favor(this,'',16457472,0,16457472,3227492)">
+                        <div class="favor-icon "></div>
+                        <figcaption class="favor-count">0</figcaption>
+                    </figure>
+                </div>
+            </div>
+        </div>
+
+        <div class="box tweet" >
+            <a class="box-fl" href="https://my.oschina.net/u/3711636" target="_blank"
+               title="胡二青">
+                <figure>
+                    <img class="tweet-uimg" src="https://static.oschina.net/uploads/user/1855/3711636_50.jpeg?t=1508476739000">
+                </figure>
+            </a>
+            <div class="box-aw">
+                <p class="tweet-content wrap"><span class="tweet-user"><a href="https://my.oschina.net/u/3711636" target="_blank" title="胡二青">胡二青</a>：</span>我和他是初中同学，他拒绝我了可能因为我颜值低吧，他家境不好，现在20多了也没找到对象，我有一个闺蜜和他是亲戚，目前还喜欢他，想让闺蜜的妈妈安排我们见一面，但是不告诉他见的人是我，现在的我也是一名老师，学历不算高本科学历，但是颜值比以前好看了多了，他还没有对象他的父亲和他也挺急的，请问一下我和他见那一面还有可能吗？</p>
+                <div class="box vertical justify toolbox">
+                    <span>2天前&nbsp;<a class="commened"
+                                                                                      href='https://my.oschina.net/u/3711636/tweet/16448711'
+                                                                                      target="_blank">(56评)</a>&nbsp;                </span>
+                    <figure class="box vertical cursor" data-count="0"
+                            onclick="page.favor(this,'',16448711,7,16448711,3711636)">
+                        <div class="favor-icon "></div>
+                        <figcaption class="favor-count">7</figcaption>
+                    </figure>
+                </div>
+            </div>
+        </div>
+
+        <div class="box tweet" >
+            <a class="box-fl" href="https://my.oschina.net/javayou" target="_blank"
+               title="红薯">
+                <figure>
+                    <img class="tweet-uimg" src="https://static.oschina.net/uploads/user/0/12_50.jpg?t=1421200584000">
+                </figure>
+            </a>
+            <div class="box-aw">
+                <p class="tweet-content wrap"><span class="tweet-user"><a href="https://my.oschina.net/javayou" target="_blank" title="红薯">红薯</a>：</span>中国人面对的三大世界性难题</p>
+                <div class="box vertical justify toolbox">
+                    <span>2天前&nbsp;<a class="commened"
+                                                                                      href='https://my.oschina.net/javayou/tweet/16448802'
+                                                                                      target="_blank">(45评)</a>&nbsp;                                                    <a href="https://my.oschina.net/javayou/tweet/16448802" class="image-url" target="_blank"><img class="ssmicon" src='/build/oschina/community/stylesheets/imgs/tweet_img.svg?t=1485169033000' align='absmiddle'/></a>
+                                                                                Android    </span>
+                    <figure class="box vertical cursor" data-count="0"
+                            onclick="page.favor(this,'',16448802,27,16448802,12)">
+                        <div class="favor-icon "></div>
+                        <figcaption class="favor-count">27</figcaption>
+                    </figure>
+                </div>
+            </div>
+        </div>
+
+            </section>
+        </div>
+
+
+
+</div>        			        <!-- 线下活动 -->
+        <div>
+
+    <header class="box justify aside-header">
+        <h2 class="name">线下活动</h2>
+        <a class="more" href="/event?tab=latest&city=%E5%85%A8%E5%9B%BD&time=all" target="_blank" title="更多线下活动">更多</a>
+    </header>
+
+            <a class="thumb event-thumb" href="http://connect.pivotal.io/PivotalkOnlineClass8_registration-page.html" target="_blank" title="Pivotal 第八期技术公开课-拥抱云原生应用新时代">
+                <figure class="figure">
+                    <img class="thumb-img" src="https://static.oschina.net/uploads/img/201801/19180304_vsEn.jpg">
+                    <figcaption class="figcaption">
+                        <section class="thumb-txt">
+                            <h2 class="name">Pivotal 第八期技术公开课-拥抱云原生应用新时代</h2>
+                            <div class="box vertical">
+                                <time class="time"></time>
+                                <address class="address"></address>
+                            </div>
+                        </section>
+                    </figcaption>
+                </figure>
+            </a>
+
+            <a class="event" href="https://www.oschina.net/event/2272371" target="_blank" title="IBM科技原力-人工智能开发挑战赛线上直播">
+                <h2 class="name">IBM科技原力-人工智能开发挑战赛线上直播</h2>
+                <div class="box vertical sub">
+                    <time class="time">2018.01.18</time>
+                    <address class="address">北京东城</address>
+                </div>
+            </a>
+
+            <a class="event" href="https://www.oschina.net/event/2272374" target="_blank" title="GAME-TECH腾讯云游戏开发者技术沙龙杭州站">
+                <h2 class="name">GAME-TECH腾讯云游戏开发者技术沙龙杭州站</h2>
+                <div class="box vertical sub">
+                    <time class="time">2018.01.19</time>
+                    <address class="address">浙江杭州</address>
+                </div>
+            </a>
+
+            <a class="event" href="https://www.oschina.net/event/2272445" target="_blank" title="数人云Meetup|Building Microservice NO.1 深圳站">
+                <h2 class="name">数人云Meetup|Building Microservice NO.1 深圳站</h2>
+                <div class="box vertical sub">
+                    <time class="time">2018.01.27</time>
+                    <address class="address">广东深圳</address>
+                </div>
+            </a>
+
+            <a class="event" href="https://www.oschina.net/event/2272372" target="_blank" title="揭秘支撑腾讯游戏亿级用户的云端架构技术">
+                <h2 class="name">揭秘支撑腾讯游戏亿级用户的云端架构技术</h2>
+                <div class="box vertical sub">
+                    <time class="time">2018.01.12</time>
+                    <address class="address">广东广州</address>
+                </div>
+            </a>
+
+            <a class="event" href="https://www.oschina.net/event/2272094" target="_blank" title="开源社区觉醒计划—区块链技术公益巡回沙龙">
+                <h2 class="name">开源社区觉醒计划—区块链技术公益巡回沙龙</h2>
+                <div class="box vertical sub">
+                    <time class="time">2018.01.06</time>
+                    <address class="address">广东广州</address>
+                </div>
+            </a>
+
+            <a class="event" href="https://www.oschina.net/event/2268239" target="_blank" title="Jenkins User Conference China">
+                <h2 class="name">Jenkins User Conference China</h2>
+                <div class="box vertical sub">
+                    <time class="time">2017.11.19</time>
+                    <address class="address">上海长宁</address>
+                </div>
+            </a>
+
+            <a class="event" href="https://www.oschina.net/event/2267996" target="_blank" title="PaaS Innovation 2017，构建灵动新IT">
+                <h2 class="name">PaaS Innovation 2017，构建灵动新IT</h2>
+                <div class="box vertical sub">
+                    <time class="time">2017.11.16</time>
+                    <address class="address">北京东城</address>
+                </div>
+            </a>
+            </div>        <!-- 开源周刊 -->
+        <div>
+        <header class="box justify aside-header">
+        <h2 class="name">开源软件年度榜单</h2>
+        <a class="more" title="更多开源软件年度榜单" href="https://www.oschina.net/news/92438/2017-mayun-top-50" target="_blank">更多</a>
+    </header>
+
+    <a href="https://www.oschina.net/news/92438/2017-mayun-top-50" target="_blank" title="开源软件年度榜单">
+        <figure>
+            <img src="https://static.oschina.net/uploads/img/201801/19101923_mI5W.png" alt="开源软件年度榜单">
+        </figure>
+    </a>
+</div>        <!-- 在线工具 -->
+        <style type="text/css">
+
+
+.toolitem{
+margin: 0 0 5px 0;
+    padding: 0 0 8px 0;
+}
+.underline{
+
+    border-bottom: 1px dashed #ddd;
+}
+.toolitem .img{
+    display:block;
+    margin: 0 5px 0 0;
+}
+.toolitem .img img{
+    width:48px;
+    height:48px;
+}
+
+.toolitem .detail .name a{
+    font-size: 14px;
+    text-decoration: none;
+    font-weight: bold;
+    color: #3E62A6;
+    outline: 0;
+    line-height:16px;
+    display:block;
+}
+
+.toolitem .detail .intro{
+    font-size: 12px;
+    display: block;
+    color: #9A9A9A;
+    margin: 5px 0 0 0;
+}
+
+</style>
+<div>
+    <header class="box justify aside-header">
+        <h2 class="name">在线工具</h2>
+    </header>
+    <ul class="toolsonline">
+        <li class="box vertical toolitem underline">
+            <span class="img">
+                <a href="http://team.oschina.net/" target="_blank"><img src='/img/team.png?t=1451961935000' alt="APIDOCS"/></a>
+            </span>
+            <span class='detail'>
+                <span class='name'><a href="http://team.oschina.net/" target="_blank">Team@OSC 团队协作</a></span>
+                <span class='intro'>团队协作开发平台，周报，便签，任务管理，应有尽有，轻松管理轻量级团队。</span>
+            </span>
+
+        </li>
+        <li class="box vertical toolitem underline">
+            <span class="img">
+                <a href="https://gitee.com" target="_blank"><img src='/img/git.png?t=1509508828000' alt="APIDOCS"/></a>
+            </span>
+            <span class='detail'>
+                <span class='name'><a href="https://gitee.com?from=osc-index" target="_blank">码云 代码托管</a></span>
+                <span class='intro'>无论是个人、团队、或是企业，都能够用码云实现代码托管、项目管理、协作开发。</span>
+            </span>
+
+        </li>
+        <li class="box vertical toolitem underline">
+            <span class="img">
+                <a href="http://sonar.oschina.net/" target="_blank"><img src='/img/sonar.png?t=1451961935000' alt="APIDOCS"/></a>
+            </span>
+            <span class='detail'>
+                <span class='name'><a href="http://sonar.oschina.net/" target="_blank">Sonar@OSC
+                    代码质量检查</a></span>
+                <span class='intro'>开源中国基于Sonar打造的代码质量管理系统，与 Git@OSC 紧密结合。</span>
+            </span>
+
+        </li>
+        <li class="box vertical toolitem underline">
+            <span class="img">
+                <a href="http://www.oschina.net/news/55994/oschina-paas-platform-with-mopaas"
+                   target="_blank"><img src='/img/paas.png?t=1451961935000' alt="APIDOCS"/></a>
+            </span>
+            <span class='detail'>
+                <span class='name'><a href="https://git.oschina.net/paas_osc"
+                                      target="_blank">PaaS@OSC 项目演示</a></span>
+                <span class='intro'>开源中国社区团队跟 MoPaaS 合作，为开发者提供更可靠的代码托管和演示服务。</span>
+            </span>
+
+        </li>
+        <li class="box vertical toolitem underline">
+            <span class="img">
+                <a href="http://tool.oschina.net" target="_blank"><img src="img/ostools.gif" alt="APIDOCS"/></a>
+            </span>
+            <span class='detail'>
+                <span class='name'><a href="http://tool.oschina.net" target="_blank">OSTools 在线工具</a></span>
+                <span class='intro'>提供在线CSS/JS 调试，在线API文档,Less CSS编译器等在线工具。</span>
+            </span>
+
+        </li>
+        <li class="box vertical toolitem underline">
+            <span class="img">
+                <a href="http://runjs.cn/" target="_blank"><img src="/img/runjs_logo.gif" alt="RunJS"/></a>
+            </span>
+            <span class='detail'>
+                <span class='name'><a href="http://runjs.cn/" target="_blank">RunJS 在线编辑</a></span>
+                <span class='intro'>在线编辑测试JS/HTML/CSS的工具,实时预览、保存、分享、Fork。</span>
+            </span>
+
+
+        </li>
+
+                                                                 <li class="box vertical toolitem">
+<span class="img">
+    <a href="http://click.aliyun.com/m/4604/" target="_blank"><img src="https://static.oschina.net/uploads/space/2016/1228/154316_e5bB_2982602.png" alt="aliyun"></a>
+</span>
+<span class="detail">
+    <span class="name"><a href="http://click.aliyun.com/m/4604/" target="_blank">PHP、java环境一键部署</a></span>
+    <span class="intro">系统千差万别，开源软件来源不明？一键部署，上云从未如此简单。</span>
+</span>
+<div class="clear"></div>
+</li>
+            </ul>
+</div>    </aside>
+</section>
+
+</section>
+<style type="text/css">
+    .common-footer .osc-map {
+        font-size: 0;
+        padding: 16px 0 0;
+        background: #FAFAFA;
+    }
+
+    .common-footer .box {
+        overflow: hidden;
+        width: 100%;
+        max-width: 1200px;
+        margin: 0px auto;
+    }
+
+    .common-footer .map-header{
+        font-size: 12px;
+        font-weight: normal;
+        margin: 0 0 10px;
+        height: 18px;
+        color: #4A4A4A;
+    }
+    .common-footer .map-header.bigger{font-weight: bold;}
+
+    .common-footer .map-link{
+        font-size: 12px;
+        display: block;
+        line-height: 20px;
+        color: #4A4A4A;
+        transition:color .2s;
+    }
+
+    .common-footer .map-link:hover{
+        color:#21B351;
+    }
+
+    .common-footer .wechat{margin: 0 auto;}
+
+    .common-footer .osc-footer {
+        background: #444444;
+
+    }
+    .common-footer .content-wrapper{
+        width:1200px;
+        margin:0 auto;
+        height: 36px;
+    }
+    .common-footer .osc-footer *{
+        font-size: 12px;
+        color: #CFCFCF;
+    }
+    .common-footer .dl_mob{
+        transition:All 0.4s ease-in-out;
+        -webkit-transition:All 0.4s ease-in-out;
+        -moz-transition:All 0.4s ease-in-out;
+        -o-transition:All 0.4s ease-in-out;
+        width:120px;
+        height:122px;
+        display:block;
+        margin-bottom: -11px;
+        z-index: -1;
+    }
+    .common-footer .dl_mob:hover {
+        transform:translate(0,-10px);
+        -webkit-transform:translate(0,-10px);
+        -moz-transform:translate(0,-10px);
+        -o-transform:translate(0,-10px);
+        -ms-transform:translate(0,-10px);
+    }
+    .merge{
+        width: auto!important;
+        margin: 0!important;
+    }
+    figure{
+        margin: 0;
+    }
+</style>
+<footer class="common-footer">
+
+    <div class="osc-map">
+        <div class="box justify sc-container"style="overflow: hidden;">
+            <div>
+                <h2 class="map-header bigger">社区</h2>
+                <ul>
+                    <li><a class="map-link cursor" href="https://www.oschina.net/project" target="_blank">开源项目</a></li>
+                    <li><a class="map-link cursor" href="https://www.oschina.net/question" target="_blank">技术问答</a></li>
+                    <li><a class="map-link cursor" href="https://www.oschina.net/tweets" target="_blank">动弹</a></li>
+                    <li><a class="map-link cursor" href="https://www.oschina.net/blog" target="_blank">博客</a></li>
+                </ul>
+            </div>
+            <div>
+                <h2  class="map-header bigger"></h2>
+                <ul>
+                    <li><a class="map-link cursor" href="https://www.oschina.net/news" target="_blank">开源资讯</a></li>
+                    <li><a class="map-link cursor" href="https://www.oschina.net/translate" target="_blank">技术翻译</a></li>
+                    <li><a class="map-link cursor" href="https://www.oschina.net/android" target="_blank">专题</a></li>
+                    <li><a class="map-link cursor" href="https://job.oschina.net/" target="_blank">招聘</a></li>
+                </ul>
+            </div>
+            <div>
+                <h2  class="map-header bigger">众包</h2>
+                <ul>
+                    <li><a class="map-link cursor" href="https://zb.oschina.net/projects" target="_blank">项目大厅</a></li>
+                    <li><a class="map-link cursor" href="https://zb.oschina.net/services" target="_blank">软件与服务</a></li>
+                    <li><a class="map-link cursor" href="https://zb.oschina.net/account/choose-role" target="_blank">接活赚钱</a></li>
+                </ul>
+            </div>
+            <div>
+                <h2 class="map-header bigger">码云</h2>
+                <ul>
+                    <li><a class="map-link cursor" href="https://gitee.com/?from=osc-index" target="_blank">Git代码托管</a></li>
+                    <li><a class="map-link cursor" href="https://team.oschina.net/" target="_blank">Team</a></li>
+                    <li><a class="map-link cursor" href="https://git.oschina.net/paas_osc" target="_blank">PaaS</a></li>
+                    <li><a class="map-link cursor" href="http://tool.oschina.net/" target="_blank">在线工具</a></li>
+                </ul>
+            </div>
+            <div>
+                <h2 class="map-header bigger">活动</h2>
+                <ul>
+                    <li><a class="map-link cursor" href="https://www.oschina.net/event?tab=latest&city=全国&time=all" target="_blank">线下活动</a></li>
+                    <li><a class="map-link cursor" href="https://www.oschina.net/event/create" target="_blank">发起活动</a></li>
+                    <li><a class="map-link cursor" href="https://www.oschina.net/event/ych" target="_blank">源创会</a></li>
+                </ul>
+            </div>
+            <div>
+                <h2 class="map-header">关注微信公众号</h2>
+                <figure>
+                    <img class="wechat" src="/build/oschina/community/stylesheets/imgs/wechat.jpg?t=1484694924000" title="关注微信公众号">
+                </figure>
+            </div>
+            <div>
+                <h2 class="map-header">下载手机客户端</h2>
+                <a href="https://www.oschina.net/app" title="下载手机客户端" class="dl_mob">
+                    <figure>
+                        <img src="/build/oschina/community/stylesheets/imgs/mob.png?t=1495409678000" title="下载手机客户端">
+                    </figure>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="osc-footer">
+        <div class="box vertical justify content-wrapper add-class">
+            <ul class="box vertical merge">
+                <li style="padding-right: 27px;">&copy;开源中国(OSChina.NET)</li>
+                <li style="padding-right: 1em;"><a href="https://www.oschina.net/home/aboutosc" target="_blank" title="关于我们">关于我们</a></li>
+                <li style="padding-right: 1em;"><a href="https://www.oschina.net/home/aboutosc" title="联系我们">联系我们</a></li>
+                <li style="padding-right: 1em;"><a href="https://weibo.com/oschina2010" target="_blank" title="@新浪微博">@新浪微博</a></li>
+                <li><a class="map-link cursor" href="https://www.oschina.net/home/aboutosc#partners" target="_blank">合作单位</a></li>
+            </ul>
+
+            <div>
+                <span style="padding-right: 1em;">开源中国社区是工信部<a style="padding: 0 .5em;" href="http://www.copu.org.cn/" target="_blank" title="开源软件推进联盟">开源软件推进联盟</a>指定的官方社区</span>
+                <span><a href="http://www.miitbeian.gov.cn/" target="_blank" class="text-muted">粤ICP备12009483号-3</a>  深圳市奥思网络科技有限公司版权所有</span>
+            </div>
+        </div>
+    </div>
+
+</footer>
+    <script type="text/javascript" src="/dist/oschina/community/javascripts/community-main-a9649b46ab6abc4fec5d7ec1ec0dceb5e3dc34d3.js"></script>
+ <script type="text/javascript">
+     (function (ww, dt) {
+         ww.__gac = {
+             domain: 'www.oschina.net'
+         };
+         if(!(/\/marketing\/ad-slice/.test(location.href))){
+             var script = dt.createElement('script');
+             script.setAttribute('type', 'text/javascript');
+             script.setAttribute('src', '//www.oschina.net/public/javascripts/cjl/ga.js?t=20160926');
+             dt.body.appendChild(script);
+         }
+     } (window, window.document));
+ </script>
+
+<body>
+
+<!-- Generated by OsChina.NET (init:0[ms],page:25[ms],ip:14.25.85.66) -->
