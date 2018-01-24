@@ -24,7 +24,6 @@
     * [9、基于socket的静态web实现](di-er-bu-fen-ff1a-python-gao-ji-yu-wang-luo-bian-cheng/er-3001-zheng-ze-biao-da-shi/93001-ji-yu-socket-de-jing-tai-web-shi-xian.md)
     * [10、socketserver服务器](di-er-bu-fen-ff1a-python-gao-ji-yu-wang-luo-bian-cheng/er-3001-zheng-ze-biao-da-shi/11socketserverfu-wu-qi.md)
     * [11、concurrent.futures并发模块](di-er-bu-fen-ff1a-python-gao-ji-yu-wang-luo-bian-cheng/er-3001-zheng-ze-biao-da-shi/10concurrentfutures.md)
-    * [12、twisted异步小实例](di-er-bu-fen-ff1a-python-gao-ji-yu-wang-luo-bian-cheng/er-3001-zheng-ze-biao-da-shi/12twistedyi-bu-xiao-shi-li.md)
   * [三、数据库MySQL知识](di-er-bu-fen-ff1a-python-gao-ji-yu-wang-luo-bian-cheng/san-3001-shu-ju-jie-gou-yu-suan-fa.md)
     * [3.1 MySQL基础](di-er-bu-fen-ff1a-python-gao-ji-yu-wang-luo-bian-cheng/san-3001-shu-ju-jie-gou-yu-suan-fa/31-mysqlji-chu.md)
     * [3.2 MySQL语句](di-er-bu-fen-ff1a-python-gao-ji-yu-wang-luo-bian-cheng/san-3001-shu-ju-jie-gou-yu-suan-fa/32-mysqlcha-xun.md)
