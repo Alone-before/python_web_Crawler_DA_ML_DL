@@ -279,5 +279,215 @@ if __name__ == '__main__':
 
 ## 9.3 多线程、多进程、协程实现web服务器
 
+和第7章的斗鱼照片爬取类似，我们只需要修改TCP连接客户服务套接字的启动方式就可以实现9.2节的内容了，也就是修改HTTPServer类的serve\_forver方法。限于篇幅，本节只列举被修改的部分，完整源代码请参考net09\_web\_PWB3.py、net09\_web\_PWB4.py和net09\_web\_PWB5.py
+
+### 9.3.1 多线程web服务器
+
+```py
+    def serve_forever(self):
+        """永久运行监听接收连接"""
+        while True:
+            client_socket, client_address = self.tcp_socket.accept()
+            print(client_address, '向服务器发起了请求')
+            td1 = threading.Thread(target=self.handlerequest, args=(client_socket,))
+            td1.start()
+```
+
+### 9.3.2 多进程web服务器
+
+```py
+    def serve_forever(self):
+        """永久运行监听接收连接"""
+        while True:
+            client_socket, client_address = self.tcp_socket.accept()
+            print(client_address, '向服务器发起了请求')
+            processes = multiprocessing.Process(target=self.handlerequest, args=(client_socket,))
+            processes.start()
+            client_socket.close()
+```
+
+### 9.3.3 协程web服务器
+
+```py
+    def serve_forever(self):
+        """永久运行监听接收连接"""
+        while True:
+            client_socket, client_address = self.tcp_socket.accept()
+            print(client_address, '向服务器发起了请求')
+            gevent.spawn(self.handlerequest, client_socket)
+```
+
+## 9.4 拓展epoll非阻塞IO的web服务器
+
+在9.3节，我们在serve\_forever方法中通过while True来实现死循环运行实现并发web服务器，不会出错是因为我们的服务端套接字默认是阻塞型的，即无连接时，会停在accept\(\)那里。这样的工作模式在海量连接工作时效率很低。
+
+要向工作效率高，就可以I/O多路复用。多路IO好处就在于单个process就可以同时处理多个网络连接的IO。对于多路IO模型在很多操作系统上都有一些实现，比如多数BSD平台都支持的kqueue\(\)，或者Windows支持的IOCP，而**Linux 平台\(内核版本2.5+\)上就有一个著名的模型epoll**。在epoll模型中 由操作系统负责监听的所有socket，当某个socket有数据到达了，操作系统就通知用户进程。这样比 在用户层面实现的 for 、while不断死循环去检测每个socket的通信状态 的代码高效太多 ，也称轮询。如果用户层面的轮询 ， 某短时间段内没有用户访问，则CPU执行流程属于无用功\(while死循环中\) 产出效率低 浪费资源。并且执行效率和轮询的socket数量息息相关， 一般在1024-2048左右。随着需要轮询的数量增加，轮询效率越低。
+
+**I/O 多路复用的特点：**
+
+**通过一种机制使一个进程能同时等待多个文件描述符，而这些文件描述符（套接字描述符）其中的任意一个进入读就绪状态，epoll\(\)函数就可以返回。**所以, I/O多路复用，本质上在 任何时候 监视任务都是单进程\(单线程\)模式 进行工作，它之所以能提高效率是因为select / epoll 把进来的socket放到他们的 '监视' 列表里面，当任何socket有可读可写数据立马处理，那如果select\epoll 手里同时检测着很多socket， 一有动静马上返回给进程处理，比一个一个socket过来,恢复阻塞等待前的情况开始执行处理请求 效率高。
+
+要I/O多路复用就需要把服务套接字设置为非阻塞，但是会出错。怎么办呢？
+
+```
+self.tcp_socket.setblocking(False)  # 将套接字设置为非阻塞模式
+```
+
+epoll是Linux内核为处理大批量文件描述符而作了改进的poll，是Linux下多路复用IO接口select/poll的增强版本，它能显著提高程序在大量并发连接中只有少量活跃的情况下的系统CPU利用率。另一点原因就是获取事件的时候，它无须遍历整个被侦听的描述符集，只要遍历那些被内核IO事件异步唤醒而加入Ready队列的描述符集合就行了。
+
+python中有个select模块可以实现epoll。一般的使用方式为：
+
+* 创建epoll对象
+  ```
+  self.epoll = select.epoll()  # 创建一个epoll对象
+  ```
+* 注册事件文件描述符，监听epoll.poll列表并执行相应操作
+  ```
+  self.epoll.register(self.tcp_socket.fileno(), select.EPOLLIN | select.EPOLLET) # 将服务套接字注册
+  self.epoll.register(new_client_socket.fileno(), select.EPOLLIN | select.EPOLLET)
+
+  EPOLLIN （可读）
+  EPOLLOUT （可写）
+  EPOLLET （ET模式）EPOLLLT（LT模式）
+  LT模式：当epoll检测到描述符事件发生并将此事件通知应用程序，应用程序可以不立即处理该事件。下次调用epoll时，
+  会再次响应应用程序并通知此事件。
+
+  ET模式：当epoll检测到描述符事件发生并将此事件通知应用程序，应用程序必须立即处理该事件。
+  如果不处理，下次调用epoll时，不会再次响应应用程序并通知此事件
+
+
+  epoll_list = self.epoll.poll()
+              for fd, events in epoll_list:
+                          do something
+  ```
+
+**单进程单线程采用epoll实现静态web服务器完整代码**
+
+```py
+"""linux平台 epoll 实现web服务器"""
+'''net09_web_PWB6.py'''
+import socket
+import select
+import re
+
+SERVER_ADDR = (HOST, PORT) = '', 8888  # 服务器地址
+VERSION = 6.0  # web服务器版本号
+STATIC_PATH = './static/'
+
+
+class HTTPServer():
+    def __init__(self, server_address):
+        """初始化服务器TCP套接字"""
+        self.tcp_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.tcp_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+        self.tcp_socket.bind(server_address)
+        self.tcp_socket.listen(128)
+        self.tcp_socket.setblocking(False)  # 将套接字设置为非阻塞模式
+        self.epoll = select.epoll()  # 创建一个epoll对象
+        self.epoll.register(self.tcp_socket.fileno(), select.EPOLLIN | select.EPOLLET) # 将服务套接字注册
+        self.connections = {}
+        self.addresses = {}
+
+    def serve_forever(self):
+        """永久运行监听接收连接"""
+        while True:
+            epoll_list = self.epoll.poll()
+            for fd, events in epoll_list:
+                if fd == self.tcp_socket.fileno():
+                    new_client_socket, new_client_address = self.tcp_socket.accept()
+                    print(new_client_address, '向服务器发起了请求')
+                    self.connections[new_client_socket.fileno()] = new_client_socket # 存入客户连接事件文件描述符
+                    self.addresses[new_client_socket.fileno()] = new_client_address
+                    # 向epoll中则侧新socket的可读事件
+                    self.epoll.register(new_client_socket.fileno(), select.EPOLLIN | select.EPOLLET)
+                elif events == select.EPOLLIN:
+                    self.handlerequest(fd)
+
+    def handlerequest(self, fd):
+        """客户端请求处理，发送响应数据"""
+        # 收取浏览器请求信息，并在服务器端打印显示
+        request_data = self.connections[fd].recv(2048).decode('utf-8')
+        # 数据为空代表客户端关闭了连接，则在监听中除去响应的文件描述符
+        if not request_data:
+            self.epoll.unregister(fd)
+            self.connections[fd].close()  # server侧主动关闭连接fd
+            print("%s---offline---" % str(self.addresses[fd]))
+            del self.connections[fd]
+            del self.addresses[fd]
+        # 若存在数据，则按照正常的事件处理
+        else:
+            request_header_lines = request_data.splitlines()
+            # for line in request_header_lines:
+            #     print(line)
+
+            # 解析请求头，获取具体请求信息
+            pattern = r'[^/]+(/[^ ]*)'
+            request_html_name = re.match(pattern, request_header_lines[0]).group(1)
+            # 根据解析到的内容补全将要读取文件的路径
+            if request_html_name == '/':
+                request_html_name = STATIC_PATH + 'baidu.html'
+            else:
+                request_html_name = STATIC_PATH + request_html_name
+
+            # 根据文件情况来返回相应的信息
+            try:
+                html_file = open(request_html_name, 'rb')
+            except FileNotFoundError:
+                # 文件不存在，则返回文件不存在，并返回状态码404
+                resp_headers = 'HTTP/1.1 404 not found\r\n'
+                resp_headers += "Server: PWB" + str(VERSION) + '\r\n'
+                resp_headers += '\r\n'
+                resp_body = '==== 404 file not found===='.encode('utf-8')
+            else:
+                # 文件存在，则读取文件内容，并返回状态码200
+                resp_headers = "HTTP/1.1 200 OK\r\n"  # 200代表响应成功并找到资源
+                resp_headers += "Server: PWB" + str(VERSION) + '\r\n'  # 告诉浏览器服务器
+                resp_headers += '\r\n'  # 空行隔开body
+                resp_body = html_file.read()  # 显示内容为读取的文件内容
+                html_file.close()
+            finally:
+                resp_data = resp_headers.encode('utf-8') + resp_body  # 结合响应头和响应体
+                # 发送相应数据至浏览器
+                self.connections[fd].send(resp_data)
+                # HTTP短连接，请求完即关闭TCP连接，并除去相应事件的文件描述符
+                self.epoll.unregister(fd)
+                self.connections[fd].close()  # server侧主动关闭连接fd
+                print("%s--web请求响应完毕-offline---" % str(self.addresses[fd]))
+                del self.connections[fd]
+                del self.addresses[fd]
+
+
+def run():
+    """运行服务器"""
+    pwb = HTTPServer(SERVER_ADDR)
+    print('web server:PWB %s on port %d...\n' % (VERSION, PORT))
+    pwb.serve_forever()
+
+
+if __name__ == '__main__':
+    run()
+```
+
+当然也可以像9.3节那样多线程 方式，一个连接过来开一个 线程处理，这样消耗的内存和线程 切换页会耗掉更多的系统资源。所以, 我们可以结合I/O多路复用和多线程 来提高性能并发，I/O复用负责提高接受socket的通知效率，收到请求后，交给 多线程 来处理逻辑。完整源码见net09\_web\_PWB7.py。
+
+```py
+'''net09_web_PWB7.py'''
+    def serve_forever(self):
+        """永久运行监听接收连接"""
+        while True:
+            epoll_list = self.epoll.poll()
+            for fd, events in epoll_list:
+                if fd == self.tcp_socket.fileno():
+                    new_client_socket, new_client_address = self.tcp_socket.accept()
+                    print(new_client_address, '向服务器发起了请求')
+                    self.connections[new_client_socket.fileno()] = new_client_socket # 存入客户连接事件文件描述符
+                    self.addresses[new_client_socket.fileno()] = new_client_address
+                    # 向epoll中则侧新socket的可读事件
+                    self.epoll.register(new_client_socket.fileno(), select.EPOLLIN | select.EPOLLET)
+                elif events == select.EPOLLIN:
+                    td = threading.Thread(target=self.handlerequest, args=(fd,))
+                    td.start()
+```
+
 
 
