@@ -1,6 +1,6 @@
-# 3.1 MySQL基础
+# 1 MySQL基础
 
-## 3.1.1 MySQL 简介
+## 1.1 MySQL 简介
 
 MySQL是一个关系型数据库管理系统，由瑞典MySQL AB公司开发，后来被Sun公司收购，Sun公司后来又被Oracle公司收购，目前属于Oracle旗下产品。
 
@@ -44,7 +44,7 @@ MySQL是一个关系型数据库管理系统，由瑞典MySQL AB公司开发，�
 
 ![](/assets/mysql_document.png)
 
-## 3.1.2 MySQL 终端启动、图形化操作工具Navicat
+## 1.2 MySQL 终端启动、图形化操作工具Navicat
 
 ### Linux系统的数据库启动命令
 
@@ -111,7 +111,7 @@ Navicat是一套快速、可靠并价格相当便宜的数据库管理工具，�
 
 ![](/assets/navicate_connection.png)
 
-## 3.1.3 MySQL 基础SQL操作语句
+## 1.3 MySQL 基础SQL操作语句
 
 ### SQL\(Structured Query Language\)
 

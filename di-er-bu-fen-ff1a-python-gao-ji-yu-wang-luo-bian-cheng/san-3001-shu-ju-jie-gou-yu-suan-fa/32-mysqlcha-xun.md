@@ -1,8 +1,8 @@
-# 3.2 MySQL 语句
+# 2 MySQL 语句
 
 **MySQL语句的关键词不区分大小写，语句以逗号为结束符，--为MySQL语句注释行。本节的所有命令操作均可以在终端命令实操后显示查看，建议初学者可以在图形化界面同步查看以便加深理解。笔者曾从事于传统IT行业，所以本章全程贯穿一个京东电子产品的数据库实例来进行演示各个语句以便我们更好的理解。**
 
-## 3.2.1 MySQL基本操作
+## 2.1 MySQL基本操作
 
 ### 1. 数据库操作
 
@@ -468,7 +468,7 @@ mysql -uroot –p 新数据库名 < python.sql
 # 根据提示输入mysql密码
 ```
 
-## 3.2.2 MySQL查询
+## 2.2 MySQL查询
 
 上一节中演示了基本的select \* from goods\_cates查询，可以获取到goods\_\_cates里的所有数据。但是当数据量大时，就需要各种合适的查询方式来获取指定的信息并呈现给我们。本节就来讲述并演示这些操作。在开始之间我们先介绍几个会用到的命令。
 
@@ -1108,19 +1108,23 @@ from goods_cates_2 gc2 left join goods_cates_2 gc1 on gc2.cate_id=gc1.id;
 
 查询的综合完整语句：
 
-SELECT select\_expr \[,select\_expr,...\] \[      
 
-      FROM tb\_name
 
-      \[WHERE 条件判断\]
+```
+  SELECT select_expr [,select_expr,...] [
+  FROM tb\_name
 
-      \[GROUP BY {col\_name \| postion} \[ASC \| DESC\], ...\] 
+  \[WHERE 条件判断\]
 
-      \[HAVING WHERE 条件判断\]
+  \[GROUP BY {col\_name \| postion} \[ASC \| DESC\], ...\] 
 
-      \[ORDER BY {col\_name\|expr\|postion} \[ASC \| DESC\], ...\]
+  \[HAVING WHERE 条件判断\]
 
-      \[ LIMIT {\[offset,\]rowcount \| row\_count OFFSET offset}\]
+  \[ORDER BY {col\_name\|expr\|postion} \[ASC \| DESC\], ...\]
 
-\]
+  \[ LIMIT {\[offset,\]rowcount \| row\_count OFFSET offset}\]
+  ]
+```
+
+
 
