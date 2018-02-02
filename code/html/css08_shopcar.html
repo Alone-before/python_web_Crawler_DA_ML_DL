@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>购物车右上角数字位置设置</title>
+    <style>
+        .shop_car {
+            width: 100px;
+            height: 100px;
+            background-color: antiquewhite;
+            text-align: center;
+            line-height: 100px;
+
+            border-radius: 5px;
+        }
+
+        span {
+            width: 28px;
+            height: 28px;
+            /* 颜色透明 */
+            /* background-color: rgba(255, 0, 0, 0.5); */
+            background-color: red;
+            border-radius: 14px;
+            line-height: 28px;
+            color: white;
+            /* 位置方式设置 */
+            position: absolute;
+            text-align: center;
+            /* 位置坐标设置 */
+            left: 86px;
+            top: -14px;
+            /* 是否透明 0~1 */
+            opacity: 0.3;
+            /* 兼容IE 0~100*/
+            filter:alpha(opacity=30);
+
+        }
+
+        .box{
+            position: relative;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="shop_car">购物车</div>
+        <span>5</span>
+    </div>
+</body>
+
+</html>

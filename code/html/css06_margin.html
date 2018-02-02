@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>margin外边距属性</title>
+    <style>
+        .box{
+            width: 300px;
+            height: 300px;
+            background-color: gold;
+            border: 1px solid black;
+        }
+
+        .box div{
+            background-color: green;
+            width: 200px;
+            height: 200px;
+
+            /* margin-left: 20px; */
+            /* margin-top 塌陷问题  外层盒子一起下降，需要设置外层盒子的边界*/
+            /* margin-top: 20px;
+            margin-right: 20px;
+            margin-bottom: 20px; */
+            /* 四条边一致 */
+            margin: 10px;
+                /* 上下   左右 */
+            /* margin: 10px 50px; */
+                /* 上   左右   下 */
+            /* margin: 10px 30px 50px; */
+            /* 上  右  下  左 顺时针 */
+            /* margin: 10px 20px 30px 40px; */
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div>div标签</div>
+    </div>
+</body>
+</html>

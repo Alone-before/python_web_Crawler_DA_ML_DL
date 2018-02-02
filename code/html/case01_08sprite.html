@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>雪碧图电影排行案例</title>
+
+    <style>
+        .list{
+            list-style: none;
+            margin: 0px;
+            padding: 0px;
+
+            width: 300px;
+            margin: 50px auto 0px;
+
+
+        }
+
+        .list li{
+            height: 60px;
+            border-bottom: 1px dotted black;
+            text-indent: 60px;
+            /* 雪碧图作为背景图片，不平铺 */
+            background-image: url("./images/sprite_bg.png");
+            background-repeat: no-repeat;
+            background-position-y: 10px;
+        }
+
+
+        .list .icon1{
+            /* 通过移动y向雪碧图作为背景的位置 来实现不同列显示不同的背景图片 */
+            background-position-y: -70px;
+        }
+        .list .icon2{
+            background-position-y: -153px;
+        }
+        .list .icon3{
+            background-position-y: -233px;
+        }
+        .list .icon4{
+            background-position-y: -314px;
+        }
+
+
+        .list a{
+            text-decoration: none;
+            color: black;
+            line-height: 60px;
+        }
+
+        .list a:hover{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <ul class="list">
+        <li><a href="#">电影排列1</a></li>
+        <li class="icon1"><a href="#">电影排列2</a></li>
+        <li class="icon2"><a href="#">电影排列3</a></li>
+        <li class="icon3"><a href="#">电影排列4</a></li>
+        <li class="icon4"><a href="#">电影排列5</a></li>
+    </ul>
+</body>
+</html>

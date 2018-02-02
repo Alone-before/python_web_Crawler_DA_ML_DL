@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>网站主页导航栏</title>
+    <style>
+        .box{
+            list-style: none;
+            padding: 0;
+
+            width: 960px;
+            height: 40px;
+            border: 1px solid #d1d1d1;
+            margin: 50px auto;
+            /* 采用行内块，需要将父级元素字体大小设置为0，以便消除块间间隙 */
+            font-size: 0;
+
+            text-align: center;
+        }
+        .box li{
+            /* 行内块让所有列在同一行 */
+            display: inline-block;
+            font-size: 14px;
+            font-family: 'Microsoft YaHei';
+            color: #3d3d3d;
+            line-height: 40px;
+            /* 各块左右相隔20px */
+            margin: 0px 10px;
+        }
+    </style>
+</head>
+<body>
+    <ul class="box">
+        <li>首&nbsp;页</li>
+        <li>|</li>
+        <li>网站建设</li>
+        <li>|</li>
+        <li>程序开发</li>
+        <li>|</li>
+        <li>网络营销</li>
+        <li>|</li>
+        <li>企业VI</li>
+        <li>|</li>
+        <li>案例展示</li>
+        <li>|</li>
+        <li>联系我们</li>
+    </ul>
+</body>
+</html>

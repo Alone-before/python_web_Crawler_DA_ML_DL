@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>文章配图布局案例</title>
+
+    <style>
+        .box {
+            width: 600px;
+            height: 300px;
+            border: 1px solid black;
+        }
+        
+        img {
+            margin: 20px;
+            /* 浮动实现图片处于最左侧 */
+            float: left;
+        }
+        
+        p {
+            font-size: 14px;
+            line-height: 24px;
+            margin-top: 20px;
+        }
+        
+        .text {
+            width: 394px;
+            height: 300px;
+            margin-right: 20px;
+            /* 浮动使得文本块处于最右侧 */
+            float: right;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <img src="./images/head.jpg" alt="程序员">
+        <div class="text">
+            <p>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;程序员(英文Programmer)是从事程序开发、维护的专业人员。一般将程序员分为程序设计人员和程序编码人员，但两者的界限并不非常清楚，特别是在中国。软件从业人员分为初级程序员、中级程序员、高级程序员、系统分析员，系统架构师，测试工程师六大类。
+                <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;世界上第一位程序员是英国著名诗人拜伦的女儿,曾设计了巴贝奇分析机上解伯努利方程的一个程序。她叫AdaLovelace，她甚至还建立了循环和子程序的概念。由于其在程序设计上的开创性工作，AdaLovelace被称为世界上第一位程序员。美国国防部开发的ADA语言就是为纪念这位世界上的第一位程序员而命名的。
+            </p>
+        </div>
+    </div>
+</body>
+
+</html>

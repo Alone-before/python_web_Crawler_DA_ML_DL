@@ -1,0 +1,46 @@
+h1,h2,h3,p,ul,input,body{
+    margin: 0px;
+    padding: 0px;
+}
+
+h1,h2,h3{
+    font-weight: normal;
+    font-size: 100%
+}
+
+ul{
+    list-style: none;
+}
+
+input{
+    border: 0px;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+/* 清除浮动及解决塌陷问题 */
+.clearfix::before,.clearfix::after{
+    content: '';
+    display: table;
+}
+
+.clearfix::after{
+    clear: both;
+}
+
+.clearfix{
+    zoom: 1;
+}
+
+/* 左浮动 */
+.fl{
+    float: left;
+}
+
+/* 右浮动 */
+.fr{
+    float: right;
+}

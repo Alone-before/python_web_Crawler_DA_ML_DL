@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>搜索条</title>
+    <style>
+        .searchbar{
+            /* 搜索条大小设置 边框设置 左右居中 */
+            width: 600px;
+            height: 40px;
+            border: 1px solid #10ad10;
+            margin: 50px auto 0px;
+        }
+        .input_text{
+            width: 500px;
+            height: 40px;
+            font-size: 12px;
+            font-family: 'Microsoft YaHei';
+            /* 文本输入框有默认边框和内边距 */
+            border: 0;
+            padding: 0;
+            text-indent: 1em;
+            /* 取消外边框高亮 */
+            outline: none;
+        }
+        .submit_bon{
+            width: 100px;
+            height: 40px;
+            background-color: #10ad10;
+            color: white;
+            font-family: 'Microsoft YaHei';
+            font-size: 18px;
+            /* 默认边框和内边距 */
+            border: 0;
+            padding: 0;
+            /* 右浮动时为了去掉行内元素之间默认间隙问题 */
+            float: right;
+            /* 取消点击输入框时边框高亮 */
+            outline: none;
+            /* 鼠标放上去后显示为小手 */
+            cursor: pointer
+        }
+    </style>
+</head>
+<body>
+    <form class="searchbar" action="">
+        <!-- 占位提示文字：请输入要搜索的内容 -->
+        <input type="text" name="search_content" placeholder="请输入要搜索的内容" class="input_text">
+        <input type="submit" value="搜索" class="submit_bon">
+    </form>
+</body>
+</html>

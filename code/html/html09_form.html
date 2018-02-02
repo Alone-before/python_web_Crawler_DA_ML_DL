@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>表单标签</title>
+    <!-- <style>
+        textarea {
+            resize: none;
+            /* 设置文本框大小不能动，固定尺寸 */
+        }
+
+        input{
+            /* 取消输入框的高亮效果 */
+            outline: none;
+        }
+    </style> -->
+</head>
+
+<body>
+    <h3>注册表单</h3>
+    <!-- action 为要将数据提交到哪个url -->
+    <!-- method 为发送数据时的请求方式 get post等 -->
+    <form action="" method="get">
+        <p>
+            <label for="">username</label>
+            <!-- name 为在提交数据时的字段/键 -->
+            <!-- placeholder 占位提示 -->
+            <input type="text" name="username" placeholder="请输入用户名">
+        </p>
+        <p>
+            <label for="">password</label>
+            <input type="password" name="password">
+        </p>
+        <p>
+            <label for="">gender</label>
+            <!-- 单选 -->
+            <!-- cheacked 为默认选择选项 -->
+            <!-- value为要提交的值 -->
+            <input type="radio" name='gender' checked value="0">男
+            <input type="radio" name='gender' value="1">女
+
+        </p>
+        <p>
+            <label for="">hobby</label>
+            <!-- 多选 -->
+            <input type="checkbox">人工智能
+            <input type="checkbox">数据分析
+            <input type="checkbox">计算数学
+            <input type="checkbox">机器学习
+            <input type="checkbox">软件开发
+        </p>
+        <p>
+            <label for="">page_picture</label>
+            <!-- 文件 -->
+            <input type="file">
+        </p>
+        <p>
+            <label for="">homeland</label>
+            <!-- 文件 -->
+            <select>
+                <option value="">shannxi</option>
+                <option value="">Beijing</option>
+                <option value="">Shanghai</option>
+                <option value="">guangzhou</option>
+            </select>
+        </p>
+        <p>
+            <label style="float:left" for="">Personal&nbsp;profile</label>
+            <!-- 文本区域 -->
+            <textarea cols="30" rows="5">请输入文字</textarea>
+        </p>
+        <p>
+            <input type="submit" value="注册">
+            <input type="reset" value="重置">
+            <input type="button" value="普通按钮">
+        </p>
+    </form>
+</body>
+
+</html>

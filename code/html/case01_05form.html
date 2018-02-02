@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>注册表单</title>
+    <style>
+
+        .clearfix:before{
+            /* margin-top 塌陷修复 */
+            content:"";
+            display:table;
+        }
+
+        body{
+            /* 网页背景色 */
+            background-color: #00ccff;
+        }
+
+        .box{
+            /* 注册表单总大小、背景色、左右居中 */
+            width: 500px;
+            height: 550px;
+            background-color: #f9f9f9;
+            margin: 10px auto;
+        }
+        .box h3{
+            /* 注册表单四个字设置 */
+            color: #ff9966;
+            font-size: 24px;
+            font-family: 'Microsoft YaHei';
+            font-weight: normal;
+            padding: 0px;
+            line-height: 50px;
+
+            width: 435px;
+            margin: 10px auto 0px;
+            border-bottom: 1px solid #dddddd;
+        }
+
+        .box form{
+            width: 434px;
+            margin: 0px auto;
+            font-size: 0;
+        }
+        .box form p{
+            width: 430px;
+            height: 40px;
+            padding: 0;
+            margin: 20px auto 5px;
+        }
+
+        .box label{
+            display: inline-block;
+            width: 88px;
+            /* background-color: #00cc00; */
+            text-align: right;
+            font-size: 14px;
+            color: #333333;
+            line-height: 40px;
+        }
+
+        .box .profile{
+            height: 70px;
+        }
+
+        .box p .profile{
+            width: 88px;
+            height: 40px;
+            text-align: right;
+            font-size: 14px;
+            line-height: 40px;
+            float: left;
+        }
+
+        textarea {
+            /* 个人简介输入框设置 */
+            resize: none;
+            width: 330px;
+            height: 70px;
+            border: 1px solid rgb(209, 206, 206);
+        }
+
+        .box input{
+                 /* 输入框设置 */
+            width: 330px;
+            height: 40px;
+        }
+
+        .box .agree{
+            /* 同意字体设置 */
+            width:330px;
+            height: 40px;
+            font-size: 14px;
+            font-family: 'Microsoft YaHei';
+            line-height: 40px;
+            margin-right: 15px;
+        }
+        .box .agree .agree{
+            /* 同意按钮设置 */
+            width: 10px;
+            height: 34px;
+            float: left;
+        }
+
+        .box .submit{
+            /* 提交按钮和文字设置 */
+            border: none;
+            width: 330px;
+            height: 40px;
+            background-color: #00ccff;
+            font-size: 18px;
+            font-family: 'Microsoft YaHei';
+            color: white;
+            line-height: 36px;
+            float: right;
+            padding: 0;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box clearfix">
+        <h3>注册表单</h3>
+        <form class="clearfix" action="">
+            <p>
+                <label for="">用户名:</label>
+                <input type="text" name="username">
+            </p>
+            <p>
+                <label for="">密码:</label>
+                <input type="password" name="pwd">
+            </p>
+            <p>
+                <label for="">确认密码:</label>
+                <input type="password" name="pwd_again">
+            </p>
+            <p>
+                <label for="">邮箱:</label>
+                <input type="email" name="email_address">
+            </p>
+            <p class="profile">
+                <label class="profile" for="">个人简介:</label>
+                <textarea name="profile"></textarea>
+            </p>
+            <p class="agree">
+                    <input class="agree" type="checkbox" required="required">同意用户使用协议
+            </p>
+            <p>
+                    <input class="submit" type="submit" value="注册">
+                </p>
+        </form>
+    </div>
+
+</body>
+
+</html>
