@@ -26,7 +26,6 @@
     "emphasize",
     "toggle-chapters",
     "expandable-chapters-small",
-    "sectionx",
     "anchors",
     "anchor-navigation-ex",
     "copy-code-button",
@@ -47,9 +46,6 @@
   "search-pro": {
     "cutWordLib": "nodejieba",
     "defineWord" : ["Gitbook Use"]
-    },
-  "sectionx": {
-      "tag": "b"
     },
   "anchor-navigation-ex": {
       "isRewritePageTitle": true,
