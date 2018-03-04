@@ -20,7 +20,8 @@
     "anchors",
     "anchor-navigation-ex",
     "copy-code-button",
-    "include-csv"
+    "include-csv",
+    "-simple-page-toc"
   ],
   "pluginsConfig": {
     "disqus": {
