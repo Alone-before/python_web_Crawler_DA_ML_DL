@@ -1,7 +1,5 @@
 {
-  "title": "用python带你进入数据世界",
   "author" : "scrappy zhang",
-  "description": "从python最基础的安装、python3.6最基本的语法和linux基础开始，再到python 网络编程、数据库开发、web（前端与移动开发）开发、web全栈框架开发，最后到数据分析Numpy等扩展包、爬虫和深度学习简介（Tenserflow框架）。深入浅出，通过项目实例，逐步走进python数学的世界。",
   "language" : "zh-hans",
   "plugins": [
     "disqus",
@@ -33,7 +31,7 @@
   ],
   "pluginsConfig": {
     "disqus": {
-      "shortName": "python数据世界"
+      "shortName": "用python带你进入数据世界"
     },
     "github": {
       "url": "https://github.com/ScrappyZhang/python_web_Crawler_DA_ML_DL"
