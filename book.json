@@ -9,13 +9,10 @@
     "sharing-plus",
     "livereload",
     "github",
-    "prism",
     "highlight",
-    "baidu",
     "splitter",
     "sitemap",
     "katex",
-    "include-codeblock",
     "splitter",
     "mermaid",
     "tbfed-pagefooter",
@@ -39,16 +36,40 @@
       "modify_label": "该文件修订时间：",
       "modify_format": "YYYY-MM-DD HH:mm:ss"
     },
-  "search-pro": {
+    "search-pro": {
     "cutWordLib": "nodejieba",
     "defineWord" : ["Gitbook Use"]
     },
-  "anchor-navigation-ex": {
+    "anchor-navigation-ex": {
       "isRewritePageTitle": true,
       "isShowTocTitleIcon": true,
       "tocLevel1Icon": "fa fa-hand-o-right",
       "tocLevel2Icon": "fa fa-hand-o-right",
       "tocLevel3Icon": "fa fa-hand-o-right"
+    },
+    "sharing": {
+      "douban": false,
+      "facebook": false,
+      "google": true,
+      "hatenaBookmark": false,
+      "instapaper": false,
+      "line": true,
+      "linkedin": true,
+      "messenger": false,
+      "pocket": false,
+      "qq": false,
+      "qzone": true,
+      "stumbleupon": false,
+      "twitter": false,
+      "viber": false,
+      "vk": false,
+      "weibo": true,
+      "whatsapp": false,
+      "all": [
+          "facebook", "google", "twitter",
+          "weibo", "instapaper", "linkedin",
+          "pocket", "stumbleupon"
+      ]
   }
   }
 }
