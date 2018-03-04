@@ -6,7 +6,7 @@
     "-search",
     "search-pro",
     "-sharing",
-    "sharing-plus",
+    "-sharing-plus",
     "livereload",
     "github",
     "highlight",
@@ -19,7 +19,8 @@
     "expandable-chapters-small",
     "copy-code-button",
     "include-csv",
-    "-simple-page-toc"
+    "-simple-page-toc",
+    "-anchor-navigation-ex"
   ],
   "pluginsConfig": {
     "disqus": {
