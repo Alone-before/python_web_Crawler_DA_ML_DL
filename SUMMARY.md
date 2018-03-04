@@ -2,14 +2,39 @@
 
 * [前言](README.md)
 * [第一部分：python基础](python基础.md)
-  * [一、python软硬件基础](python基础/前言.md)
+  * [一、python软硬件基础](python基础/python软硬件基础/前言.md)
     * [1.1 python简介](python基础/python软硬件基础/python简介.md)
     * [1.2 python的软件知识](python基础/python软硬件基础/python的软件知识.md)
     * [1.3 python的硬件知识](python基础/python软硬件基础/python的硬件知识.md)
-  * [二、python语言数据类型](python基础/python语言数据类型.md)
-  * 三、python面向对象
-  * 四、python文件操作基础
-  * [五、实战：飞机大战](python基础/飞机大战实战.md)
+  * [二、python语言数据类型](python基础/python语言数据类型/python语言数据类型.md)
+    * [2.1 python基础语法](python基础/python语言数据类型/python基础语法.md)
+    * [2.2 python变量](python基础/python语言数据类型/python变量.md)
+    * [2.3 python运算符](python基础/python语言数据类型/python运算符.md)
+    * [2.4 python列表](python基础/python语言数据类型/python列表.md)
+    * [2.5 python元组](python基础/python语言数据类型/python元组.md)
+    * [2.6 python字典](python基础/python语言数据类型/python字典.md)
+    * [2.7 python字符串](python基础/python语言数据类型/python字符串.md)
+  * [三、python常见控制语句](python基础/python常见控制语句/python常见控制语句.md)
+    * [3.1 if语句](python基础/python常见控制语句/if语句.md)
+    * [3.2 for循环](python基础/python常见控制语句/for循环.md)
+    * [3.3 while循环](python基础/python常见控制语句/while循环.md)
+    * [3.4 循环嵌套](python基础/python常见控制语句/循环嵌套.md)
+    * [3.5 break与continue](python基础/python常见控制语句/break与continue.md)
+  * [四、python语言函数](python基础/python语言函数/python语言函数.md)
+    * [4.1 函数基本使用](python基础/python语言函数/函数基本使用.md)
+    * [4.2 函数参数](python基础/python语言函数/函数参数.md)
+    * [4.3 函数类型](python基础/python语言函数/函数类型.md)
+    * [4.4 函数嵌套调用](python基础/python语言函数/函数嵌套调用.md)
+    * [4.5 匿名函数](python基础/python语言函数/匿名函数.md)
+    * [4.7 递归函数](python基础/python语言函数/递归函数.md)
+  * [五、python面向对象基础](python基础/python面向对象基础/python面向对象基础.md)
+    * [5.1 递归函数](python基础/python面向对象基础/递归函数.md)
+  * [六、python文件操作](python基础/python文件操作/python文件操作.md)
+    * [6.1 文件打开与关闭](python基础/python文件操作/文件打开与关闭.md)
+    * [6.2 文件读写](python基础/python文件操作/文件读写.md)
+    * [6.3 文件与文件夹操作](python基础/python文件操作/文件与文件夹操作.md)
+    * [6.4 实例：学生管理系统](python基础/python文件操作/学生管理系统实例.md)
+  * [五、实战：飞机大战](python基础/飞机大战实战/飞机大战实战.md)
 * [第二部分：python高级与网络编程](python高级与网络编程.md)
   * [一、python高级知识](python高级与网络编程/python高级知识.md)
   * [二、网络编程基础](python高级与网络编程/网络编程基础.md)
@@ -35,16 +60,15 @@
   * 四、数据库调优和部署
 * [第四部分：前端基础](前端基础.md)
   * [一、HTML与CSS基础](./前端基础/html_css基础/html基础.md)
-  * 二、PC端页面开发实战
-  * 三、移动端页面开发
-  * 四、JavaScript与jQuery
-  * 五、移动端框架和库
+  * 二、JavaScript与jQuery
+  * 三、前端端框架介绍
   * 六、前端自动化和前端性能优化
 * [第五部分：web全栈开发](web全栈开发.md)
   * 一、Git项目代码管理和项目开发流程
-  * 二、Diango框架开发
-  * 三、Nginx配置和uWSGI部署
-  * 四、实战：电商平台
+  * 二、WSGI
+  * 三、Diango框架
+  * 四、Nginx配置和uWSGI部署
+  * 五、实战：电商平台
   * 五、RESTful接口开发
   * 六、Tornado Web框架
   * 七、微信公众号
