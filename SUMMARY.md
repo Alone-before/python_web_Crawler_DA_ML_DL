@@ -56,7 +56,7 @@
     * [3、 MySQL与python交互基础](数据库操作/mysql/MySQL与python交互基础.md)
     * [4、 MySQL高级了解](数据库操作/mysql/MySQL高级了解.md)
   * 二、MongoDB开发
-  * 三、Redis开发
+  * [三、Redis开发基础](./数据库操作/redis/redis基础.md)
   * 四、数据库调优和部署
 * [第四部分：前端基础](前端基础.md)
   * [一、HTML与CSS基础](./前端基础/html_css基础/html基础.md)
