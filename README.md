@@ -21,4 +21,5 @@
 - MYSQL基础
 - Redis基础
 - HTML和CSS基础
+- 网站性能优化方向介绍
 - matplotlib基础
