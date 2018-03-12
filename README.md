@@ -19,5 +19,6 @@
 - python介绍
 - python网络编程基础
 - MYSQL基础
+- Redis基础
 - HTML和CSS基础
 - matplotlib基础
