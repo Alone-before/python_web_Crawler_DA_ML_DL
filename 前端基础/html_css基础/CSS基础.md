@@ -36,7 +36,7 @@ CSS3是CSS技术的升级版本，CSS3语言开发是朝着模块化发展的。
 
 示例：
 
-![img](file:///Users/scrappy_zhang/Documents/GitHub/python_world/前端基础/html_css基础/./ct_css_selector.gif?lastModify=1520913845)
+![img](./ct_css_selector.gif)
 
 2、CSS注释语句：
 
@@ -359,7 +359,7 @@ CSS 伪元素用于向某些选择器设置特殊效果。与伪类选择器不�
 
 效果：
 
-![img](file:///Users/scrappy_zhang/Documents/GitHub/python_world/前端基础/html_css基础/./css_font.jpg?lastModify=1520913845)
+![img](./css_font.jpg)
 
 ### css文本
 
@@ -455,7 +455,7 @@ CSS 文本属性可定义文本的外观。通过文本属性，您可以改变�
 
 效果：
 
-![img](file:///Users/scrappy_zhang/Documents/GitHub/python_world/前端基础/html_css基础/./css_text.jpg?lastModify=1520913845)
+![img](./css_text.jpg)
 
 ### css背景
 
@@ -522,7 +522,7 @@ CSS 允许应用纯色作为背景，也允许使用背景图像创建相当复�
 
 效果：
 
-![img](file:///Users/scrappy_zhang/Documents/GitHub/python_world/前端基础/html_css基础/./css_background.jpg?lastModify=1520913845)
+![img](./css_background.jpg)
 
 ### css表格
 
@@ -638,11 +638,11 @@ CSS 表格属性可以帮助我们极大地改善表格的外观。
 
 默认效果：
 
-![img](file:///Users/scrappy_zhang/Documents/GitHub/python_world/前端基础/html_css基础/./css_table_1.jpg?lastModify=1520913845)
+![img](./css_table_1.jpg)
 
 合并边框效果：
 
-![img](file:///Users/scrappy_zhang/Documents/GitHub/python_world/前端基础/html_css基础/css_table2.jpg?lastModify=1520913845)
+![img](./css_table2.jpg)
 
 ### css列表
 
@@ -659,7 +659,7 @@ CSS 列表属性允许放置、改变列表项标志，或者将图像作为列�
 
 实例：实现不同的列表项标志(这串代码实现了所有的列表项标志，读者可通过取消相应的注释来查看)。
 
-```
+```html
   <!DOCTYPE html>
   <html lang="zh-cn">
   
@@ -843,7 +843,7 @@ CSS 列表属性允许放置、改变列表项标志，或者将图像作为列�
 
 效果：
 
-![img](file:///Users/scrappy_zhang/Documents/GitHub/python_world/前端基础/html_css基础/./css_list.jpg?lastModify=1520913845)
+![img](./css_list.jpg)
 
 ### CSS3多列
 
@@ -915,13 +915,13 @@ CSS 列表属性允许放置、改变列表项标志，或者将图像作为列�
 
 效果：
 
-![img](file:///Users/scrappy_zhang/Documents/GitHub/python_world/前端基础/html_css基础/./css_mul_col.jpg?lastModify=1520913845)
+![img](./css_mul_col.jpg)
 
 ## CSS盒子模型
 
 CSS盒子模型是指Box Model，规定了元素框处理元素内容、内边距、边框 和 外边距 的方式。
 
-![img](file:///Users/scrappy_zhang/Documents/GitHub/python_world/前端基础/html_css基础/./css_box.jpg?lastModify=1520913845)
+![img](./css_box.jpg)
 
 如图所示，为百度搜索框的输入div元素的设置，选中后通过浏览器中的检查->styles可以查看到其属性，这便是一个常见的盒子模型。它由内容(450×20)、内边距padding、边框border和外边距margin组成。
 
@@ -1189,15 +1189,15 @@ CSS 位置属性为定位和浮动提供了一些属性，利用这些属性，�
 
 请看下图，当把框 1 向右浮动时，它脱离文档流并且向右移动，直到它的右边缘碰到包含框的右边缘：
 
-![img](file:///Users/scrappy_zhang/Documents/GitHub/python_world/前端基础/html_css基础/./ct_css_positioning_floating_right_example.gif?lastModify=1520913845)
+![img](./ct_css_positioning_floating_right_example.gif)
 
 再请看下图，当框 1 向左浮动时，它脱离文档流并且向左移动，直到它的左边缘碰到包含框的左边缘。因为它不再处于文档流中，所以它不占据空间，实际上覆盖住了框 2，使框 2 从视图中消失。如果把所有三个框都向左移动，那么框 1 向左浮动直到碰到包含框，另外两个框向左浮动直到碰到前一个浮动框。
 
-![img](file:///Users/scrappy_zhang/Documents/GitHub/python_world/前端基础/html_css基础/./ct_css_positioning_floating_left_example.gif?lastModify=1520913845)
+![img](./ct_css_positioning_floating_left_example.gif)
 
 如下图所示，如果包含框太窄，无法容纳水平排列的三个浮动元素，那么其它浮动块向下移动，直到有足够的空间。如果浮动元素的高度不同，那么当它们向下移动时可能被其它浮动元素“卡住”：
 
-![img](file:///Users/scrappy_zhang/Documents/GitHub/python_world/前端基础/html_css基础/./ct_css_positioning_floating_left_example_2.gif?lastModify=1520913845)
+![img](./ct_css_positioning_floating_left_example_2.gif)
 
 <font color=red>注：</font>如果子元素有用浮动就最好全用浮动,不要单独对一个子元素用浮动除了文字绕图时,单独实现。
 
@@ -1339,7 +1339,7 @@ CSS定位允许定义元素框相对于其正常位置应该出现的位置，�
 
 效果：
 
-![img](file:///Users/scrappy_zhang/Documents/GitHub/python_world/前端基础/html_css基础/./css_shopcar.jpg?lastModify=1520913845)
+![img](./css_shopcar.jpg)
 
 定位小结：
 
