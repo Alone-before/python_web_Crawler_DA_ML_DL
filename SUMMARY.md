@@ -14,6 +14,7 @@
     * [2.5 python元组](python基础/python语言数据类型/python元组.md)
     * [2.6 python字典](python基础/python语言数据类型/python字典.md)
     * [2.7 python字符串](python基础/python语言数据类型/python字符串.md)
+    * [2.8 List、Dict、String、cuple类型的公共语法](python基础/python语言数据类型/python非数字型变量公共语法.md)
   * [三、python常见控制语句](python基础/python常见控制语句/python常见控制语句.md)
     * [3.1 if语句](python基础/python常见控制语句/if语句.md)
     * [3.2 for循环](python基础/python常见控制语句/for循环.md)
