@@ -59,8 +59,8 @@
   * [三、Redis开发基础](./数据库操作/redis/redis基础.md)
   * 四、数据库调优和部署
 * [第四部分：前端基础](前端基础.md)
-  * [一、HTML与CSS基础](./前端基础/html_css基础/HTML基础.md)
-    * [1、 HTML基础](./前端基础/html_css基础/HTML基础.md)
+  * [一、HTML与CSS基础]
+    * [1、 HTML基础](./前端基础/html_css基础/html基础.md)
     * [2、 CSS基础](./前端基础/html_css基础/CSS基础.md)
     * [3、 8个前端静态页面案例](./前端基础/html_css基础/8个前端静态页面案例.md)
   * 二、JavaScript与jQuery

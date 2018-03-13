@@ -27,7 +27,7 @@ CSS3是CSS技术的升级版本，CSS3语言开发是朝着模块化发展的。
 
 1、CSS语句语法规则如下，由选择器selector、属性property和属性值value组成。属性与属性值之间以冒号分开，不同的属性声明之间以分号隔开；最后使用花括号包围整个选择器的样式声明。
 
-```
+```css
   selectorlist {
     property: value;
     [more property:value; pairs]
@@ -111,7 +111,7 @@ CSS3是CSS技术的升级版本，CSS3语言开发是朝着模块化发展的。
 
 最常见的 CSS 选择器是标签选择器。换句话说，文档的标签就是最基本的选择器。如果设置 HTML 元素的样式，标签选择器通常将是某个 HTML 标签（比如 p、h1、em、a）选择。
 
-```
+```css
           /* 标签选择器 */
           p{
               color: red;
@@ -122,7 +122,7 @@ CSS3是CSS技术的升级版本，CSS3语言开发是朝着模块化发展的。
 
 一般我们在编写HTML文档时，经常会在HTML标签上定义类class属性，以便更好的识别和定义。就像下面这段代码一样，定义了一个类名为p1的p标签形成的元素：
 
-```
+```html
       <p class="p1">
           我是段落p1
       </p>
@@ -999,32 +999,32 @@ CSS盒子模型是指Box Model，规定了元素框处理元素内容、内边�
 
 - 1.父元素设置相同背景色的边框 border
 
-  ```
+```
     border-top: 1px solid aliceblue;
-  ```
+```
 
 - 2.父元素设置内边距 padding
 
-  ```
+```
     padding: 10px;
-  ```
+```
 
 - 3.设置元素溢出
 
-  ```
+```
     overflow: hidden;
-  ```
+```
 
 - 4.**通过伪元素** 。
 
-  ```
+```
     /* 4.推荐的解决margin-top塌陷方式 */
             .clearfix::before{
                 /* 添加空字符串内容 */
                 content: '';
                 /* 把空字符串转行成一个块类型的表格 */
                 display: table;
-  ```
+```
 
 ### CSS内边距
 
