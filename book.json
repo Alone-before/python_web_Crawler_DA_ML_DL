@@ -20,7 +20,8 @@
     "copy-code-button",
     "-include-csv",
     "-simple-page-toc",
-    "-anchor-navigation-ex"
+    "-anchor-navigation-ex",
+    "code"
   ],
   "pluginsConfig": {
     "disqus": {
@@ -68,6 +69,6 @@
           "weibo", "instapaper", "linkedin",
           "pocket", "stumbleupon"
       ]
-  }
+    }
   }
 }
