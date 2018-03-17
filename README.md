@@ -22,4 +22,13 @@
 - Redis基础
 - HTML和CSS基础
 - 网站性能优化方向介绍
+- 网站服务器部署介绍、应用架构介绍
 - matplotlib基础
+
+### 正在进行（预计五一前完成）：
+
+- python基础
+- django基础
+- django网站开发实例
+- numpy
+- 爬虫
