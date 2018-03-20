@@ -1,0 +1,2 @@
+1. 先登录mysql数据库，选择指定的数据库，source dailyfresh.sql导入数据。
+2. 把00目录中的文件拷贝到/home/python/fdfs/storage/data/00/00目录中。
