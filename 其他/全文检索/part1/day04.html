@@ -1,0 +1,273 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>更改分词方式 | 全文检索</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.6.7">
+        
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+
+        
+    
+    
+    
+    <link rel="prev" href="../part1/day03.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+    <div class="book"
+        data-level="4"
+        data-chapter-title="更改分词方式"
+        data-filepath="part1/day04.md"
+        data-basepath=".."
+        data-revision="Wed Mar 14 2018 21:00:18 GMT+0800 (CST)"
+        data-innerlanguage="">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        Introduction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="part1/day01.html">
+            
+                
+                    <a href="../part1/day01.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        安装和配置
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="part1/day02.html">
+            
+                
+                    <a href="../part1/day02.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        索引文件生成
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="part1/day03.html">
+            
+                
+                    <a href="../part1/day03.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        全文检索使用
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="4" data-path="part1/day04.html">
+            
+                
+                    <a href="../part1/day04.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        更改分词方式
+                    </a>
+            
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../" >全文检索</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h1 id="&#x66F4;&#x6539;&#x5206;&#x8BCD;&#x65B9;&#x5F0F;">&#x66F4;&#x6539;&#x5206;&#x8BCD;&#x65B9;&#x5F0F;</h1>
+<ul>
+<li>1.&#x5B89;&#x88C5;jieba&#x5206;&#x8BCD;&#x5305;&#x3002;<pre><code class="lang-python">pip install jieba
+</code></pre>
+</li>
+<li>2.&#x8FDB;&#x5165;&#x865A;&#x62DF;&#x73AF;&#x5883;dailyfresh&#x4E0B;&#x7684;haystack&#x76EE;&#x5F55;&#x3002;<pre><code class="lang-python">/home/python/.virtualenvs/dailyfresh/lib/python3<span class="hljs-number">.5</span>/site-packages/haystack/backends/
+</code></pre>
+</li>
+<li><p>3.&#x5728;&#x4E0A;&#x9762;&#x7684;&#x76EE;&#x5F55;&#x4E2D;&#x521B;&#x5EFA;ChineseAnalyzer.py&#x6587;&#x4EF6;&#x3002;</p>
+<pre><code class="lang-python"><span class="hljs-keyword">import</span> jieba
+<span class="hljs-keyword">from</span> whoosh.analysis <span class="hljs-keyword">import</span> Tokenizer, Token
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ChineseTokenizer</span><span class="hljs-params">(Tokenizer)</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__call__</span><span class="hljs-params">(self, value, positions=False, chars=False,
+                 keeporiginal=False, removestops=True,
+                 start_pos=<span class="hljs-number">0</span>, start_char=<span class="hljs-number">0</span>, mode=<span class="hljs-string">&apos;&apos;</span>, **kwargs)</span>:</span>
+        t = Token(positions, chars, removestops=removestops, mode=mode, **kwargs)
+        seglist = jieba.cut(value, cut_all=<span class="hljs-keyword">True</span>)
+        <span class="hljs-keyword">for</span> w <span class="hljs-keyword">in</span> seglist:
+            t.original = t.text = w
+            t.boost = <span class="hljs-number">1.0</span>
+            <span class="hljs-keyword">if</span> positions:
+                t.pos = start_pos + value.find(w)
+            <span class="hljs-keyword">if</span> chars:
+                t.startchar = start_char + value.find(w)
+                t.endchar = start_char + value.find(w) + len(w)
+            <span class="hljs-keyword">yield</span> t
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">ChineseAnalyzer</span><span class="hljs-params">()</span>:</span>
+    <span class="hljs-keyword">return</span> ChineseTokenizer()
+</code></pre>
+</li>
+<li>4.&#x590D;&#x5236;whoosh_backend.py&#x6587;&#x4EF6;&#x4E3A;&#x5982;&#x4E0B;&#x540D;&#x79F0;&#x3002;<pre><code class="lang-python">  whoosh_cn_backend.py
+</code></pre>
+</li>
+<li>5.&#x6253;&#x5F00;whoosh_cn_backend.py&#xFF0C;&#x5F15;&#x5165;&#x4E2D;&#x6587;&#x5206;&#x6790;&#x7C7B;&#xFF0C;&#x5185;&#x90E8;&#x91C7;&#x7528;jieba&#x5206;&#x8BCD;&#x3002;<pre><code class="lang-python"><span class="hljs-keyword">from</span> .ChineseAnalyzer <span class="hljs-keyword">import</span> ChineseAnalyzer
+</code></pre>
+</li>
+<li>6.&#x66F4;&#x6539;whoosh_cn_backend.py&#x6587;&#x4EF6;&#x4E2D;&#x4F7F;&#x7528;&#x7684;&#x8BCD;&#x8BED;&#x5206;&#x6790;&#x7C7B;&#x3002;<pre><code>&#x67E5;&#x627E;
+analyzer=StemmingAnalyzer()
+&#x6539;&#x4E3A;
+analyzer=ChineseAnalyzer()
+</code></pre></li>
+<li>7.&#x4FEE;&#x6539;settings.py&#x6587;&#x4EF6;&#x4E2D;&#x7684;&#x914D;&#x7F6E;&#x9879;&#x3002;
+<img src="images/p4_1.png" alt="&#x4FEE;&#x6539;&#x914D;&#x7F6E;"></li>
+<li>8.&#x91CD;&#x65B0;&#x521B;&#x5EFA;&#x7D22;&#x5F15;&#x6570;&#x636E;&#x3002;<pre><code>python manage.py rebuild_index
+</code></pre></li>
+</ul>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../part1/day03.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 全文检索使用"><i class="fa fa-angle-left"></i></a>
+        
+        
+    </div>
+</div>
+
+        
+<script src="../gitbook/app.js"></script>
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-livereload/plugin.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"livereload":{}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>
