@@ -116,12 +116,15 @@ drop view v_good;
 
 我们先举个例子：
 
+```
 A用户和B用户是银行的储户，现在A要给B转账500元，那么需要做以下几件事：  
 检查A的账户余额&gt;500元；  
 A 账户中扣除500元;  
 B 账户中增加500元;  
 正常的流程走下来，A账户扣了500，B账户加了500，皆大欢喜。  
 那如果A账户扣了钱之后，系统出故障了呢？A白白损失了500，而B也没有收到本该属于他的500。  
+```
+
 以上的案例中，隐藏着一个前提条件：A扣钱和B加钱，要么同时成功，要么同时失败。事务的需求就在此。
 
 再举一个例子：
@@ -136,44 +139,51 @@ B 账户中增加500元;
 
 **所谓事务,它是一个操作序列，这些操作要么都执行，要么都不执行，它是一个不可分割的工作单位。**
 
-`在 MySQL 中只有使用了 Innodb 数据库引擎的数据库或表才支持事务。`
-
-`事务处理可以用来维护数据库的完整性，保证成批的 SQL 语句要么全部执行，要么全部不执行。`
-
-`事务用来管理 insert,update,delete 语句`
+> 在 MySQL 中只有使用了 Innodb 数据库引擎的数据库或表才支持事务。
+>
+> 事务处理可以用来维护数据库的完整性，保证成批的 SQL 语句要么全部执行，要么全部不执行。
+>
+> 事务用来管理 insert,update,delete 语句。
+>
 
 一般来说，**事务是必须满足4个条件（ACID）： Atomicity（原子性）、Consistency（稳定性）、Isolation（隔离性）、Durability（可靠性）。**
 
-1、**事务的原子性**：一组事务，要么成功；要么撤回。  
-2、**稳定性 **：有非法数据（外键约束之类），事务撤回。  
-3、**隔离性**：事务独立运行。一个事务处理后的结果，影响了其他事务，那么其他事务会撤回。事务的100%隔离，需要牺牲速度。  
-4、**可靠性**：软、硬件崩溃后，InnoDB数据表驱动会利用日志文件重构修改。可靠性和高速度不可兼得， innodb\_flush\_log\_at\_trx\_commit 选项 决定什么时候把事务保存到日志里。
+- **事务的原子性**：一组事务，要么成功；要么撤回。  
 
-**在 MySQL 命令行的默认设置下，事务都是自动提交的，即执行 SQL 语句后就会马上执行 COMMIT 操作。因此要显式地开启一个事务务须使用命令 BEGIN 或 START TRANSACTION，或者执行命令 SET AUTOCOMMIT=0，用来禁止使用当前会话的自动提交。**
+- **稳定性 **：有非法数据（外键约束之类），事务撤回。  
+- **隔离性**：事务独立运行。一个事务处理后的结果，影响了其他事务，那么其他事务会撤回。事务的100%隔离，需要牺牲速度。  
+- **可靠性**：软、硬件崩溃后，`InnoDB`数据表驱动会利用日志文件重构修改。可靠性和高速度不可兼得， `innodb\_flush\_log\_at\_trx\_commit` 选项 决定什么时候把事务保存到日志里。
+
+**在 MySQL 命令行的默认设置下，事务都是自动提交的，即执行 SQL 语句后就会马上执行 `COMMIT` 操作。因此要显式地开启一个事务务须使用命令 `BEGIN` 或 `START TRANSACTION`，或者执行命令 `SET AUTOCOMMIT=0`，用来禁止使用当前会话的自动提交。**
 
 #### 事务控制语句：
 
-BEGIN或START TRANSACTION；显式地开启一个事务；  
-COMMIT；也可以使用COMMIT WORK，不过二者是等价的。COMMIT会提交事务，并使已对数据库进行的所有修改称为永久性的；ROLLBACK；有可以使用ROLLBACK WORK，不过二者是等价的。回滚会结束用户的事务，并撤销正在进行的所有未提交的修改；SAVEPOINT identifier；SAVEPOINT允许在事务中创建一个保存点，一个事务中可以有多个SAVEPOINT；  
-RELEASE SAVEPOINT identifier；删除一个事务的保存点，当没有指定的保存点时，执行该语句会抛出一个异常；  
-ROLLBACK TO identifier；把事务回滚到标记点；  
-SET TRANSACTION；用来设置事务的隔离级别。InnoDB存储引擎提供事务的隔离级别有READ UNCOMMITTED、READ COMMITTED、REPEATABLE READ和SERIALIZABLE。
+- `BEGIN或START TRANSACTION`：显式地开启一个事务；  
+
+- `COMMIT`：也可以使用`COMMIT WORK`，不过二者是等价的。`COMMIT`会提交事务，并使已对数据库进行的所有修改称为永久性的；
+- `ROLLBACK`：有可以使用`ROLLBACK WORK`，不过二者是等价的。回滚会结束用户的事务，并撤销正在进行的所有未提交的修改；
+- `SAVEPOINT identifier`；`SAVEPOINT`允许在事务中创建一个保存点，一个事务中可以有多个SAVEPOINT；  
+- `RELEASE SAVEPOINT identifier`；删除一个事务的保存点，当没有指定的保存点时，执行该语句会抛出一个异常；  
+- `ROLLBACK TO identifier`；把事务回滚到标记点；  
+- `SET TRANSACTION`；用来设置事务的隔离级别。InnoDB存储引擎提供事务的隔离级别有READ UNCOMMITTED、READ COMMITTED、REPEATABLE READ和SERIALIZABLE。
 
 #### MYSQL 事务处理主要有两种方法：
 
 1、用 BEGIN, ROLLBACK, COMMIT来实现
 
-BEGIN 开始一个事务
+- `BEGIN` 开始一个事务
 
-ROLLBACK 事务回滚
+- `ROLLBACK` 事务回滚
 
-COMMIT 事务确认
+- `COMMIT` 事务确认
+
 
 2、直接用 SET 来改变 MySQL 的自动提交模式:
 
-SET AUTOCOMMIT=0 禁止自动提交
+- `SET AUTOCOMMIT=0` 禁止自动提交
 
-SET AUTOCOMMIT=1 开启自动提交
+- `SET AUTOCOMMIT=1` 开启自动提交
+
 
 ## 4.3 函数
 
@@ -187,7 +197,7 @@ MySQL数据库提供了很多函数包括：
 * 加密函数；
 * 格式化函数；
 
-详见链接[https://www.cnblogs.com/kissdodog/p/4168721.html,笔者已将其转化为pdf放置与源代码同目录内，为mysql\_function.pdf](https://www.cnblogs.com/kissdodog/p/4168721.html,笔者已将其转化为pdf放置与源代码同目录内，为mysql_function.pdf)
+详见链接[https://www.cnblogs.com/kissdodog/p/4168721.html,](https://www.cnblogs.com/kissdodog/p/4168721.html)
 
 ## 4.4 索引
 
